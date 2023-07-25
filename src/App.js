@@ -1,4 +1,3 @@
-import logo from './logo.svg';
 import hollywood from './images/hollywood.jpg'
 import './App.css';
 
@@ -19,6 +18,9 @@ function App() {
           Learn React
         </a>
       </header>
+      <footer>
+      This product uses the TMDB API but is not endorsed or certified by TMDB.
+      </footer>
     </div>
   );
 }
