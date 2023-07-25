@@ -3,6 +3,8 @@ import React, { useState, useEffect} from 'react';
 import axios from 'axios';
 import './App.css';
 
+import SearchBar from './SearchBar';
+
 const TMDB_TOKEN = `${process.env.TMDB_API_KEY}`
 const TMDB_URL = 'https://api.themoviedb.org/3'
 
@@ -43,11 +45,14 @@ function App() {
     <div className="App">
       <header className="App-header">
         <img src={hollywood} className="App-logo" alt="logo" />
+      </header>
+      <main>
         <p>
           Today's Trending Actors: {trendingActor}
         </p>
-      </header>
-      <footer>
+        <SearchBar/>
+      </main>
+      <footer className="App-footer">
       This product uses the TMDB API but is not endorsed or certified by TMDB.
       </footer>
     </div>
