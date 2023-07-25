@@ -21,7 +21,7 @@ function App() {
         Authorization: 'Bearer ' + TMDB_TOKEN
       }
     };
-
+    // console.log(options.headers.Authorization)
     return axios
       .request(options)
       .then(function (response) {
