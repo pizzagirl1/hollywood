@@ -3,26 +3,37 @@ import React, { useState, useEffect} from 'react';
 import axios from 'axios';
 import './App.css';
 
-const TMDB_TOKEN = `${process.env.TMDB_API}`
-
+const TMDB_TOKEN = `${process.env.TMDB_API_KEY}`
 const TMDB_URL = 'https://api.themoviedb.org/3'
 
 function App() {
 
   const [trendingActor, setTrendingActor] = useState()
 
-  const getActorData = (actorName) => {
-    const headers = {
-      accept: 'application/json',
-      Authorization: 'Bearer ' + TMDB_TOKEN
-    }
-    return axios.get(`${TMDB_URL}/trending/person/day`, headers)
-    .then( (response) => console.log(response))
-    .catch( (e) => console.log(e))
-  }
+  const getTrendingActor = () => {
+    const convertFromAPI = (person) => {return person.name};
 
+    const options = {
+      method: 'GET',
+      url: `${TMDB_URL}/trending/person/day`,
+      headers: {
+        accept: 'application/json',
+        Authorization: 'Bearer ' + TMDB_TOKEN
+      }
+    };
+
+    return axios
+      .request(options)
+      .then(function (response) {
+        return response.data.results.map(convertFromAPI)
+      })
+      .catch(function (error) {
+        console.log(error.message);
+      });
+  }
+  
   const fetchTrendingActor = () => {
-    getActorData().then( (response) => setTrendingActor(response))
+    getTrendingActor().then( (response) => setTrendingActor(response))
   };
 
   useEffect( () => fetchTrendingActor(), [])
@@ -34,14 +45,6 @@ function App() {
         <p>
           Today's Trending Actors: {trendingActor}
         </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
       </header>
       <footer>
       This product uses the TMDB API but is not endorsed or certified by TMDB.
