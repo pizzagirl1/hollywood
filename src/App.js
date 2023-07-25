@@ -36,6 +36,7 @@ function App() {
     getTrendingActor().then( (response) => setTrendingActor(response))
   };
 
+  // eslint-disable-next-line
   useEffect( () => fetchTrendingActor(), [])
 
   return (
