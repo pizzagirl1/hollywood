@@ -10,7 +10,7 @@ const TMDB_URL = 'https://api.themoviedb.org/3'
 
 function App() {
 
-  const [trendingActor, setTrendingActor] = useState()
+  const [trendingActor, setTrendingActor] = useState([])
 
     // eslint-disable-next-line
     useEffect( () => fetchTrendingActor(), [])
@@ -62,7 +62,7 @@ function App() {
       </header>
       <main>
         <p>
-          Today's Trending Actors: {trendingActor}
+          Today's Trending Actors: {trendingActor.join(', ')}
         </p>
         <SearchBar searchActor={searchActor}/>
       </main>
