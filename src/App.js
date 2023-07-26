@@ -24,6 +24,7 @@ function App() {
       }
     };
     // console.log(options.headers.Authorization)
+    // console.log(TMDB_TOKEN)
     return axios
       .request(options)
       .then(function (response) {
