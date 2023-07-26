@@ -5,7 +5,7 @@ import './App.css';
 
 import SearchBar from './SearchBar';
 
-const TMDB_TOKEN = `${process.env.TMDB_API_KEY}`
+const TMDB_TOKEN = process.env.TMDB_API_KEY
 // const TMDB_TOKEN = 'eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJhNGE2NTFkOWE0MWY2Y2UwZDJiMzVkNDk5NGViYmYyNCIsInN1YiI6IjY0YzAxY2MwNmQ0Yzk3MDBlMjc2NWFlNyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.QcLIYdXQtTtu_eeJwOwHMk6mdPi5QuygsYWK-AM5WMc'
 const TMDB_URL = 'https://api.themoviedb.org/3'
 
@@ -24,7 +24,7 @@ function App() {
         Authorization: 'Bearer ' + TMDB_TOKEN
       }
     };
-    console.log(options.headers.Authorization)
+    console.log(String(options.headers.Authorization))
     console.log(TMDB_TOKEN)
     return axios
       .request(options)
