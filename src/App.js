@@ -12,33 +12,48 @@ function App() {
 
   const [trendingActor, setTrendingActor] = useState()
 
-  const getTrendingActor = () => {
-    const convertFromAPI = (person) => {return person.name};
+    // eslint-disable-next-line
+    useEffect( () => fetchTrendingActor(), [])
+  
+  const fetchTrendingActor = () => {
+    const getTrendingActor = () => {
+      const convertFromAPI = (person) => {return person.name};
+  
+      const options = {
+        method: 'GET',
+        url: `${TMDB_URL}/trending/person/day`,
+        headers: {
+          accept: 'application/json',
+          Authorization: 'Bearer ' + TMDB_TOKEN
+        }
+      };
+      return axios
+        .request(options)
+        .then(function (response) {
+          return response.data.results.map(convertFromAPI)})
+        .catch(function (error) {
+          console.log(error.message);});
+    }
 
+    getTrendingActor().then( (response) => setTrendingActor(response))
+  };
+
+  const searchActor = (query) => {
     const options = {
       method: 'GET',
-      url: `${TMDB_URL}/trending/person/day`,
+      url: `${TMDB_URL}/search/person`,
+      params: {query: query},
       headers: {
         accept: 'application/json',
         Authorization: 'Bearer ' + TMDB_TOKEN
       }
     };
-    return axios
-      .request(options)
-      .then(function (response) {
-        return response.data.results.map(convertFromAPI)
-      })
-      .catch(function (error) {
-        console.log(error.message);
-      });
-  }
-  
-  const fetchTrendingActor = () => {
-    getTrendingActor().then( (response) => setTrendingActor(response))
-  };
 
-  // eslint-disable-next-line
-  useEffect( () => fetchTrendingActor(), [])
+    return axios
+    .request(options)
+    .then( (response) => console.log(response.data.results[0].name))
+    .catch( (error) => console.log("Error Searching for Actor", query, error.message))
+  }
 
   return (
     <div className="App">
@@ -49,7 +64,7 @@ function App() {
         <p>
           Today's Trending Actors: {trendingActor}
         </p>
-        <SearchBar/>
+        <SearchBar searchActor={searchActor}/>
       </main>
       <footer className="App-footer">
       This product uses the TMDB API but is not endorsed or certified by TMDB.

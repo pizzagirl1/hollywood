@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const SearchBar = () => {
+const SearchBar = ( {searchActor} ) => {
     const defaultSearchQuery = { query: '' };
     const [formField, setFormField] = useState(defaultSearchQuery);
 
@@ -10,8 +10,9 @@ const SearchBar = () => {
 
     const onFormSubmit = (event) => {
         event.preventDefault();
-        console.log("Your search query is: ", formField.query)
-        setFormField(defaultSearchQuery)
+        searchActor(formField.query);
+        console.log("Your search query is: ", formField.query);
+        setFormField(defaultSearchQuery);
     }
 
     return (
