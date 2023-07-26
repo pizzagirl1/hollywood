@@ -51,7 +51,7 @@ function App() {
 
     return axios
     .request(options)
-    .then( (response) => console.log(response.data.results[0].name))
+    .then( (response) => {return response.data.results[0].name})
     .catch( (error) => console.log("Error Searching for Actor", query, error.message))
   }
 
