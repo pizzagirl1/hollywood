@@ -11,6 +11,8 @@ const TMDB_URL = 'https://api.themoviedb.org/3'
 function App() {
 
   const [trendingActor, setTrendingActor] = useState([])
+  const [searchResult, setSearchResult] = useState({  name: '',
+                                                      id: '',});
 
     // eslint-disable-next-line
     useEffect( () => fetchTrendingActor(), [])
@@ -51,7 +53,9 @@ function App() {
 
     return axios
     .request(options)
-    .then( (response) => {return response.data.results[0].name})
+    .then( (response) => {return {
+      name: response.data.results[0].name,
+      id: response.data.results[0].id}})
     .catch( (error) => console.log("Error Searching for Actor", query, error.message))
   }
 
@@ -64,7 +68,11 @@ function App() {
         <p>
           Today's Trending Actors: {trendingActor.join(', ')}
         </p>
-        <SearchBar searchActor={searchActor}/>
+        <SearchBar 
+          searchActor={searchActor}
+          searchResult={searchResult}
+          setSearchResult={setSearchResult}
+        />
       </main>
       <footer className="App-footer">
       This product uses the TMDB API but is not endorsed or certified by TMDB.

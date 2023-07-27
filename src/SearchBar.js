@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
 
-const SearchBar = ( {searchActor} ) => {
+const SearchBar = ( {searchActor, searchResult, setSearchResult} ) => {
     const defaultSearchQuery = { query: '' };
     const [formField, setFormField] = useState(defaultSearchQuery);
-    const [searchResult, setSearchResult] = useState('');
 
     const onQueryChange = (event) => {
         setFormField({ query: event.target.value });
@@ -11,6 +10,10 @@ const SearchBar = ( {searchActor} ) => {
 
     const onFormSubmit = (event) => {
         event.preventDefault();
+        if (formField.query.length === 0){
+            window.alert('Search may not be blank');
+            return;
+        }
         searchActor(formField.query).then((response) => setSearchResult(response));
         console.log("Your search query is: ", formField.query);
         setFormField(defaultSearchQuery);
@@ -27,7 +30,10 @@ const SearchBar = ( {searchActor} ) => {
                 />
             </form>
             <div>
-            <p>Your search found {searchResult}</p>
+            <p>
+                {searchResult.name.length > 0 && 
+                `Your search found ${searchResult.name}`}
+            </p>
             </div>
         </div>
     );
