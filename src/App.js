@@ -9,10 +9,10 @@ const TMDB_TOKEN = `${process.env.REACT_APP_TMDB_API_KEY}`
 const TMDB_URL = 'https://api.themoviedb.org/3'
 
 function App() {
+  const defaultSearchActor = { name: '', id: ''};
 
   const [trendingActor, setTrendingActor] = useState([])
-  const [searchResult, setSearchResult] = useState({  name: '',
-                                                      id: '',});
+  const [searchResult, setSearchResult] = useState(defaultSearchActor);
 
     // eslint-disable-next-line
     useEffect( () => fetchTrendingActor(), [])
