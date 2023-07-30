@@ -64,11 +64,12 @@ function App() {
   }
 
   const fetchPopularActors = () => {
-    const getPopularActors = () => {
+    const getPopularActors = (page) => {
       const convertFromAPI = (person) => {return person.id}
       const options = {
       method: 'GET',
       url: `${TMDB_URL}/person/popular`,
+      params: {page: page},
       headers: {
         accept: 'application/json',
         Authorization: 'Bearer ' + TMDB_TOKEN
@@ -82,7 +83,15 @@ function App() {
         console.log(error.message);});
     }
 
-    getPopularActors()
+    let actorIds = []
+
+    for (let i = 0; i < 50; i++) {
+      getPopularActors(i)
+      .then( (response) => {actorIds.push(...response)})
+      .then( () => console.log(actorIds))
+    }
+
+    getPopularActors(1)
     .then( (response) => {
       setPopularActors(response);})
   };
