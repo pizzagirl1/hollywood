@@ -32,9 +32,9 @@ function App() {
       };
       return axios
         .request(options)
-        .then(function (response) {
+        .then((response) => {
           return response.data.results.map(convertFromAPI)})
-        .catch(function (error) {
+        .catch((error) => {
           console.log(error.message);});
     }
 
@@ -73,14 +73,32 @@ function App() {
     };
     return axios
       .request(options)
-      .then(function (response) {
+      .then((response) => {
         console.log(response.data.results);
         return response.data.results.map(convertFromAPI)})
-      .catch(function (error) {
+      .catch((error) => {
         console.log(error.message);});
     }
 
     getPopularActors().then( (response) => setPopularActors(response));
+  }
+
+  const getNameByPersonId = (id) => {
+    const options = {
+      method: 'GET',
+      url: `${TMDB_URL}/person/${id}`,
+      headers: {
+        accept: 'application/json',
+        Authorization: 'Bearer ' + TMDB_TOKEN
+      }
+    };
+    return axios
+      .request(options)
+      .then((response) => {
+        console.log(response.data.results.name);})
+      .catch((error) => {
+        console.log(error.message);});
+    }
   }
 
   return (
