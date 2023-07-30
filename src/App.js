@@ -4,6 +4,7 @@ import axios from 'axios';
 import './App.css';
 
 import SearchBar from './SearchBar';
+import PopularActorsList from './PopularActorsList';
 
 const TMDB_TOKEN = `${process.env.REACT_APP_TMDB_API_KEY}`
 const TMDB_URL = 'https://api.themoviedb.org/3'
@@ -19,6 +20,7 @@ function App() {
     useEffect( () => fetchPopularActors(), [])
     useEffect( () => fetchNameByPersonId(popularActors[0]), [popularActors])
   
+  // defunct
   const fetchTrendingActor = () => {
     const getTrendingActor = () => {
       const convertFromAPI = (person) => {return person.name};
@@ -75,7 +77,6 @@ function App() {
     return axios
       .request(options)
       .then((response) => {
-        console.log(response.data.results);
         return response.data.results.map(convertFromAPI)})
       .catch((error) => {
         console.log(error.message);});
@@ -98,12 +99,12 @@ function App() {
       };
       return axios
         .request(options)
-        .then((response) => {console.log(response.data.name);})
+        .then((response) => {return (response.data.name);})
         .catch((error) => {
           console.log("error in getNameByPersonId", error.message);});
       }
 
-    getNameByPersonId(id);
+    getNameByPersonId(id).then((response) => {return response});
   }
   
 
@@ -120,6 +121,10 @@ function App() {
           searchActor={searchActor}
           searchResult={searchResult}
           setSearchResult={setSearchResult}
+        />
+        <PopularActorsList
+          popularActors={popularActors}
+          fetchNameByPersonId={fetchNameByPersonId}
         />
       </main>
       <footer className="App-footer">
