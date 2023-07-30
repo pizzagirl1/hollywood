@@ -12,10 +12,11 @@ function App() {
   const defaultSearchActor = { name: '', id: ''};
 
   const [trendingActor, setTrendingActor] = useState([])
+  const [popularActors, setPopularActors] = useState([])
   const [searchResult, setSearchResult] = useState(defaultSearchActor);
 
     // eslint-disable-next-line
-    useEffect( () => fetchTrendingActor(), [])
+    useEffect( () => fetchPopularActors(), [])
   
   const fetchTrendingActor = () => {
     const getTrendingActor = () => {
@@ -59,6 +60,29 @@ function App() {
     .catch( (error) => console.log("Error Searching for Actor", query, error.message))
   }
 
+  const fetchPopularActors = () => {
+    const getPopularActors = () => {
+      const convertFromAPI = (person) => {return person.id}
+      const options = {
+      method: 'GET',
+      url: `${TMDB_URL}/person/popular`,
+      headers: {
+        accept: 'application/json',
+        Authorization: 'Bearer ' + TMDB_TOKEN
+      }
+    };
+    return axios
+      .request(options)
+      .then(function (response) {
+        console.log(response.data.results);
+        return response.data.results.map(convertFromAPI)})
+      .catch(function (error) {
+        console.log(error.message);});
+    }
+
+    getPopularActors().then( (response) => setPopularActors(response));
+  }
+
   return (
     <div className="App">
       <header className="App-header">
@@ -66,7 +90,7 @@ function App() {
       </header>
       <main>
         <p>
-          Today's Trending Actors: {trendingActor.join(', ')}
+          Today's Popular Actors: {popularActors.join(', ')}
         </p>
         <SearchBar 
           searchActor={searchActor}
