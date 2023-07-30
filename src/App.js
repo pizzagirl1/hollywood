@@ -17,6 +17,7 @@ function App() {
 
     // eslint-disable-next-line
     useEffect( () => fetchPopularActors(), [])
+    useEffect( () => fetchNameByPersonId(popularActors[0]), [popularActors])
   
   const fetchTrendingActor = () => {
     const getTrendingActor = () => {
@@ -80,26 +81,31 @@ function App() {
         console.log(error.message);});
     }
 
-    getPopularActors().then( (response) => setPopularActors(response));
-  }
-
-  const getNameByPersonId = (id) => {
-    const options = {
-      method: 'GET',
-      url: `${TMDB_URL}/person/${id}`,
-      headers: {
-        accept: 'application/json',
-        Authorization: 'Bearer ' + TMDB_TOKEN
+    getPopularActors()
+    .then( (response) => {
+      setPopularActors(response);})
+  };
+  
+  const fetchNameByPersonId = (id) => {
+    const getNameByPersonId = (id) => {
+      const options = {
+        method: 'GET',
+        url: `${TMDB_URL}/person/${id}`,
+        headers: {
+          accept: 'application/json',
+          Authorization: 'Bearer ' + TMDB_TOKEN
+        }
+      };
+      return axios
+        .request(options)
+        .then((response) => {console.log(response.data.name);})
+        .catch((error) => {
+          console.log("error in getNameByPersonId", error.message);});
       }
-    };
-    return axios
-      .request(options)
-      .then((response) => {
-        console.log(response.data.results.name);})
-      .catch((error) => {
-        console.log(error.message);});
-    }
+
+    getNameByPersonId(id);
   }
+  
 
   return (
     <div className="App">
