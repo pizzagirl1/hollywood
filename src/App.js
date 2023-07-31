@@ -117,25 +117,25 @@ function App() {
   };
   
   // inshallah we dont need this
-  const fetchNameByPersonId = (id) => {
-    const getNameByPersonId = (id) => {
-      const options = {
-        method: 'GET',
-        url: `${TMDB_URL}/person/${id}`,
-        headers: {
-          accept: 'application/json',
-          Authorization: 'Bearer ' + TMDB_TOKEN
-        }
-      };
-      return axios
-        .request(options)
-        .then((response) => {return (response.data.name);})
-        .catch((error) => {
-          console.log("error in getNameByPersonId", error.message);});
-      }
+  // const fetchNameByPersonId = (id) => {
+  //   const getNameByPersonId = (id) => {
+  //     const options = {
+  //       method: 'GET',
+  //       url: `${TMDB_URL}/person/${id}`,
+  //       headers: {
+  //         accept: 'application/json',
+  //         Authorization: 'Bearer ' + TMDB_TOKEN
+  //       }
+  //     };
+  //     return axios
+  //       .request(options)
+  //       .then((response) => {return (response.data.name);})
+  //       .catch((error) => {
+  //         console.log("error in getNameByPersonId", error.message);});
+  //     }
 
-    getNameByPersonId(id).then((response) => {return response});
-  }
+  //   getNameByPersonId(id).then((response) => {return response});
+  // }
 
   const convertToNamesFromActorObjectsArray = (actorData) => {
     const onlyNames = actorData.map((actor) => {return actor.name});
