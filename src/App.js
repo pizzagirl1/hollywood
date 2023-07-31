@@ -16,7 +16,6 @@ function App() {
 
     // eslint-disable-next-line
     useEffect( () => fetchPopularActors(), [])
-    // useEffect( () => fetchNameByPersonId(popularActors[0]), [popularActors])
 
   const searchActor = (query) => {
     const options = {
