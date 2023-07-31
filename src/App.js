@@ -111,7 +111,16 @@ function App() {
 
   const startGame = () => {
     console.log("Let the games begin!");
-    console.log(popularActors.slice(0, 3));
+    console.log(getThreePeople(popularActors));
+  }
+
+  const getThreePeople = (people) => {
+    const result = [];
+    for (let i = 0; i < 3; i++) {
+      let randomIndex = Math.floor(Math.random() * people.length);
+      result.push(people[randomIndex]);
+    }
+    return result;
   }
 
   const convertToNamesFromActorObjectsArray = (actorData) => {
