@@ -38,7 +38,7 @@ function App() {
         window.alert('Search not valid. Try again.');
         return {
           name: '',
-          id: 1
+          id: 0
         };
       } else {
       console.log("Error Searching for Actor", query, error.message)}})
@@ -49,7 +49,8 @@ function App() {
       const convertFromAPI = (person) => {
         return {
           id: person.id,
-          name: person.name}}
+          name: person.name
+        }}
 
       const options = {
       method: 'GET',
