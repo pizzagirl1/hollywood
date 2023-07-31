@@ -61,7 +61,7 @@ function App() {
       name: response.data.results[0].name,
       id: response.data.results[0].id}})
     .catch( (error) => {
-      if (error.message === 'response.data.results[0] is undefined'){
+      if (error.message.includes('undefined')) {
         window.alert('Search not valid. Try again.');
         return {
           name: '',
