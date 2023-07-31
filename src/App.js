@@ -110,7 +110,8 @@ function App() {
   // }
 
   const startGame = () => {
-    console.log("Let the games begin!")
+    console.log("Let the games begin!");
+    console.log(popularActors.slice(0, 3));
   }
 
   const convertToNamesFromActorObjectsArray = (actorData) => {
