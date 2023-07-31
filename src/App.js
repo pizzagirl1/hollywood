@@ -121,6 +121,11 @@ function App() {
 
     getNameByPersonId(id).then((response) => {return response});
   }
+
+  const convertToNamesFromActorObject = (actorData) => {
+    const onlyNames = actorData.map((actor) => {return actor.name});
+    return onlyNames
+  }
   
 
   return (
@@ -130,7 +135,7 @@ function App() {
       </header>
       <main>
         <p>
-          Today's Popular Actors: {popularActors.join(', ')}
+          Today's Popular Actors: {(convertToNamesFromActorObject(popularActors)).join(', ')}
         </p>
         <SearchBar 
           searchActor={searchActor}
