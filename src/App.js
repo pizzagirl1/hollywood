@@ -137,10 +137,10 @@ function App() {
           searchResult={searchResult}
           setSearchResult={setSearchResult}
         />
-        <PopularActorsList
+        {/* <PopularActorsList
           popularActors={popularActors}
           fetchNameByPersonId={fetchNameByPersonId}
-        />
+        /> */}
       </main>
       <footer className="App-footer">
       This product uses the TMDB API but is not endorsed or certified by TMDB.
