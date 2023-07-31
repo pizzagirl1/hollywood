@@ -90,11 +90,9 @@ function App() {
     return axios
       .request(options)
       .then((response) => {
-        let result = response.data.results.map(convertFromAPI);
-        console.log(result);
-        return result;})
+        return response.data.results.map(convertFromAPI);})
       .catch((error) => {
-        console.log(error.message);});
+        console.log("Error during getPopularActors", error.message);});
     }
 
     let actorData = []
