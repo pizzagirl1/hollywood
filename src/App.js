@@ -83,12 +83,12 @@ function App() {
         console.log(error.message);});
     }
 
-    let actorIds = []
+    let actorData = []
 
     for (let i = 0; i < 50; i++) {
       getPopularActors(i)
-      .then( (response) => {actorIds.push(...response)})
-      .then( () => console.log(actorIds))
+      .then( (response) => {actorData.push(...response)})
+      .then( () => console.log(actorData))
     }
 
     getPopularActors(1)
