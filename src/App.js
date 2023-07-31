@@ -76,7 +76,6 @@ function App() {
         getPopularActors(i)
         .then( (response) => {
           actorData.push(...response); 
-          console.log(i, response);
         })
       }
       return actorData;
