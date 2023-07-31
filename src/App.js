@@ -49,7 +49,8 @@ function App() {
       const convertFromAPI = (person) => {
         return {
           id: person.id,
-          name: person.name
+          name: person.name,
+          imagePath: person.profile_path
         }}
 
       const options = {
@@ -69,25 +70,27 @@ function App() {
         console.log("Error during getPopularActors", error.message);});
     }
 
-    // const fetchTenPages = () => {
-    //   let actorData = []
-    //   for (let i = 1; i <= 50; i++) {
-    //     getPopularActors(i)
-    //     .then( (response) => {
-    //       actorData.push(...response); 
-    //       console.log(i, response);
-    //     })
-    //   }
-    //   return actorData;
-    // }
+    const fetchFiftyPages = () => {
+      let actorData = []
+      for (let i = 1; i <= 50; i++) {
+        getPopularActors(i)
+        .then( (response) => {
+          actorData.push(...response); 
+          console.log(i, response);
+        })
+      }
+      return actorData;
+    }
 
-    // fetchTenPages().then( (response) => {
+    // fetchFiftyPages().then( (response) => {
     //   console.log(response);
     //   setPopularActors(response);})
 
-    getPopularActors(15)
-    .then( (response) => {
-      setPopularActors(response);})
+    // getPopularActors(15)
+    // .then( (response) => {
+    //   setPopularActors(response);})
+
+    setPopularActors(fetchFiftyPages())
   };
   
   // inshallah we dont need this
