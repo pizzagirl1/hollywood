@@ -95,15 +95,22 @@ function App() {
         console.log("Error during getPopularActors", error.message);});
     }
 
-    let actorData = []
+    const fetchTenPages = () => {
+      let actorData = []
+      for (let i = 1; i <= 50; i++) {
+        getPopularActors(i)
+        .then( (response) => {
+          actorData.push(...response); 
+          console.log(i, response);
+        })
+      }
+      return actorData;
+    }
 
-    // for (let i = 0; i < 50; i++) {
-    //   getPopularActors(i)
-    //   .then( (response) => {actorData.push(...response)})
-    //   .then( () => console.log(actorData))
-    // }
-
-    getPopularActors(1)
+    // fetchTenPages().then( (response) => {
+    //   console.log(response);
+    //   setPopularActors(response);})
+    getPopularActors(15)
     .then( (response) => {
       setPopularActors(response);})
   };
