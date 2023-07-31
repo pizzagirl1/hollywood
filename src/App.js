@@ -65,7 +65,11 @@ function App() {
 
   const fetchPopularActors = () => {
     const getPopularActors = (page) => {
-      const convertFromAPI = (person) => {return person.id}
+      const convertFromAPI = (person) => {
+        return {
+          id: person.id,
+          name: person.name}}
+
       const options = {
       method: 'GET',
       url: `${TMDB_URL}/person/popular`,
@@ -78,18 +82,20 @@ function App() {
     return axios
       .request(options)
       .then((response) => {
-        return response.data.results.map(convertFromAPI)})
+        let result = response.data.results.map(convertFromAPI);
+        console.log(result);
+        return result;})
       .catch((error) => {
         console.log(error.message);});
     }
 
     let actorData = []
 
-    for (let i = 0; i < 50; i++) {
-      getPopularActors(i)
-      .then( (response) => {actorData.push(...response)})
-      .then( () => console.log(actorData))
-    }
+    // for (let i = 0; i < 50; i++) {
+    //   getPopularActors(i)
+    //   .then( (response) => {actorData.push(...response)})
+    //   .then( () => console.log(actorData))
+    // }
 
     getPopularActors(1)
     .then( (response) => {
