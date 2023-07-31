@@ -110,6 +110,10 @@ function App() {
   //   getNameByPersonId(id).then((response) => {return response});
   // }
 
+  const startGame = () => {
+    console.log("Let the games begin!")
+  }
+
   const convertToNamesFromActorObjectsArray = (actorData) => {
     const onlyNames = actorData.map((actor) => {return actor.name});
     return onlyNames
@@ -122,6 +126,7 @@ function App() {
         <img src={hollywood} className="App-logo" alt="logo" />
       </header>
       <main>
+        <button onClick={startGame}>Start Game</button>
         <p>
           Today's Popular Actors: {(convertToNamesFromActorObjectsArray(popularActors)).join(', ')}
         </p>
