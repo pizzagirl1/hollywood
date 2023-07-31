@@ -70,7 +70,7 @@ function App() {
         console.log("Error during getPopularActors", error.message);});
     }
 
-    const fetchFiftyPagesPopularActors = () => {
+    const fetchAllPopularPeople = () => {
       let actorData = []
       for (let i = 1; i <= 50; i++) {
         getPopularActors(i)
@@ -82,15 +82,11 @@ function App() {
       return actorData;
     }
 
-    // fetchFiftyPagesPopularActors().then( (response) => {
-    //   console.log(response);
-    //   setPopularActors(response);})
-
     // getPopularActors(15)
     // .then( (response) => {
     //   setPopularActors(response);})
 
-    setPopularActors(fetchFiftyPagesPopularActors())
+    setPopularActors(fetchAllPopularPeople())
   };
   
   // inshallah we dont need this
