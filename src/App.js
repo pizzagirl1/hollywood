@@ -4,7 +4,7 @@ import axios from 'axios';
 import './App.css';
 
 import SearchBar from './SearchBar';
-import PopularActorsList from './PopularActorsList';
+// import PopularActorsList from './PopularActorsList';
 
 const TMDB_TOKEN = `${process.env.REACT_APP_TMDB_API_KEY}`
 const TMDB_URL = 'https://api.themoviedb.org/3'
