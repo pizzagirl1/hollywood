@@ -15,7 +15,6 @@ const SearchBar = ( {searchActor, searchResult, setSearchResult} ) => {
             return;
         }
         searchActor(formField.query).then((response) => setSearchResult(response));
-        console.log("Your search query is: ", formField.query);
         setFormField(defaultSearchQuery);
     }
 

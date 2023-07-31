@@ -60,7 +60,15 @@ function App() {
     .then( (response) => {return {
       name: response.data.results[0].name,
       id: response.data.results[0].id}})
-    .catch( (error) => console.log("Error Searching for Actor", query, error.message))
+    .catch( (error) => {
+      if (error.message === 'response.data.results[0] is undefined'){
+        window.alert('Search not valid. Try again.');
+        return {
+          name: '',
+          id: 1
+        };
+      } else {
+      console.log("Error Searching for Actor", query, error.message)}})
   }
 
   const fetchPopularActors = () => {
@@ -122,7 +130,7 @@ function App() {
     getNameByPersonId(id).then((response) => {return response});
   }
 
-  const convertToNamesFromActorObject = (actorData) => {
+  const convertToNamesFromActorObjectsArray = (actorData) => {
     const onlyNames = actorData.map((actor) => {return actor.name});
     return onlyNames
   }
@@ -135,7 +143,7 @@ function App() {
       </header>
       <main>
         <p>
-          Today's Popular Actors: {(convertToNamesFromActorObject(popularActors)).join(', ')}
+          Today's Popular Actors: {(convertToNamesFromActorObjectsArray(popularActors)).join(', ')}
         </p>
         <SearchBar 
           searchActor={searchActor}
