@@ -4,7 +4,6 @@ import axios from 'axios';
 import './App.css';
 
 import SearchBar from './SearchBar';
-// import PopularActorsList from './PopularActorsList';
 
 const TMDB_TOKEN = `${process.env.REACT_APP_TMDB_API_KEY}`
 const TMDB_URL = 'https://api.themoviedb.org/3'
@@ -12,37 +11,12 @@ const TMDB_URL = 'https://api.themoviedb.org/3'
 function App() {
   const defaultSearchActor = { name: '', id: ''};
 
-  // const [trendingActor, setTrendingActor] = useState([])
   const [popularActors, setPopularActors] = useState([])
   const [searchResult, setSearchResult] = useState(defaultSearchActor);
 
     // eslint-disable-next-line
     useEffect( () => fetchPopularActors(), [])
     // useEffect( () => fetchNameByPersonId(popularActors[0]), [popularActors])
-  
-  // defunct
-  // const fetchTrendingActor = () => {
-  //   const getTrendingActor = () => {
-  //     const convertFromAPI = (person) => {return person.name};
-  
-  //     const options = {
-  //       method: 'GET',
-  //       url: `${TMDB_URL}/trending/person/day`,
-  //       headers: {
-  //         accept: 'application/json',
-  //         Authorization: 'Bearer ' + TMDB_TOKEN
-  //       }
-  //     };
-  //     return axios
-  //       .request(options)
-  //       .then((response) => {
-  //         return response.data.results.map(convertFromAPI)})
-  //       .catch((error) => {
-  //         console.log(error.message);});
-  //   }
-
-  //   getTrendingActor().then( (response) => setTrendingActor(response))
-  // };
 
   const searchActor = (query) => {
     const options = {
@@ -157,10 +131,6 @@ function App() {
           searchResult={searchResult}
           setSearchResult={setSearchResult}
         />
-        {/* <PopularActorsList
-          popularActors={popularActors}
-          fetchNameByPersonId={fetchNameByPersonId}
-        /> */}
       </main>
       <footer className="App-footer">
       This product uses the TMDB API but is not endorsed or certified by TMDB.
