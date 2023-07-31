@@ -111,7 +111,7 @@ function App() {
 
   const startGame = () => {
     console.log("Let the games begin!");
-    console.log(getThreePeople(popularActors));
+    console.log(convertToNamesFromActorObjectsArray(getThreePeople(popularActors)));
   }
 
   const getThreePeople = (people) => {
