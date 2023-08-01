@@ -33,9 +33,13 @@ function App() {
 
     return axios
     .request(options)
-    .then( (response) => {return {
+    .then( (response) => {
+      console.log(response.data.results[0].profile_path);
+      return {
+      id: response.data.results[0].id,
       name: response.data.results[0].name,
-      id: response.data.results[0].id}})
+      imagePath: response.data.results[0].profile_path,
+    }})
     .catch( (error) => {
       if (error.message.includes('undefined')) {
         window.alert('Search not valid. Try again.');
