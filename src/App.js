@@ -108,9 +108,6 @@ function App() {
       <main>
         <button onClick={startGame}>Start Game</button>
         {testThree.length > 0 && <ActorList actors={testThree}/>}
-        {/* <p>
-          Today's Popular Actors: {(convertToNamesFromActorObjectsArray(popularActors)).join(', ')}
-        </p> */}
         <SearchBar 
           searchActor={searchActor}
           searchResult={searchResult}
