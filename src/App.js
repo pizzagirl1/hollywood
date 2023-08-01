@@ -11,9 +11,9 @@ const TMDB_URL = 'https://api.themoviedb.org/3'
 
 function App() {
   const defaultSearchResult = { name: '', id: '', imagePath:''};
+  const [searchResult, setSearchResult] = useState(defaultSearchResult);
 
   const [popularActors, setPopularActors] = useState([])
-  const [searchResult, setSearchResult] = useState(defaultSearchResult);
   const [testThree, setTestThree] = useState([])
 
     // eslint-disable-next-line
@@ -56,6 +56,7 @@ function App() {
         return {
           id: person.id,
           name: person.name,
+          gender: (person.gender === (1 || 3) ) ? true : false,
           imagePath: person.profile_path
         }}
 
@@ -84,6 +85,16 @@ function App() {
           actorData.push(...response); 
         })
       }
+      
+      // const isMarginalizedGender = (actor) => {
+      //   return actor.gender;
+      // }
+
+      // const bechdelData = actorData.filter(isMarginalizedGender);
+      // const bechdelData = actorData.splice(0, 3);
+      // console.log(bechdelData);
+      // return bechdelData;
+      console.log(actorData);
       return actorData;
     }
     setPopularActors(fetchAllPopularPeople())
@@ -118,12 +129,10 @@ function App() {
           setSearchResult={setSearchResult}
         />
         {searchResult.name !== '' && 
-        <ActorList actors={[searchResult]}
-          // id={searchResult.id}
-          // name={searchResult.name}
-          // imagePath={searchResult.imagePath}
-        />}
-      This product uses the TMDB API but is not endorsed or certified by TMDB.
+        <ActorList actors={[searchResult]}/>}
+        <div>
+        This product uses the TMDB API but is not endorsed or certified by TMDB.
+        </div>
       </main>
       {/* <footer className="App-footer">
       This product uses the TMDB API but is not endorsed or certified by TMDB.
