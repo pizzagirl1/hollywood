@@ -8,7 +8,7 @@ const ActorList = ( {actors} ) => {
                 id={actor.id}
                 key={actor.id}
                 name= {actor.name}
-                image={actor.imagePath}
+                imagePath={actor.imagePath}
             />
         ))
     }

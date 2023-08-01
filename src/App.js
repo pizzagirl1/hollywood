@@ -119,10 +119,10 @@ function App() {
           setSearchResult={setSearchResult}
         />
         {searchResult.name !== '' && 
-        <Actor
-          id={searchResult.id}
-          name={searchResult.name}
-          imagePath={searchResult.imagePath}
+        <ActorList actors={[searchResult]}
+          // id={searchResult.id}
+          // name={searchResult.name}
+          // imagePath={searchResult.imagePath}
         />}
       This product uses the TMDB API but is not endorsed or certified by TMDB.
       </main>
