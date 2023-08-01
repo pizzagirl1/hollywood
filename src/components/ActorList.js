@@ -16,7 +16,7 @@ const ActorList = ( {actors} ) => {
     }
 
     return (
-        <div class="container">
+        <div className="container">
             <ul>{getActorListJSX(actors)}</ul>
         </div>
     )
