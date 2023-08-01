@@ -127,6 +127,7 @@ function App() {
           searchActor={searchActor}
           searchResult={searchResult}
           setSearchResult={setSearchResult}
+          defaultSearchResult={defaultSearchResult}
         />
         {searchResult.name !== '' && 
         <ActorList actors={[searchResult]}/>}
