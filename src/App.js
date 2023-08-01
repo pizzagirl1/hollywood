@@ -124,11 +124,8 @@ function App() {
       type: data.type
     }
     
-    console.log("before chain:", chain)
     const newChain = [...chain, newObject]
     setChain(newChain)
-    // setChain((prevData) => [...prevData, newObject])
-    console.log("after chain:", chain)
   }
 
   return (
