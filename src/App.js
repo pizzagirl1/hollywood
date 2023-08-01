@@ -113,8 +113,9 @@ function App() {
 
   const startGame = () => {
     console.log("Let the games begin!");
-    console.log(convertToNamesFromActorObjectsArray(getThreePeople(popularActors)));
-    setTestThree(getThreePeople(popularActors))
+    // console.log(convertToNamesFromActorObjectsArray(getThreePeople(popularActors)));
+    setTestThree(getThreePeople(popularActors));
+    console.log(testThree)
   }
 
   const getThreePeople = (people) => {
