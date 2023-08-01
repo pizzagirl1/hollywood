@@ -10,7 +10,7 @@ const TMDB_TOKEN = `${process.env.REACT_APP_TMDB_API_KEY}`
 const TMDB_URL = 'https://api.themoviedb.org/3'
 
 function App() {
-  const defaultSearchResult = { name: '', id: ''};
+  const defaultSearchResult = { name: '', id: '', imagePath:''};
 
   const [popularActors, setPopularActors] = useState([])
   const [searchResult, setSearchResult] = useState(defaultSearchResult);
