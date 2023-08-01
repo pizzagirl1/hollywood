@@ -1,7 +1,7 @@
 import React from 'react';
 import Actor from './Actor';
 import Movie from './Movie';
-import './ActorList.css'
+import './AssetList.css'
 
 
 const AssetList = ( {assets} ) => {
