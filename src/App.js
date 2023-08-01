@@ -4,7 +4,7 @@ import axios from 'axios';
 import './App.css';
 
 import SearchBar from './components/SearchBar';
-import ActorList from './components/ActorList';
+import AssetList from './components/AssetList';
 
 const TMDB_TOKEN = `${process.env.REACT_APP_TMDB_API_KEY}`
 const TMDB_URL = 'https://api.themoviedb.org/3'
@@ -38,6 +38,7 @@ function App() {
         id: response.data.results[0].id,
         name: response.data.results[0].name,
         imagePath: response.data.results[0].profile_path,
+        type: 'Actor'
     }})
     .catch( (error) => {
       if (error.message.includes('undefined')) {
@@ -57,7 +58,8 @@ function App() {
           id: person.id,
           name: person.name,
           gender: (person.gender === (1 || 3) ) ? true : false,
-          imagePath: person.profile_path
+          imagePath: person.profile_path,
+          type: 'Actor'
         }}
 
       const options = {
@@ -120,7 +122,7 @@ function App() {
       </header>
       <main>
         <button onClick={startGame}>Start Game</button>
-        {testThree.length > 0 && <ActorList actors={testThree}/>}
+        {testThree.length > 0 && <AssetList assets={testThree}/>}
         <SearchBar 
           searchActor={searchActor}
           resultFromSearch={resultFromSearch}
@@ -128,7 +130,7 @@ function App() {
           defaultSearchResult={defaultSearchResult}
         />
         {resultFromSearch.name !== '' && 
-        <ActorList actors={[resultFromSearch]}/>}
+        <AssetList assets={[resultFromSearch]}/>}
         <div>
         This product uses the TMDB API but is not endorsed or certified by TMDB.
         </div>
