@@ -15,6 +15,7 @@ function App() {
 
   const [popularActors, setPopularActors] = useState([])
   const [testThree, setTestThree] = useState([])
+  const [chain, setChain] = useState([])
 
     // eslint-disable-next-line
     useEffect( () => fetchPopularActors(), [])
@@ -33,11 +34,10 @@ function App() {
     return axios
     .request(options)
     .then( (response) => {
-      console.log(response.data.results[0].profile_path);
       return {
-      id: response.data.results[0].id,
-      name: response.data.results[0].name,
-      imagePath: response.data.results[0].profile_path,
+        id: response.data.results[0].id,
+        name: response.data.results[0].name,
+        imagePath: response.data.results[0].profile_path,
     }})
     .catch( (error) => {
       if (error.message.includes('undefined')) {
@@ -85,19 +85,17 @@ function App() {
           actorData.push(...response); 
         })
       }
-      
       // const isMarginalizedGender = (actor) => {
       //   return actor.gender;
       // }
-
       // const bechdelData = actorData.filter(isMarginalizedGender);
-      // const bechdelData = actorData.splice(0, 3);
       // console.log(bechdelData);
       // return bechdelData;
       console.log(actorData);
       return actorData;
     }
     setPopularActors(fetchAllPopularPeople())
+    // setPopularActors(fetchAllPopularPeople().filter(isMarginalizedGender))
   };
   
   const startGame = () => {
