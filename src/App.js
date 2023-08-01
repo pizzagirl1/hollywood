@@ -82,38 +82,11 @@ function App() {
       }
       return actorData;
     }
-
-    // getPopularActors(15)
-    // .then( (response) => {
-    //   setPopularActors(response);})
-
     setPopularActors(fetchAllPopularPeople())
   };
   
-  // inshallah we dont need this
-  // const fetchNameByPersonId = (id) => {
-  //   const getNameByPersonId = (id) => {
-  //     const options = {
-  //       method: 'GET',
-  //       url: `${TMDB_URL}/person/${id}`,
-  //       headers: {
-  //         accept: 'application/json',
-  //         Authorization: 'Bearer ' + TMDB_TOKEN
-  //       }
-  //     };
-  //     return axios
-  //       .request(options)
-  //       .then((response) => {return (response.data.name);})
-  //       .catch((error) => {
-  //         console.log("error in getNameByPersonId", error.message);});
-  //     }
-
-  //   getNameByPersonId(id).then((response) => {return response});
-  // }
-
   const startGame = () => {
     console.log("Let the games begin!");
-    // console.log(convertToNamesFromActorObjectsArray(getThreePeople(popularActors)));
     setTestThree(getThreePeople(popularActors));
     console.log(testThree)
   }
@@ -126,12 +99,6 @@ function App() {
     }
     return result;
   }
-
-  const convertToNamesFromActorObjectsArray = (actorData) => {
-    const onlyNames = actorData.map((actor) => {return actor.name});
-    return onlyNames
-  }
-  
 
   return (
     <div className="App">
