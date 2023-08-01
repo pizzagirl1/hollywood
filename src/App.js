@@ -102,6 +102,7 @@ function App() {
   
   const startGame = () => {
     console.log("Let the games begin!");
+    setChain([])
     setTestThree(getThreePeople(popularActors));
     console.log(testThree)
   }
@@ -115,14 +116,37 @@ function App() {
     return result;
   }
 
+  const onClickImageAppendObjectToChain = (data) => {
+    const newObject = {
+      id: data.id,
+      name: data.name,
+      imagePath: data.imagePath,
+      type: data.type
+    }
+    
+    console.log("before chain:", chain)
+    const newChain = [...chain, newObject]
+    setChain(newChain)
+    // setChain((prevData) => [...prevData, newObject])
+    console.log("after chain:", chain)
+  }
+
   return (
     <div className="App">
       <header className="App-header">
         <img src={hollywood} className="App-logo" alt="logo" />
       </header>
       <main>
+        <div>
+          <h2>THE CHAIN</h2>
+          {chain.length > 0 && <AssetList assets={chain}/>}
+        </div>
         <button onClick={startGame}>Start Game</button>
-        {testThree.length > 0 && <AssetList assets={testThree}/>}
+        {testThree.length > 0 && 
+        <AssetList 
+          assets={testThree}
+          onClickImageAppendObjectToChain={onClickImageAppendObjectToChain}
+        />}
         <SearchBar 
           searchActor={searchActor}
           resultFromSearch={resultFromSearch}

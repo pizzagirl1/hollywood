@@ -2,11 +2,18 @@ import React from 'react';
 import './Actor.css'
 // import PropTypes from 'prop-types';
 
-const Actor = ( {id, name, imagePath} ) => {
+const Actor = ( {id, name, imagePath, onClickImageAppendObjectToChain} ) => {
+
+    const onClick = () => {
+        onClickImageAppendObjectToChain( {id, name, imagePath, type:'Actor'})
+    }
+
     return (
-        <div>
+        <div onClick={onClick}>
             <img className="image" src={`https://image.tmdb.org/t/p/w500/${imagePath}`} alt={name}/>
-            <p>{name}</p>
+            <div>
+                {name}
+            </div>
         </div>
     )
 }
