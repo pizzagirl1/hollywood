@@ -1,5 +1,7 @@
 import React from 'react';
 import Actor from './Actor';
+import './ActorList.css'
+
 
 const ActorList = ( {actors} ) => {
     const getActorListJSX = (actors) => {
@@ -14,7 +16,7 @@ const ActorList = ( {actors} ) => {
     }
 
     return (
-        <div>
+        <div class="container">
             <ul>{getActorListJSX(actors)}</ul>
         </div>
     )

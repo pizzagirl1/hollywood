@@ -1,0 +1,8 @@
+.image {
+    width: 20vw;
+    /* display:inline-block; */
+}
+
+.image:hover {
+    width: 25vw;
+}
