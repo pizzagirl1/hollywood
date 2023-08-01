@@ -4,6 +4,7 @@ import axios from 'axios';
 import './App.css';
 
 import SearchBar from './SearchBar';
+import ActorList from './components/ActorList';
 
 const TMDB_TOKEN = `${process.env.REACT_APP_TMDB_API_KEY}`
 const TMDB_URL = 'https://api.themoviedb.org/3'
@@ -13,6 +14,7 @@ function App() {
 
   const [popularActors, setPopularActors] = useState([])
   const [searchResult, setSearchResult] = useState(defaultSearchResult);
+  const [testThree, setTestThree] = useState([])
 
     // eslint-disable-next-line
     useEffect( () => fetchPopularActors(), [])
@@ -112,6 +114,7 @@ function App() {
   const startGame = () => {
     console.log("Let the games begin!");
     console.log(convertToNamesFromActorObjectsArray(getThreePeople(popularActors)));
+    setTestThree(getThreePeople(popularActors))
   }
 
   const getThreePeople = (people) => {
@@ -136,9 +139,10 @@ function App() {
       </header>
       <main>
         <button onClick={startGame}>Start Game</button>
-        <p>
+        {testThree.length > 0 && <ActorList actors={testThree}/>}
+        {/* <p>
           Today's Popular Actors: {(convertToNamesFromActorObjectsArray(popularActors)).join(', ')}
-        </p>
+        </p> */}
         <SearchBar 
           searchActor={searchActor}
           searchResult={searchResult}
