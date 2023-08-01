@@ -3,8 +3,9 @@ import React, { useState, useEffect} from 'react';
 import axios from 'axios';
 import './App.css';
 
-import SearchBar from './SearchBar';
+import SearchBar from './components/SearchBar';
 import ActorList from './components/ActorList';
+import Actor from './components/Actor';
 
 const TMDB_TOKEN = `${process.env.REACT_APP_TMDB_API_KEY}`
 const TMDB_URL = 'https://api.themoviedb.org/3'
@@ -113,6 +114,9 @@ function App() {
           searchResult={searchResult}
           setSearchResult={setSearchResult}
         />
+        {searchResult.name !== '' && <Actor
+
+        />}
       This product uses the TMDB API but is not endorsed or certified by TMDB.
       </main>
       {/* <footer className="App-footer">
