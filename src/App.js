@@ -11,7 +11,7 @@ const TMDB_URL = 'https://api.themoviedb.org/3'
 
 function App() {
   const defaultSearchResult = { name: '', id: '', imagePath:''};
-  const [searchResult, setSearchResult] = useState(defaultSearchResult);
+  const [resultFromSearch, setResultFromSearch] = useState(defaultSearchResult);
 
   const [popularActors, setPopularActors] = useState([])
   const [testThree, setTestThree] = useState([])
@@ -125,12 +125,12 @@ function App() {
         {testThree.length > 0 && <ActorList actors={testThree}/>}
         <SearchBar 
           searchActor={searchActor}
-          searchResult={searchResult}
-          setSearchResult={setSearchResult}
+          resultFromSearch={resultFromSearch}
+          setResultFromSearch={setResultFromSearch}
           defaultSearchResult={defaultSearchResult}
         />
-        {searchResult.name !== '' && 
-        <ActorList actors={[searchResult]}/>}
+        {resultFromSearch.name !== '' && 
+        <ActorList actors={[resultFromSearch]}/>}
         <div>
         This product uses the TMDB API but is not endorsed or certified by TMDB.
         </div>

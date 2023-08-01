@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const SearchBar = ( {searchActor, searchResult, setSearchResult, defaultSearchResult} ) => {
+const SearchBar = ( {searchActor, resultFromSearch, setResultFromSearch, defaultSearchResult} ) => {
     const defaultSearchQuery = { query: '' };
     const [formField, setFormField] = useState(defaultSearchQuery);
 
@@ -12,11 +12,11 @@ const SearchBar = ( {searchActor, searchResult, setSearchResult, defaultSearchRe
         event.preventDefault();
         if (formField.query.length === 0){
             setFormField(defaultSearchQuery);
-            setSearchResult(defaultSearchResult);
+            setResultFromSearch(defaultSearchResult);
             window.alert('Search may not be blank');
             return;
         }
-        searchActor(formField.query).then((response) => setSearchResult(response));
+        searchActor(formField.query).then((response) => setResultFromSearch(response));
         setFormField(defaultSearchQuery);
     }
 
@@ -32,8 +32,8 @@ const SearchBar = ( {searchActor, searchResult, setSearchResult, defaultSearchRe
             </form>
             <div>
             <p>
-                {searchResult.name.length > 0 && 
-                `Your search found ${searchResult.name}`}
+                {resultFromSearch.name.length > 0 && 
+                `Your search found ${resultFromSearch.name}`}
             </p>
             </div>
         </div>
