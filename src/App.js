@@ -26,6 +26,8 @@ function App() {
 
   // eslint-disable-next-line
   useEffect( () => fetchPopularActors(), [])
+  // useEffect( () => rollActors(), [popularActors])
+
   // useEffect( () => loadGame(), [])
   
   // const loadGame = async () => {
@@ -101,6 +103,7 @@ function App() {
           actorData.push(...response); 
         })
       }
+      return actorData;
       // const isMarginalizedGender = (actor) => {
       //   return actor.gender;
       // }
@@ -108,7 +111,6 @@ function App() {
       // console.log(bechdelData);
       // return bechdelData;
       // console.log(actorData);
-      return actorData;
     }
     setPopularActors(fetchAllPopularPeople())
     // setPopularActors(fetchAllPopularPeople().filter(isMarginalizedGender))
@@ -134,6 +136,7 @@ function App() {
     setTargetThree(startingThree);
     setStartingThree(tempActors)
     setGoalActors([goalActors[1], goalActors[0]])
+    setChain([])
   }
 
   // const onClickImageAppendObjectToChain = (data) => {
