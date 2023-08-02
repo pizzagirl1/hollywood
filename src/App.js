@@ -20,6 +20,8 @@ function App() {
   const [targetActor, setTargetActor] = useState(defaultEmptyActorObject)
   const [targetThree, setTargetThree] = useState([])
 
+  const [game, setGame] = useState([false])
+
     // eslint-disable-next-line
     useEffect( () => fetchPopularActors(), [])
 
@@ -103,21 +105,20 @@ function App() {
     // setPopularActors(fetchAllPopularPeople().filter(isMarginalizedGender))
   };
   
-  const startGame = () => {
-    console.log("Let the games begin!");
+  const rollActors = () => {
+    const getThreePeople = (people) => {
+      const result = [];
+      for (let i = 0; i < 3; i++) {
+        let randomIndex = Math.floor(Math.random() * people.length);
+        result.push(people[randomIndex]);
+      }
+      return result;
+    }
     setChain([])
     setStartingThree(getThreePeople(popularActors));
     setTargetThree(getThreePeople(popularActors));
   }
 
-  const getThreePeople = (people) => {
-    const result = [];
-    for (let i = 0; i < 3; i++) {
-      let randomIndex = Math.floor(Math.random() * people.length);
-      result.push(people[randomIndex]);
-    }
-    return result;
-  }
 
   const onClickImageAppendObjectToChain = (data) => {
     const newObject = {
@@ -161,6 +162,8 @@ function App() {
       </header>
       <main>
         <div>
+          {/* {if starting actor and target actor are not none, this pops up} */}
+          <button onClick={startGame}>Ready?</button>
           <h2>CONNECT THESE TWO ACTORS:</h2>
           <AssetList assets={[startingActor, targetActor]}/>
         </div>
@@ -171,7 +174,7 @@ function App() {
             assets={chain}
             onClick={onClickDoNothing}/>}
         </div>
-        <button onClick={startGame}>Start Game</button>
+        <button onClick={rollActors}>Start Game</button>
           {startingThree.length > 0 && (
             <div>
             <h3>Start With</h3> 
