@@ -26,7 +26,10 @@ function App() {
 
   // eslint-disable-next-line
   useEffect( () => fetchPopularActors(), [])
-  // useEffect( () => rollActors(), [popularActors])
+  // useEffect( () => {
+  //   console.log("hello mark!");
+  //   console.log(popularActors);
+  // }, [popularActors.length])
 
   // useEffect( () => loadGame(), [])
   
@@ -133,7 +136,7 @@ function App() {
         Authorization: 'Bearer ' + TMDB_TOKEN
       }
     };
-    
+
     return axios
       .request(options)
       .then((response) => {
