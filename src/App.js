@@ -10,12 +10,13 @@ const TMDB_TOKEN = `${process.env.REACT_APP_TMDB_API_KEY}`
 const TMDB_URL = 'https://api.themoviedb.org/3'
 
 function App() {
-  const defaultSearchResult = { name: '', id: '', imagePath:''};
-  const [resultFromSearch, setResultFromSearch] = useState(defaultSearchResult);
+  const defaultEmptyActorObject = { name: '', id: '', imagePath:''};
+  const [resultFromSearch, setResultFromSearch] = useState(defaultEmptyActorObject);
 
   const [popularActors, setPopularActors] = useState([])
   const [testThree, setTestThree] = useState([])
   const [chain, setChain] = useState([])
+  const [targetActor, setTargetActor] = useState(defaultEmptyActorObject)
 
     // eslint-disable-next-line
     useEffect( () => fetchPopularActors(), [])
@@ -148,7 +149,7 @@ function App() {
           searchActor={searchActor}
           resultFromSearch={resultFromSearch}
           setResultFromSearch={setResultFromSearch}
-          defaultSearchResult={defaultSearchResult}
+          defaultEmptyActorObject={defaultEmptyActorObject}
         />
         {resultFromSearch.name !== '' && 
         <AssetList assets={[resultFromSearch]}/>}

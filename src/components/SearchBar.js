@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const SearchBar = ( {searchActor, resultFromSearch, setResultFromSearch, defaultSearchResult} ) => {
+const SearchBar = ( {searchActor, resultFromSearch, setResultFromSearch, defaultEmptyActorObject} ) => {
     const defaultSearchQuery = { query: '' };
     const [formField, setFormField] = useState(defaultSearchQuery);
 
@@ -12,7 +12,7 @@ const SearchBar = ( {searchActor, resultFromSearch, setResultFromSearch, default
         event.preventDefault();
         if (formField.query.length === 0){
             setFormField(defaultSearchQuery);
-            setResultFromSearch(defaultSearchResult);
+            setResultFromSearch(defaultEmptyActorObject);
             window.alert('Search may not be blank');
             return;
         }
