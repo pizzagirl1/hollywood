@@ -179,7 +179,7 @@ function App() {
           <button onClick={startGame}>Ready?</button>
           <button onClick={switchGoalDirection}>Change Direction</button>
           <h2>CONNECT THESE TWO ACTORS:</h2>
-          <AssetList assets={goalActors}/>
+          <AssetList assets={goalActors} onClick={onClickDoNothing}/>
         </div>
         <div>
           <h2>THE CHAIN</h2>
