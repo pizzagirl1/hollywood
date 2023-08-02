@@ -15,10 +15,14 @@ function App() {
 
   const [popularActors, setPopularActors] = useState([])
   const [chain, setChain] = useState([])
+
   const [startingThree, setStartingThree] = useState([])
-  const [startingActor, setStartingActor] = useState(defaultEmptyActorObject)
-  const [targetActor, setTargetActor] = useState(defaultEmptyActorObject)
+  // const [startingActor, setStartingActor] = useState(defaultEmptyActorObject)
+
+  // const [targetActor, setTargetActor] = useState(defaultEmptyActorObject)
   const [targetThree, setTargetThree] = useState([])
+
+  const [goalActors, setGoalActors] = useState([defaultEmptyActorObject, defaultEmptyActorObject])
 
   const [game, setGame] = useState([false])
 
@@ -139,7 +143,8 @@ function App() {
       imagePath: data.imagePath,
       type: data.type
     }
-    setStartingActor(newObject)
+    // setStartingActor(newObject)
+    setGoalActors([newObject, goalActors[1]])
   }
 
   const onClickSetTargetActor = (data) => {
@@ -149,11 +154,17 @@ function App() {
       imagePath: data.imagePath,
       type: data.type
     }
-    setTargetActor(newObject)
+    // setTargetActor(newObject)
+    setGoalActors([goalActors[0], newObject])
+    
   }
 
   const onClickDoNothing = () => {}
 
+  const startGame = () => {
+    setGame(true);
+    console.log('Now the fun begins!')
+  }
 
   return (
     <div className="App">
@@ -165,7 +176,7 @@ function App() {
           {/* {if starting actor and target actor are not none, this pops up} */}
           <button onClick={startGame}>Ready?</button>
           <h2>CONNECT THESE TWO ACTORS:</h2>
-          <AssetList assets={[startingActor, targetActor]}/>
+          <AssetList assets={goalActors}/>
         </div>
         <div>
           <h2>THE CHAIN</h2>
