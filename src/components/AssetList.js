@@ -1,20 +1,21 @@
 import React from 'react';
 import Actor from './Actor';
 import Movie from './Movie';
+// import noPhoto from '../images/noPhoto.png'
 import './AssetList.css'
 
 
-const AssetList = ( {assets, onClickImageAppendObjectToChain} ) => {
+const AssetList = ( {assets, onClick} ) => {
     const getAssetListJSX = (assets) => {
         return assets.map( (asset) => {
             if (asset.type === 'Actor'){ 
                 return (
                     <Actor
                         id={asset.id}
-                        key={asset.id}
+                        key={asset.id ? asset.id : Math.floor(Math.random() * 10000)}
                         name= {asset.name}
                         imagePath={asset.imagePath}
-                        onClickImageAppendObjectToChain={onClickImageAppendObjectToChain}
+                        onClick={onClick}
                     />)
             } else if (asset.type === 'Movie'){
                 return (

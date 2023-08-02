@@ -14,10 +14,11 @@ function App() {
   const [resultFromSearch, setResultFromSearch] = useState(defaultEmptyActorObject);
 
   const [popularActors, setPopularActors] = useState([])
-  const [testThree, setTestThree] = useState([])
   const [chain, setChain] = useState([])
+  const [startingThree, setStartingThree] = useState([])
   const [startingActor, setStartingActor] = useState(defaultEmptyActorObject)
   const [targetActor, setTargetActor] = useState(defaultEmptyActorObject)
+  const [targetThree, setTargetThree] = useState([])
 
     // eslint-disable-next-line
     useEffect( () => fetchPopularActors(), [])
@@ -105,8 +106,8 @@ function App() {
   const startGame = () => {
     console.log("Let the games begin!");
     setChain([])
-    setTestThree(getThreePeople(popularActors));
-    console.log(testThree)
+    setStartingThree(getThreePeople(popularActors));
+    setTargetThree(getThreePeople(popularActors));
   }
 
   const getThreePeople = (people) => {
@@ -137,9 +138,22 @@ function App() {
       imagePath: data.imagePath,
       type: data.type
     }
-
     setStartingActor(newObject)
   }
+
+  const onClickSetTargetActor = (data) => {
+    const newObject = {
+      id: data.id,
+      name: data.name,
+      imagePath: data.imagePath,
+      type: data.type
+    }
+    setTargetActor(newObject)
+  }
+
+  const onClickDoNothing = () => {}
+
+
   return (
     <div className="App">
       <header className="App-header">
@@ -148,19 +162,34 @@ function App() {
       <main>
         <div>
           <h2>CONNECT THESE TWO ACTORS:</h2>
-          <AssetList assets={[startingActor]}/>
-          <AssetList assets={[targetActor]}/>
+          <AssetList assets={[startingActor, targetActor]}/>
         </div>
         <div>
           <h2>THE CHAIN</h2>
-          {chain.length > 0 && <AssetList assets={chain}/>}
+          {chain.length > 0 && 
+          <AssetList 
+            assets={chain}
+            onClick={onClickDoNothing}/>}
         </div>
         <button onClick={startGame}>Start Game</button>
-        {testThree.length > 0 && 
-        <AssetList 
-          assets={testThree}
-          onClickImageAppendObjectToChain={onClickImageAppendObjectToChain}
-        />}
+          {startingThree.length > 0 && (
+            <div>
+            <h3>Start With</h3> 
+            <AssetList 
+              assets={startingThree}
+              onClick={onClickSetStartingActor}
+              />
+            </div>
+          )}
+          {targetThree.length > 0 && (
+            <div>
+            <h3>End With</h3> 
+            <AssetList 
+              assets={targetThree}
+              onClick={onClickSetTargetActor}
+              />
+            </div>
+          )}
         <SearchBar 
           searchActor={searchActor}
           resultFromSearch={resultFromSearch}
@@ -168,7 +197,10 @@ function App() {
           defaultEmptyActorObject={defaultEmptyActorObject}
         />
         {resultFromSearch.name !== '' && 
-        <AssetList assets={[resultFromSearch]}/>}
+        <AssetList 
+          assets={[resultFromSearch]}
+          onClick={onClickDoNothing}
+        />}
         <div>
         This product uses the TMDB API but is not endorsed or certified by TMDB.
         </div>
