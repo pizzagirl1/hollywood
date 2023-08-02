@@ -121,27 +121,27 @@ function App() {
       return {
         id: movie.id,
         title: movie.name,
-        imagePath: person.poster_path,
+        imagePath: movie.poster_path,
         type: 'Movie'
       }}
 
     const options = {
-    method: 'GET',
-    url: `${TMDB_URL}/person/${actorId}`,
-    params: {page: page},
-    headers: {
-      accept: 'application/json',
-      Authorization: 'Bearer ' + TMDB_TOKEN
-    }
-  };
-  return axios
-    .request(options)
-    .then((response) => {
-      return response.data.results.cast.map(convertFromAPI);})
-    .catch((error) => {
-      console.log("Error during fetchMovieCreditsForActor", error.message);});
+      method: 'GET',
+      url: `${TMDB_URL}/person/${actorId}`,
+      headers: {
+        accept: 'application/json',
+        Authorization: 'Bearer ' + TMDB_TOKEN
+      }
+    };
+    
+    return axios
+      .request(options)
+      .then((response) => {
+        return response.data.results.cast.map(convertFromAPI);})
+      .catch((error) => {
+        console.log("Error during fetchMovieCreditsForActor", error.message);});
   }
-  }
+  
 
   const rollActors = () => {
     const getThreePeople = (people) => {
