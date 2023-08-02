@@ -124,6 +124,10 @@ function App() {
     setTargetThree(getThreePeople(popularActors));
   }
 
+  const switchGoalDirection = () => {
+    setGoalActors([goalActors[1], goalActors[0]])
+  }
+
 
   const onClickImageAppendObjectToChain = (data) => {
     const newObject = {
@@ -174,6 +178,7 @@ function App() {
         <div>
           {/* {if starting actor and target actor are not none, this pops up} */}
           <button onClick={startGame}>Ready?</button>
+          <button onClick={switchGoalDirection}>Change Direction</button>
           <h2>CONNECT THESE TWO ACTORS:</h2>
           <AssetList assets={goalActors}/>
         </div>
