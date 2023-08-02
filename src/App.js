@@ -118,6 +118,7 @@ function App() {
       }
       return result;
     }
+    setGoalActors([defaultEmptyActorObject, defaultEmptyActorObject])
     setChain([])
     setStartingThree(getThreePeople(popularActors));
     setTargetThree(getThreePeople(popularActors));
