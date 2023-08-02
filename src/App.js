@@ -144,7 +144,6 @@ function App() {
       imagePath: data.imagePath,
       type: data.type
     }
-    // setStartingActor(newObject)
     setGoalActors([newObject, goalActors[1]])
   }
 
@@ -155,7 +154,6 @@ function App() {
       imagePath: data.imagePath,
       type: data.type
     }
-    // setTargetActor(newObject)
     setGoalActors([goalActors[0], newObject])
     
   }
