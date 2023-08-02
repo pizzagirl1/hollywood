@@ -137,6 +137,11 @@ function App() {
       </header>
       <main>
         <div>
+          <h2>CONNECT THESE TWO ACTORS:</h2>
+          <AssetList assets={[startingActor]}/>
+          <AssetList assets={[targetActor]}/>
+        </div>
+        <div>
           <h2>THE CHAIN</h2>
           {chain.length > 0 && <AssetList assets={chain}/>}
         </div>
