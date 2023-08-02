@@ -130,6 +130,9 @@ function App() {
   }
 
   const switchGoalDirection = () => {
+    const tempActors = targetThree;
+    setTargetThree(startingThree);
+    setStartingThree(tempActors)
     setGoalActors([goalActors[1], goalActors[0]])
   }
 
