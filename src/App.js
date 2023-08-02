@@ -95,7 +95,7 @@ function App() {
 
     const fetchAllPopularPeople = () => {
       let actorData = []
-      for (let i = 1; i <= 50; i++) {
+      for (let i = 1; i <= 100; i++) {
         getPopularActors(i)
         .then( (response) => {
           actorData.push(...response); 
@@ -179,10 +179,22 @@ function App() {
         <img src={hollywood} className="App-logo" alt="logo" />
       </header>
       <main>
+        {game !== true && 
+          <GameSetup
+          rollActors={rollActors}
+          startingThree={startingThree}
+          onClickSetStartingActor={onClickSetStartingActor}
+          targetThree={targetThree}
+          onClickSetTargetActor={onClickSetTargetActor}
+        />}
         <div>
-          {/* {if starting actor and target actor are not none, this pops up} */}
-          <button onClick={startGame}>Ready?</button>
-          <button onClick={switchGoalDirection}>Change Direction</button>
+          {(goalActors[0].name !== '' && goalActors[1].name !== '' )&& 
+            (<div>
+            <button onClick={startGame}>Ready?</button> 
+            <button onClick={switchGoalDirection}>Change Direction</button>
+            </div>)
+          }
+
           <h2>CONNECT THESE TWO ACTORS:</h2>
           <AssetList assets={goalActors} onClick={onClickDoNothing}/>
         </div>
@@ -193,15 +205,6 @@ function App() {
             assets={chain}
             onClick={onClickDoNothing}/>}
         </div>
-        { !game && <p>hello!</p>}
-        { game !== true && 
-          <GameSetup
-          rollActors={rollActors}
-          startingThree={startingThree}
-          onClickSetStartingActor={onClickSetStartingActor}
-          targetThree={targetThree}
-          onClickSetTargetActor={onClickSetTargetActor}
-        />}
         {/* <button onClick={rollActors}>Start Game</button>
           {startingThree.length > 0 && (
             <div>
