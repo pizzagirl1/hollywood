@@ -102,7 +102,7 @@ function App() {
       // const bechdelData = actorData.filter(isMarginalizedGender);
       // console.log(bechdelData);
       // return bechdelData;
-      console.log(actorData);
+      // console.log(actorData);
       return actorData;
     }
     setPopularActors(fetchAllPopularPeople())
@@ -127,7 +127,6 @@ function App() {
   const switchGoalDirection = () => {
     setGoalActors([goalActors[1], goalActors[0]])
   }
-
 
   const onClickImageAppendObjectToChain = (data) => {
     const newObject = {
