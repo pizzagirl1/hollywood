@@ -133,17 +133,17 @@ function App() {
     setGoalActors([goalActors[1], goalActors[0]])
   }
 
-  const onClickImageAppendObjectToChain = (data) => {
-    const newObject = {
-      id: data.id,
-      name: data.name,
-      imagePath: data.imagePath,
-      type: data.type
-    }
+  // const onClickImageAppendObjectToChain = (data) => {
+  //   const newObject = {
+  //     id: data.id,
+  //     name: data.name,
+  //     imagePath: data.imagePath,
+  //     type: data.type
+  //   }
     
-    const newChain = [...chain, newObject]
-    setChain(newChain)
-  }
+  //   const newChain = [...chain, newObject]
+  //   setChain(newChain)
+  // }
 
   const onClickSetStartingActor = (data) => {
     const newObject = {
