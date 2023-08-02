@@ -130,6 +130,16 @@ function App() {
     setChain(newChain)
   }
 
+  const onClickSetStartingActor = (data) => {
+    const newObject = {
+      id: data.id,
+      name: data.name,
+      imagePath: data.imagePath,
+      type: data.type
+    }
+
+    setStartingActor(newObject)
+  }
   return (
     <div className="App">
       <header className="App-header">
