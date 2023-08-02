@@ -190,6 +190,7 @@ function App() {
           targetThree={targetThree}
           onClickSetTargetActor={onClickSetTargetActor}
         />}
+
         <div>
           {(goalActors[0].name !== '' && goalActors[1].name !== '' )&& 
             (<div>
@@ -197,47 +198,31 @@ function App() {
             <button onClick={switchGoalDirection}>Change Direction</button>
             </div>)
           }
-
           <h2>CONNECT THESE TWO ACTORS:</h2>
           <AssetList assets={goalActors} onClick={onClickDoNothing}/>
         </div>
-        <div>
+
+        {chain.length > 0 && (
+        <div> 
           <h2>THE CHAIN</h2>
-          {chain.length > 0 && 
           <AssetList 
             assets={chain}
-            onClick={onClickDoNothing}/>}
-        </div>
-        {/* <button onClick={rollActors}>Start Game</button>
-          {startingThree.length > 0 && (
-            <div>
-            <h3>Start With</h3> 
-            <AssetList 
-              assets={startingThree}
-              onClick={onClickSetStartingActor}
-              />
-            </div>
-          )}
-          {targetThree.length > 0 && (
-            <div>
-            <h3>End With</h3> 
-            <AssetList 
-              assets={targetThree}
-              onClick={onClickSetTargetActor}
-              />
-            </div>
-          )} */}
+            onClick={onClickDoNothing}/>
+        </div>)}
+
         <SearchBar 
           searchActor={searchActor}
           resultFromSearch={resultFromSearch}
           setResultFromSearch={setResultFromSearch}
           defaultEmptyActorObject={defaultEmptyActorObject}
         />
+
         {resultFromSearch.name !== '' && 
         <AssetList 
           assets={[resultFromSearch]}
           onClick={onClickDoNothing}
         />}
+
         <div>
         This product uses the TMDB API but is not endorsed or certified by TMDB.
         </div>
