@@ -10,12 +10,13 @@ const TMDB_TOKEN = `${process.env.REACT_APP_TMDB_API_KEY}`
 const TMDB_URL = 'https://api.themoviedb.org/3'
 
 function App() {
-  const defaultEmptyActorObject = { name: '', id: '', imagePath:''};
+  const defaultEmptyActorObject = { name: '', id: '', imagePath:'', type: 'Actor'};
   const [resultFromSearch, setResultFromSearch] = useState(defaultEmptyActorObject);
 
   const [popularActors, setPopularActors] = useState([])
   const [testThree, setTestThree] = useState([])
   const [chain, setChain] = useState([])
+  const [startingActor, setStartingActor] = useState(defaultEmptyActorObject)
   const [targetActor, setTargetActor] = useState(defaultEmptyActorObject)
 
     // eslint-disable-next-line
