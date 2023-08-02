@@ -1,10 +1,16 @@
 import React from "react";
 import AssetList from "./AssetList";
+// import { useEffect } from "react";
+
 
 const GameSetup = ( {
                     rollActors, 
                     startingThree, onClickSetStartingActor,
                     targetThree, onClickSetTargetActor } ) => {
+
+    // // eslint-disable-next-line
+    // useEffect(() => rollActors(), [])
+
     return (       
         <div>
             <button onClick={rollActors}>Mulligan</button>   
