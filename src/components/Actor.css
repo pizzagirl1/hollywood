@@ -4,5 +4,7 @@
 }
 
 .image:hover {
-    width: 25vw;
+    /* width: 25vw; */
+    border: 5px solid;
+    border-color: gray;
 }
