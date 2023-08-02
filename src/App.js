@@ -2,9 +2,11 @@ import hollywood from './images/hollywood.jpg'
 import React, { useState, useEffect} from 'react';
 import axios from 'axios';
 import './App.css';
+// import setTimeout from 'timers/promises'
 
 import SearchBar from './components/SearchBar';
 import AssetList from './components/AssetList';
+import GameSetup from './components/GameSetup';
 
 const TMDB_TOKEN = `${process.env.REACT_APP_TMDB_API_KEY}`
 const TMDB_URL = 'https://api.themoviedb.org/3'
@@ -17,17 +19,20 @@ function App() {
   const [chain, setChain] = useState([])
 
   const [startingThree, setStartingThree] = useState([])
-  // const [startingActor, setStartingActor] = useState(defaultEmptyActorObject)
-
-  // const [targetActor, setTargetActor] = useState(defaultEmptyActorObject)
   const [targetThree, setTargetThree] = useState([])
-
   const [goalActors, setGoalActors] = useState([defaultEmptyActorObject, defaultEmptyActorObject])
 
   const [game, setGame] = useState([false])
 
-    // eslint-disable-next-line
-    useEffect( () => fetchPopularActors(), [])
+  // eslint-disable-next-line
+  useEffect( () => fetchPopularActors(), [])
+  // useEffect( () => loadGame(), [])
+  
+  // const loadGame = async () => {
+  //   fetchPopularActors();
+  //   await setTimeout(5000);
+  //   rollActors();
+  // }
 
   const searchActor = (query) => {
     const options = {
@@ -188,7 +193,16 @@ function App() {
             assets={chain}
             onClick={onClickDoNothing}/>}
         </div>
-        <button onClick={rollActors}>Start Game</button>
+        { !game && <p>hello!</p>}
+        { game !== true && 
+          <GameSetup
+          rollActors={rollActors}
+          startingThree={startingThree}
+          onClickSetStartingActor={onClickSetStartingActor}
+          targetThree={targetThree}
+          onClickSetTargetActor={onClickSetTargetActor}
+        />}
+        {/* <button onClick={rollActors}>Start Game</button>
           {startingThree.length > 0 && (
             <div>
             <h3>Start With</h3> 
@@ -206,7 +220,7 @@ function App() {
               onClick={onClickSetTargetActor}
               />
             </div>
-          )}
+          )} */}
         <SearchBar 
           searchActor={searchActor}
           resultFromSearch={resultFromSearch}
