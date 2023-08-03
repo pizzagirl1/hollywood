@@ -2,7 +2,13 @@ import React from 'react';
 import './Actor.css'
 // import PropTypes from 'prop-types';
 
-const Actor = ( {id, name, imagePath, onClick} ) => {
+const Actor = ( {id, name, imagePath, onClick, goalActors} ) => {
+
+    const borderForGoalActor = () => {
+        const goalIDs = goalActors.map((goal) => goal.id)
+        const isGoalThisActor = goalIDs.includes(id)
+        return isGoalThisActor ? "image selection" : "image"
+    }
 
     const handleClick = () => {
         onClick( {id, name, imagePath, type:'Actor'})
@@ -10,7 +16,7 @@ const Actor = ( {id, name, imagePath, onClick} ) => {
 
     return (
         <div onClick={handleClick}>
-            <img className="image" src={`https://image.tmdb.org/t/p/w500/${imagePath}`} alt={name}/>
+            <img className={borderForGoalActor} src={`https://image.tmdb.org/t/p/w500/${imagePath}`} alt={name}/>
             <div>
                 {name}
             </div>
