@@ -155,12 +155,6 @@ function App() {
       .catch((error) => {
         console.log("Error during fetchMovieCreditsForActor", error.message);});
   }
-
-  const getMovieDataNOW = () => {
-    let myData = fetchMovieCreditsForActor(resultFromSearch.id)
-    console.log("fetching NOW: ", myData);
-    return myData;
-  }
   
   const generateSixRandomActors = (people) => {
     const result = new Set();
