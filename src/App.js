@@ -72,7 +72,7 @@ function App() {
 
   const fetchPopularActors = () => {
     const getPopularActors = (page) => {
-      const convertFromAPI = (person) => {
+      const convertActorDataFromAPI = (person) => {
         return {
           id: person.id,
           name: person.name,
@@ -93,7 +93,7 @@ function App() {
     return axios
       .request(options)
       .then((response) => {
-        return response.data.results.map(convertFromAPI);})
+        return response.data.results.map(convertActorDataFromAPI);})
       .catch((error) => {
         console.log("Error during getPopularActors", error.message);});
     }
@@ -106,7 +106,6 @@ function App() {
           actorData.push(...response); 
         })
       }
-      return actorData;
       // const isMarginalizedGender = (actor) => {
       //   return actor.gender;
       // }
@@ -114,13 +113,14 @@ function App() {
       // console.log(bechdelData);
       // return bechdelData;
       // console.log(actorData);
+      return actorData;
     }
     setPopularActors(fetchAllPopularPeople())
     // setPopularActors(fetchAllPopularPeople().filter(isMarginalizedGender))
   };
   
   const fetchMovieCreditsForActor = (actorId) => {
-    const convertFromAPI = (movie) => {
+    const convertMovieDataFromAPI = (movie) => {
       return {
         id: movie.id,
         title: movie.name,
@@ -140,7 +140,7 @@ function App() {
     return axios
       .request(options)
       .then((response) => {
-        return response.data.results.cast.map(convertFromAPI);})
+        return response.data.results.cast.map(convertMovieDataFromAPI);})
       .catch((error) => {
         console.log("Error during fetchMovieCreditsForActor", error.message);});
   }
