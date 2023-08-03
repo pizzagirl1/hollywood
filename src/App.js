@@ -121,14 +121,16 @@ function App() {
     // setPopularActors(buildActorDataList().filter(isMarginalizedGender))
   };
   
+  const convertMovieDataFromAPI = (movie) => {
+    return {
+      id: movie.id,
+      title: movie.name,
+      imagePath: movie.poster_path,
+      type: 'Movie'
+    };
+  };
+  
   const fetchMovieCreditsForActor = (actorId) => {
-    const convertMovieDataFromAPI = (movie) => {
-      return {
-        id: movie.id,
-        title: movie.name,
-        imagePath: movie.poster_path,
-        type: 'Movie'
-      }}
 
     const options = {
       method: 'GET',
