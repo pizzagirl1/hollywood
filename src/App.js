@@ -149,11 +149,10 @@ function App() {
   
   const generateSixRandomActors = (people) => {
     const result = new Set();
-    while (result.length < 6) {
+    while (result.size < 6) {
       let randomIndex = Math.floor(Math.random() * people.length);
       result.add(people[randomIndex]);
     }
-    console.log(result)
     return Array.from(result);
   }
 
