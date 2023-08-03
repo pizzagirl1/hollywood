@@ -77,7 +77,8 @@ function App() {
       gender: (person.gender === (1 || 3) ) ? true : false,
       imagePath: person.profile_path,
       type: 'Actor'
-    }}
+    };
+  };
 
   const getPopularActors = (page) => {
     const options = {
