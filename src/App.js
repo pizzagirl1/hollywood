@@ -125,7 +125,7 @@ function App() {
   const convertMovieDataFromAPI = (movie) => {
     return {
       id: movie.id,
-      title: movie.name,
+      title: movie.title,
       imagePath: movie.poster_path,
       type: 'Movie'
     };
@@ -135,7 +135,7 @@ function App() {
 
     const options = {
       method: 'GET',
-      url: `${TMDB_URL}/person/${actorId}`,
+      url: `${TMDB_URL}/person/${actorId}/movie_credits`,
       headers: {
         accept: 'application/json',
         Authorization: 'Bearer ' + TMDB_TOKEN
@@ -145,7 +145,12 @@ function App() {
     return axios
       .request(options)
       .then((response) => {
-        return response.data.results.cast.map(convertMovieDataFromAPI);})
+        const result = response.data.cast
+        .map(convertMovieDataFromAPI)
+        // const result = response.data.results.cast.map(convertMovieDataFromAPI);
+        console.log(result)
+        // return result
+      })
       .catch((error) => {
         console.log("Error during fetchMovieCreditsForActor", error.message);});
   }
