@@ -236,8 +236,10 @@ function App() {
             <button onClick={startGame}>Ready?</button> 
             <button onClick={switchGoalDirection}>Change Direction</button>
             </div>)}
-          <h2>CONNECT THESE TWO ACTORS:</h2>
+          <h2>CHOOSE TWO ACTORS TO CONNECT:</h2>
+          {(goalActors[0].name !== '' || goalActors[1].name !== '') &&
           <AssetList assets={goalActors} onClick={onClickDoNothing}/>
+          }
         </div>
 
         {chain.length > 0 && (
