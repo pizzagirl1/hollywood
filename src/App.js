@@ -100,7 +100,7 @@ function App() {
 
     const fetchAllPopularPeople = () => {
       let actorData = []
-      for (let i = 1; i <= 100; i++) {
+      for (let i = 1; i <= 2; i++) {
         getPopularActors(i)
         .then( (response) => {
           actorData.push(...response); 
