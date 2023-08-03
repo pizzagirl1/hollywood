@@ -97,27 +97,28 @@ function App() {
         console.log("Error during getPopularActors", error.message);});
   }
 
+  const buildActorDataList = () => {
+    let actorData = []
+    for (let i = 1; i <= 2; i++) {
+      getPopularActors(i)
+      .then( (response) => {
+        actorData.push(...response); 
+      })
+    }
+    // const isMarginalizedGender = (actor) => {
+    //   return actor.gender;
+    // }
+    // const bechdelData = actorData.filter(isMarginalizedGender);
+    // console.log(bechdelData);
+    // return bechdelData;
+    // console.log(actorData);
+    return actorData;
+  }
+  
   const fetchPopularActors = () => {
 
-    const fetchAllPopularPeople = () => {
-      let actorData = []
-      for (let i = 1; i <= 2; i++) {
-        getPopularActors(i)
-        .then( (response) => {
-          actorData.push(...response); 
-        })
-      }
-      // const isMarginalizedGender = (actor) => {
-      //   return actor.gender;
-      // }
-      // const bechdelData = actorData.filter(isMarginalizedGender);
-      // console.log(bechdelData);
-      // return bechdelData;
-      // console.log(actorData);
-      return actorData;
-    }
-    setPopularActors(fetchAllPopularPeople())
-    // setPopularActors(fetchAllPopularPeople().filter(isMarginalizedGender))
+    setPopularActors(buildActorDataList())
+    // setPopularActors(buildActorDataList().filter(isMarginalizedGender))
   };
   
   const fetchMovieCreditsForActor = (actorId) => {
