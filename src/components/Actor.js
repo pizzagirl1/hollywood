@@ -5,9 +5,11 @@ import './Actor.css'
 const Actor = ( {id, name, imagePath, onClick, goalActors} ) => {
 
     const borderForGoalActor = () => {
+        console.log("inside border function")
+        console.log(goalActors)
         const goalIDs = goalActors.map((goal) => goal.id)
         const isGoalThisActor = goalIDs.includes(id)
-        return isGoalThisActor ? "image selection" : "image"
+        return isGoalThisActor ? "selection" : null
     }
 
     const handleClick = () => {
@@ -16,7 +18,7 @@ const Actor = ( {id, name, imagePath, onClick, goalActors} ) => {
 
     return (
         <div onClick={handleClick}>
-            <img className={borderForGoalActor} src={`https://image.tmdb.org/t/p/w500/${imagePath}`} alt={name}/>
+            <img className={`image ${borderForGoalActor()}`} src={`https://image.tmdb.org/t/p/w500/${imagePath}`} alt={name}/>
             <div>
                 {name}
             </div>

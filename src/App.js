@@ -240,6 +240,7 @@ function App() {
           onClickSetStartingActor={onClickSetStartingActor}
           targetThree={targetThree}
           onClickSetTargetActor={onClickSetTargetActor}
+          goalActors={goalActors}
         />}
 
         <div>

@@ -10,3 +10,9 @@
     margin: -5px;
     border-color: gray;
 }
+
+.image.selection {
+    border: 5px solid;
+    margin: -5px;
+    border-color: yellow;
+}

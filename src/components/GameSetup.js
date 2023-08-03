@@ -6,7 +6,7 @@ import './GameSetup.css'
 
 
 const GameSetup = ( {
-                    rollActors, 
+                    goalActors, rollActors, 
                     startingThree, onClickSetStartingActor,
                     targetThree, onClickSetTargetActor } ) => {
 
@@ -22,6 +22,7 @@ const GameSetup = ( {
                     <AssetList 
                     assets={startingThree}
                     onClick={onClickSetStartingActor}
+                    goalActors={goalActors}
                     />
                 </ul>
                 <ul>
@@ -29,6 +30,7 @@ const GameSetup = ( {
                     <AssetList 
                     assets={targetThree}
                     onClick={onClickSetTargetActor}
+                    goalActors={goalActors}
                     />
                 </ul>
             </div>

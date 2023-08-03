@@ -5,9 +5,9 @@ import Movie from './Movie';
 import './AssetList.css'
 
 
-const AssetList = ( {assets, onClick} ) => {
+const AssetList = ( {assets, onClick, goalActors} ) => {
     const getAssetListJSX = (assets) => {
-        console.log("accessing assets: ", assets)
+        // console.log("accessing assets: ", assets)s
         return assets.map( (asset) => {
             if (asset.type === 'Actor'){ 
                 return (
@@ -17,6 +17,7 @@ const AssetList = ( {assets, onClick} ) => {
                         name= {asset.name}
                         imagePath={asset.imagePath}
                         onClick={onClick}
+                        goalActors={goalActors}
                     />)
             } else if (asset.type === 'Movie'){
                 return (
