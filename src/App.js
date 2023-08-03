@@ -151,16 +151,17 @@ function App() {
     const result = new Set();
     while (result.length < 6) {
       let randomIndex = Math.floor(Math.random() * people.length);
-      result.push(people[randomIndex]);
+      result.add(people[randomIndex]);
     }
+    console.log(result)
     return Array.from(result);
   }
 
   const rollActors = () => {
     setGoalActors([defaultEmptyActorObject, defaultEmptyActorObject])
     setChain([])
-    setStartingThree(generateSixRandomActors(popularActors));
-    setTargetThree(generateSixRandomActors(popularActors));
+    setStartingThree(generateSixRandomActors(popularActors).slice(0, 2));
+    setTargetThree(generateSixRandomActors(popularActors).slice(3, 5));
   }
 
   const switchGoalDirection = () => {
