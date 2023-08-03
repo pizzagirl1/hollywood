@@ -5,15 +5,16 @@ import './Actor.css'
 const Actor = ( {id, name, imagePath, onClick, goalActors} ) => {
 
     const borderForGoalActor = () => {
-        console.log("inside border function")
-        console.log(goalActors)
-        const goalIDs = goalActors.map((goal) => goal.id)
-        const isGoalThisActor = goalIDs.includes(id)
-        return isGoalThisActor ? "selection" : null
+        // console.log("inside border function", goalActors)
+        // // const goalIDs = goalActors.map((goal) => goal.id)
+        // // const isGoalThisActor = goalIDs.includes(id)
+        // const isGoalThisActor = goalActors.some(actor => actor.id === id);
+        // console.log(isGoalThisActor);
+        // return isGoalThisActor ? "selection" : null
     }
 
     const handleClick = () => {
-        onClick( {id, name, imagePath, type:'Actor'})
+        onClick( {id, name, imagePath, type:'Actor'});
     }
 
     return (
