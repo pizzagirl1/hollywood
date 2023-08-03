@@ -123,6 +123,7 @@ function App() {
   };
   
   const convertMovieDataFromAPI = (movie) => {
+    console.log("hi adrian")
     return {
       id: movie.id,
       title: movie.title,
@@ -156,7 +157,9 @@ function App() {
   }
 
   const getMovieDataNOW = () => {
-    return fetchMovieCreditsForActor(resultFromSearch.id)
+    let myData = fetchMovieCreditsForActor(resultFromSearch.id)
+    console.log("fetching NOW: ", myData);
+    return myData;
   }
   
   const generateSixRandomActors = (people) => {
@@ -273,7 +276,7 @@ function App() {
           onClick={onClickDoNothing}
           />
           <AssetList
-            assets={getMovieDataNOW()}
+            assets={fetchMovieCreditsForActor(resultFromSearch.id)}
             onClick={onClickDoNothing}
           />
         </div>)}
