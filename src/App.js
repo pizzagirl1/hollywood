@@ -114,7 +114,7 @@ function App() {
     // console.log(actorData);
     return actorData;
   }
-  
+
   const fetchPopularActors = () => {
 
     setPopularActors(buildActorDataList())
@@ -147,20 +147,20 @@ function App() {
         console.log("Error during fetchMovieCreditsForActor", error.message);});
   }
   
+  const generateSixRandomActors = (people) => {
+    const result = new Set();
+    while (result.length < 6) {
+      let randomIndex = Math.floor(Math.random() * people.length);
+      result.push(people[randomIndex]);
+    }
+    return Array.from(result);
+  }
 
   const rollActors = () => {
-    const getThreePeople = (people) => {
-      const result = [];
-      for (let i = 0; i < 3; i++) {
-        let randomIndex = Math.floor(Math.random() * people.length);
-        result.push(people[randomIndex]);
-      }
-      return result;
-    }
     setGoalActors([defaultEmptyActorObject, defaultEmptyActorObject])
     setChain([])
-    setStartingThree(getThreePeople(popularActors));
-    setTargetThree(getThreePeople(popularActors));
+    setStartingThree(generateSixRandomActors(popularActors));
+    setTargetThree(generateSixRandomActors(popularActors));
   }
 
   const switchGoalDirection = () => {
