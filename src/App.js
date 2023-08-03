@@ -159,8 +159,8 @@ function App() {
   const rollActors = () => {
     setGoalActors([defaultEmptyActorObject, defaultEmptyActorObject])
     setChain([])
-    setStartingThree(generateSixRandomActors(popularActors).slice(0, 2));
-    setTargetThree(generateSixRandomActors(popularActors).slice(3, 5));
+    setStartingThree(generateSixRandomActors(popularActors).slice(0, 3));
+    setTargetThree(generateSixRandomActors(popularActors).slice(3, 6));
   }
 
   const switchGoalDirection = () => {
