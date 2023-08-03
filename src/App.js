@@ -275,10 +275,10 @@ function App() {
           assets={[resultFromSearch]}
           onClick={onClickDoNothing}
           />
-          <AssetList
+          {/* <AssetList
             assets={fetchMovieCreditsForActor(resultFromSearch.id)}
             onClick={onClickDoNothing}
-          />
+          /> */}
         </div>)}
 
         <div>
