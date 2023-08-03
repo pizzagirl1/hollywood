@@ -70,18 +70,17 @@ function App() {
       console.log("Error Searching for Actor", query, error.message)}})
   }
 
-  const fetchPopularActors = () => {
-    const getPopularActors = (page) => {
-      const convertActorDataFromAPI = (person) => {
-        return {
-          id: person.id,
-          name: person.name,
-          gender: (person.gender === (1 || 3) ) ? true : false,
-          imagePath: person.profile_path,
-          type: 'Actor'
-        }}
+  const convertActorDataFromAPI = (person) => {
+    return {
+      id: person.id,
+      name: person.name,
+      gender: (person.gender === (1 || 3) ) ? true : false,
+      imagePath: person.profile_path,
+      type: 'Actor'
+    }}
 
-      const options = {
+  const getPopularActors = (page) => {
+    const options = {
       method: 'GET',
       url: `${TMDB_URL}/person/popular`,
       params: {page: page},
@@ -96,7 +95,9 @@ function App() {
         return response.data.results.map(convertActorDataFromAPI);})
       .catch((error) => {
         console.log("Error during getPopularActors", error.message);});
-    }
+  }
+
+  const fetchPopularActors = () => {
 
     const fetchAllPopularPeople = () => {
       let actorData = []
