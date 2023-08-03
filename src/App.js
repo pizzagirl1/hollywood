@@ -2,6 +2,7 @@ import hollywood from './images/hollywood.jpg'
 import React, { useState, useEffect} from 'react';
 import axios from 'axios';
 import './App.css';
+import drew from './drew.json'
 // import setTimeout from 'timers/promises'
 
 import SearchBar from './components/SearchBar';
@@ -23,9 +24,14 @@ function App() {
   const [goalActors, setGoalActors] = useState([defaultEmptyActorObject, defaultEmptyActorObject])
 
   const [game, setGame] = useState([false])
+  const [drewData, setDrewData] = useState(drew.movies)
 
-  // eslint-disable-next-line
-  useEffect( () => fetchPopularActors(), [])
+  useEffect( () => {
+    fetchPopularActors();
+    console.log(drewData)
+    // setDrewData(fetchMovieCreditsForActor(69597));
+    // eslint-disable-next-line
+  }, [])
   // useEffect( () => {
   //   console.log("hello mark!");
   //   console.log(popularActors);
@@ -270,10 +276,11 @@ function App() {
           assets={[resultFromSearch]}
           onClick={onClickDoNothing}
           />
-          {/* <AssetList
-            assets={fetchMovieCreditsForActor(resultFromSearch.id)}
+          <AssetList
+            // assets={fetchMovieCreditsForActor(resultFromSearch.id)}
+            assets={drewData}
             onClick={onClickDoNothing}
-          /> */}
+          />
         </div>)}
 
         <div>
