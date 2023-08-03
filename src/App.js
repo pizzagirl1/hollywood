@@ -141,7 +141,7 @@ function App() {
         Authorization: 'Bearer ' + TMDB_TOKEN
       }
     };
-
+    console.log('fetching movie credits for ', actorId);
     return axios
       .request(options)
       .then((response) => {
@@ -149,10 +149,14 @@ function App() {
         .map(convertMovieDataFromAPI)
         // const result = response.data.results.cast.map(convertMovieDataFromAPI);
         console.log(result)
-        // return result
+        return result
       })
       .catch((error) => {
         console.log("Error during fetchMovieCreditsForActor", error.message);});
+  }
+
+  const getMovieDataNOW = () => {
+    return fetchMovieCreditsForActor(resultFromSearch.id)
   }
   
   const generateSixRandomActors = (people) => {
@@ -269,7 +273,7 @@ function App() {
           onClick={onClickDoNothing}
           />
           <AssetList
-            assets={fetchMovieCreditsForActor(resultFromSearch.id)}
+            assets={getMovieDataNOW()}
             onClick={onClickDoNothing}
           />
         </div>)}

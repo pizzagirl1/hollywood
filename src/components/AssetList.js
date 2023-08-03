@@ -7,6 +7,7 @@ import './AssetList.css'
 
 const AssetList = ( {assets, onClick} ) => {
     const getAssetListJSX = (assets) => {
+        console.log("accessing assets: ", assets)
         return assets.map( (asset) => {
             if (asset.type === 'Actor'){ 
                 return (
@@ -22,7 +23,7 @@ const AssetList = ( {assets, onClick} ) => {
                     <Movie
                         id={asset.id}
                         key={asset.id}
-                        name= {asset.name}
+                        title= {asset.title}
                         imagePath={asset.imagePath}
                     />
                 )
