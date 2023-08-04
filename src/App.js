@@ -152,7 +152,6 @@ function App() {
   };
   
   const convertMovieDataFromAPI = (movie) => {
-    console.log("hi adrian")
     return {
       id: movie.id,
       title: movie.title,
@@ -237,18 +236,27 @@ function App() {
     setChain([])
   }
 
-  // const onClickImageAppendObjectToChain = (data) => {
-  //   const newObject = {
-  //     id: data.id,
-  //     name: data.name,
-  //     imagePath: data.imagePath,
-  //     type: data.type
-  //   }
-    
-  //   const newChain = [...chain, newObject]
-  //   setChain(newChain)
-  // }
+  const chainDisplayArray = [goalActors[0], ...chain, defaultEmptyActorObject, goalActors[1]]
 
+  const onClickAppendObjectToChain = (data) => {
+    // this should check if the object is the same as goalActor1
+    console.log("Attempting to Append Object to Chain")
+    const newObject = {
+      id: data.id,
+      name: data.name,
+      imagePath: data.imagePath,
+      type: data.type
+    }
+    
+    const newChain = [...chain, newObject]
+    setChain(newChain)
+  }
+
+  const onClickSetResultFromSearch = (data) => {
+    // come back to this
+  }
+
+  // change to ActorA or TargetA... goalActor0
   const onClickSetStartingActor = (data) => {
     const newObject = {
       id: data.id,
@@ -259,6 +267,7 @@ function App() {
     setGoalActors([newObject, goalActors[1]])
   }
 
+  // change to ActorB or TargetB... goalActor1
   const onClickSetTargetActor = (data) => {
     const newObject = {
       id: data.id,
@@ -302,17 +311,12 @@ function App() {
             <button onClick={startGame}>Start Game</button> 
             <button onClick={switchGoalDirection}>Change Direction</button>
             </div>)}
-          <h2>CHOOSE TWO ACTORS TO CONNECT:</h2>
-          {(goalActors[0].name !== '' || goalActors[1].name !== '') &&
-          <AssetList assets={goalActors} onClick={onClickDoNothing}/>
-          }
+          <h2>CONNECT TWO ACTORS:</h2>
         </div>
-
         
         <div> 
-          <h2>THE CHAIN</h2>
           <AssetList 
-            assets={[goalActors[0], ...chain, defaultEmptyActorObject, goalActors[1]]}
+            assets={chainDisplayArray}
             onClick={onClickDoNothing}/>
         </div>
         {/* <AssetList
@@ -328,6 +332,7 @@ function App() {
           defaultEmptyActorObject={defaultEmptyActorObject}
           fetchMovieCreditsForActor={fetchMovieCreditsForActor}
           fetchCastDataForMovie={fetchCastDataForMovie}
+          onClickAssetList={onClickAppendObjectToChain}
         />
         <div>
         This product uses the TMDB API but is not endorsed or certified by TMDB.
