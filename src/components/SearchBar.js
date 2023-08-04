@@ -8,6 +8,9 @@ const SearchBar = ( {
     const defaultSearchQuery = { query: '' };
     const [formField, setFormField] = useState(defaultSearchQuery);
 
+    const nameOfSearchResult = resultFromSearch.type === 'Movie' ? resultFromSearch.title :
+            resultFromSearch.name;
+
     const onQueryChange = (event) => {
         setFormField({ query: event.target.value });
     }
@@ -44,20 +47,19 @@ const SearchBar = ( {
 
     return (
         <div>
-            {/* <form onSubmit={onFormSubmit}> */}
-                <div>Search: </div>
-                <input 
-                    id="query"
-                    onChange={onQueryChange}
-                    value={formField.query}
-                />
-                <button onClick={onClickSearchActor}>Search Actor</button>
-                <button onClick={onClickSearchMovie}>Search Movie</button>
-            {/* </form> */}
+            <div>Search: </div>
+            <input 
+                id="query"
+                onChange={onQueryChange}
+                value={formField.query}
+            />
+            <button onClick={onClickSearchActor}>Search Actor</button>
+            <button onClick={onClickSearchMovie}>Search Movie</button>
+            
             <div>
             <p>
-                {/* {resultFromSearch.name.length > 0 && 
-                `Your search found ${resultFromSearch.name}`} */}
+                {nameOfSearchResult.length > 0 && 
+                `Your search found ${nameOfSearchResult}`}
             </p>
             </div>
         </div>
