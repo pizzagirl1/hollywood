@@ -12,7 +12,6 @@ const SearchBar = ( {
     
     const defaultSearchQuery = { query: '' };
     const [formField, setFormField] = useState(defaultSearchQuery);
-    // const [searchData, setSearchData] = useState([])
 
     const onQueryChange = (event) => {
         setFormField({ query: event.target.value });
