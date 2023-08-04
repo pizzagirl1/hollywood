@@ -5,10 +5,12 @@ import drewData from '../drew.json'
 const SearchBar = ( {
     searchActor, searchMovie, 
     resultFromSearch, setResultFromSearch, 
-    defaultEmptyActorObject} ) => {
+    defaultEmptyActorObject,
+    fetchMovieCreditsForActor } ) => {
     
     const defaultSearchQuery = { query: '' };
     const [formField, setFormField] = useState(defaultSearchQuery);
+    const [searchData, setSearchData] = useState([])
 
     const nameOfSearchResult = resultFromSearch.type === 'Movie' ? resultFromSearch.title :
             resultFromSearch.name;
@@ -25,9 +27,13 @@ const SearchBar = ( {
             window.alert('Search may not be blank');
             return;
         }
-        searchActor(formField.query).then((response) => {
-            setResultFromSearch(response);
-        });
+        searchActor(formField.query)
+        .then((response) => {
+            setResultFromSearch(response)
+            return response.id;
+        })
+        .then( (actorId) => {return fetchMovieCreditsForActor(actorId)})
+        .then( (responseData) => setSearchData(responseData))
         
         setFormField(defaultSearchQuery);
     }
@@ -72,7 +78,8 @@ const SearchBar = ( {
             />
             <AssetList
                 // assets={fetchMovieCreditsForActor(resultFromSearch.id)}
-                assets={drewData.movies}
+                // assets={drewData.movies}
+                assets={searchData}
                 onClick={{}}
             />
             </div>)}

@@ -292,6 +292,7 @@ function App() {
           resultFromSearch={resultFromSearch}
           setResultFromSearch={setResultFromSearch}
           defaultEmptyActorObject={defaultEmptyActorObject}
+          fetchMovieCreditsForActor={fetchMovieCreditsForActor}
         />
         <div>
         This product uses the TMDB API but is not endorsed or certified by TMDB.
