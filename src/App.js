@@ -162,6 +162,7 @@ function App() {
   };
   
   const fetchMovieCreditsForActor = (actorId) => {
+    if (actorId === 0) {return []}
 
     const options = {
       method: 'GET',
@@ -186,7 +187,7 @@ function App() {
   }
 
   const fetchCastDataForMovie = (movieId) => {
-
+    if (movieId === 0) {return []}
     const options = {
       method: 'GET',
       url: `${TMDB_URL}/movie/${movieId}/credits`,
@@ -312,8 +313,10 @@ function App() {
             assets={[goalActors[0], ...chain, defaultEmptyActorObject, goalActors[1]]}
             onClick={onClickDoNothing}/>
         </div>
-        
-
+        {/* <AssetList
+          assets={fetchMovieCreditsForActor(goalActors[0].id)}
+          onClick={onClickDoNothing}
+        /> */}
         <SearchBar 
           searchActor={searchActor}
           searchMovie={searchMovie}
