@@ -267,8 +267,6 @@ function App() {
     
   }
 
-  const onClickDoNothing = () => {}
-
   const startGame = () => {
     setGame(true);
     console.log('Now the fun begins!')
@@ -298,7 +296,7 @@ function App() {
             </div>)}
           <h2>CHOOSE TWO ACTORS TO CONNECT:</h2>
           {(goalActors[0].name !== '' || goalActors[1].name !== '') &&
-          <AssetList assets={goalActors} onClick={onClickDoNothing}/>
+          <AssetList assets={goalActors} onClick={{}}/>
           }
         </div>
 
@@ -307,7 +305,7 @@ function App() {
           <h2>THE CHAIN</h2>
           <AssetList 
             assets={chain}
-            onClick={onClickDoNothing}/>
+            onClick={{}}/>
         </div>)}
 
         <SearchBar 
