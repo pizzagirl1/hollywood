@@ -7,8 +7,8 @@ const Movie = ({id, name, imagePath, onClick, cast}) => {
     const image = imagePath !== null ? ` https://image.tmdb.org/t/p/w500/${imagePath}` : noPhoto;
 
     const handleClick = () => {
-        onClick( {id:id, name:name, imagePath:imagePath, type:"Movie"} )
         console.log("Clicked!")
+        onClick( {id:id, name:name, imagePath:imagePath, type:"Movie"} )
     }
 
     return (

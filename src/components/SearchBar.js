@@ -74,7 +74,7 @@ const SearchBar = ( {
             (<div>
             <AssetList
                 assets={[resultFromSearch, ...searchData]}
-                onClick={{onClickAssetList}}
+                onClick={onClickAssetList}
             />
             </div>)}
             </div>
