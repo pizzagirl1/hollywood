@@ -13,7 +13,7 @@ const TMDB_TOKEN = `${process.env.REACT_APP_TMDB_API_KEY}`
 const TMDB_URL = 'https://api.themoviedb.org/3'
 
 function App() {
-  const defaultEmptyActorObject = { name: '', id: 0, imagePath:'', type: 'Actor'};
+  const defaultEmptyActorObject = { name: '', id: 0, imagePath: null, type: 'Actor'};
   const [resultFromSearch, setResultFromSearch] = useState(defaultEmptyActorObject);
   const [searchData, setSearchData] = useState([])
 
@@ -28,9 +28,9 @@ function App() {
   // const [drewData, setDrewData] = useState(drew.movies)
 
   useEffect( () => {
-    fetchPopularActors();
-    // console.log(drewData)
-    // setDrewData(fetchMovieCreditsForActor(69597));
+    fetchPopularActors()
+    // rollActors()
+    // .then(() => rollActors())
     // eslint-disable-next-line
   }, [])
   // useEffect( () => {
@@ -149,6 +149,7 @@ function App() {
   const fetchPopularActors = () => {
 
     setPopularActors(buildActorDataList())
+    return null
     // setPopularActors(buildActorDataList().filter(isMarginalizedGender))
   };
   
@@ -237,11 +238,16 @@ function App() {
     setChain([])
   }
 
-  const chainDisplayArray = [goalActors[0], ...chain, defaultEmptyActorObject, goalActors[1]]
+  const chainDisplayArray = [
+    goalActors[0], 
+    ...chain, 
+    defaultEmptyActorObject, 
+    goalActors[1]
+  ]
 
   const onClickAppendObjectToChain = (data) => {
     // this should check if the object is the same as goalActor1
-    console.log("Attempting to Append Object to Chain")
+    console.log("Attempting to Append Object to Chain", chain)
     const newObject = {
       id: data.id,
       name: data.name,
@@ -250,6 +256,7 @@ function App() {
     }
     
     const newChain = [...chain, newObject]
+    console.log("New Chain", newChain)
     setChain(newChain)
   }
 
