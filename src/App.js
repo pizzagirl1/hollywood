@@ -28,15 +28,17 @@ function App() {
   // const [drewData, setDrewData] = useState(drew.movies)
 
   useEffect( () => {
+    // fetchThenRoll()
     fetchPopularActors()
     // rollActors()
     // .then(() => rollActors())
     // eslint-disable-next-line
   }, [])
+
   // useEffect( () => {
-  //   console.log("hello mark!");
+  //   console.log("change in popular actors");
   //   console.log(popularActors);
-  // }, [popularActors.length])
+  // }, [popularActors])
 
   // useEffect( () => loadGame(), [])
   
@@ -149,9 +151,14 @@ function App() {
   const fetchPopularActors = () => {
 
     setPopularActors(buildActorDataList())
-    return null
+    // .then(rollActors())
+    // return null
     // setPopularActors(buildActorDataList().filter(isMarginalizedGender))
   };
+
+  const fetchThenRoll = () => {
+    fetchPopularActors().then(() => rollActors())
+  }
   
   const convertMovieDataFromAPI = (movie) => {
     return {

@@ -10,7 +10,7 @@ const GameSetup = ( {
                     startingThree, onClickSetStartingActor,
                     targetThree, onClickSetTargetActor } ) => {
 
-    // // eslint-disable-next-line
+    // eslint-disable-next-line
     // useEffect(() => rollActors(), [])
 
     return (       
