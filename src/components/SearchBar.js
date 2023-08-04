@@ -6,7 +6,8 @@ const SearchBar = ( {
     resultFromSearch, setResultFromSearch, 
     defaultEmptyActorObject,
     fetchMovieCreditsForActor,
-    fetchCastDataForMovie } ) => {
+    fetchCastDataForMovie,
+    onClickAssetList } ) => {
     
     const defaultSearchQuery = { query: '' };
     const [formField, setFormField] = useState(defaultSearchQuery);
@@ -74,13 +75,13 @@ const SearchBar = ( {
             </p>
             {nameOfSearchResult !== '' && 
             (<div>
-            <AssetList 
-            assets={[resultFromSearch]}
-            onClick={{}}
-            />
+            {/* <AssetList 
+                assets={[resultFromSearch]}
+                onClick={{onClickAssetList}}
+            /> */}
             <AssetList
-                assets={searchData}
-                onClick={{}}
+                assets={[resultFromSearch, ...searchData]}
+                onClick={{onClickAssetList}}
             />
             </div>)}
             </div>
