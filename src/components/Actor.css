@@ -1,6 +1,11 @@
+.asset {
+    padding: 10px;
+}
+
 .image {
     /* height: 20vh; */
     width: 15vw;
+    /* padding: auto; */
     /* display:inline-block; */
 }
 

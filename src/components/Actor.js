@@ -26,7 +26,7 @@ const Actor = ( {id, name, imagePath, onClick, goalActors} ) => {
     }
 
     return (
-        <div onClick={handleClick}>
+        <div onClick={handleClick} className='asset'>
             <img className={`image ${borderForGoalActor()}`} src={image} alt={name}/>
             <div>
                 {name}
