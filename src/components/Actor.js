@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import React from 'react';
 import './Actor.css'
+import noPhoto from '../images/noPhoto.png'
 // import PropTypes from 'prop-types';
 
 const Actor = ( {id, name, imagePath, onClick, goalActors} ) => {
@@ -16,13 +17,15 @@ const Actor = ( {id, name, imagePath, onClick, goalActors} ) => {
         // return isGoalThisActor ? "selection" : null
     }
 
+    const image = imagePath !== null ? ` https://image.tmdb.org/t/p/w500/${imagePath}` : noPhoto;
+
     const handleClick = () => {
         onClick( {id, name, imagePath, type:'Actor'});
     }
 
     return (
         <div onClick={handleClick}>
-            <img className={`image ${borderForGoalActor()}`} src={`https://image.tmdb.org/t/p/w500/${imagePath}`} alt={name}/>
+            <img className={`image ${borderForGoalActor()}`} src={image} alt={name}/>
             <div>
                 {name}
             </div>
