@@ -248,16 +248,16 @@ function App() {
   const onClickAppendObjectToChain = (data) => {
     // this should check if the object is the same as goalActor1
     console.log("Attempting to Append Object to Chain", chain)
-    const newObject = {
-      id: data.id,
-      name: data.name,
-      imagePath: data.imagePath,
-      type: data.type
-    }
+    // const newObject = {
+    //   id: data.id,
+    //   name: data.name,
+    //   imagePath: data.imagePath,
+    //   type: data.type
+    // }
     
-    const newChain = [...chain, newObject]
-    console.log("New Chain", newChain)
-    setChain(newChain)
+    // const newChain = [...chain, newObject]
+    // console.log("New Chain", newChain)
+    // setChain(newChain)
   }
 
   const onClickSetResultFromSearch = (data) => {
