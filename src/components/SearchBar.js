@@ -75,10 +75,6 @@ const SearchBar = ( {
             </p>
             {nameOfSearchResult !== '' && 
             (<div>
-            {/* <AssetList 
-                assets={[resultFromSearch]}
-                onClick={{onClickAssetList}}
-            /> */}
             <AssetList
                 assets={[resultFromSearch, ...searchData]}
                 onClick={{onClickAssetList}}
