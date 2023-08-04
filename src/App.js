@@ -209,6 +209,8 @@ function App() {
       .catch((error) => {
         console.log("Error during fetchCastDataForMovie", error.message);});
   }
+
+  const goalActorCredits = fetchMovieCreditsForActor(goalActors[0].id)
   
   const generateSixRandomActors = (people) => {
     const result = new Set();
@@ -314,6 +316,7 @@ function App() {
             onClick={onClickDoNothing}/>
         </div>
         {/* <AssetList
+          assets={goalActorCredits}
           assets={fetchMovieCreditsForActor(goalActors[0].id)}
           onClick={onClickDoNothing}
         /> */}
