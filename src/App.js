@@ -2,7 +2,7 @@ import hollywood from './images/hollywood.jpg'
 import React, { useState, useEffect} from 'react';
 import axios from 'axios';
 import './App.css';
-import drew from './drew.json'
+// import drew from './drew.json'
 // import setTimeout from 'timers/promises'
 
 import SearchBar from './components/SearchBar';
@@ -24,7 +24,7 @@ function App() {
   const [goalActors, setGoalActors] = useState([defaultEmptyActorObject, defaultEmptyActorObject])
 
   const [game, setGame] = useState([false])
-  const [drewData, setDrewData] = useState(drew.movies)
+  // const [drewData, setDrewData] = useState(drew.movies)
 
   useEffect( () => {
     fetchPopularActors();
@@ -210,7 +210,7 @@ function App() {
         console.log("Error during fetchCastDataForMovie", error.message);});
   }
 
-  const goalActorCredits = fetchMovieCreditsForActor(goalActors[0].id)
+  // const goalActorCredits = fetchMovieCreditsForActor(goalActors[0].id)
   
   const generateSixRandomActors = (people) => {
     const result = new Set();
