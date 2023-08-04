@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import AssetList from './AssetList';
-import drewData from '../drew.json'
 
 const SearchBar = ( {
     searchActor, searchMovie, 
@@ -80,8 +79,6 @@ const SearchBar = ( {
             onClick={{}}
             />
             <AssetList
-                // assets={fetchMovieCreditsForActor(resultFromSearch.id)}
-                // assets={drewData.movies}
                 assets={searchData}
                 onClick={{}}
             />
