@@ -1,6 +1,10 @@
 import React, { useState } from 'react';
 
-const SearchBar = ( {searchActor, resultFromSearch, setResultFromSearch, defaultEmptyActorObject} ) => {
+const SearchBar = ( {
+    searchActor, searchMovie, 
+    resultFromSearch, setResultFromSearch, 
+    defaultEmptyActorObject} ) => {
+    
     const defaultSearchQuery = { query: '' };
     const [formField, setFormField] = useState(defaultSearchQuery);
 
@@ -8,7 +12,7 @@ const SearchBar = ( {searchActor, resultFromSearch, setResultFromSearch, default
         setFormField({ query: event.target.value });
     }
 
-    const onFormSubmit = (event) => {
+    const onClickSearchActor = (event) => {
         event.preventDefault();
         if (formField.query.length === 0){
             setFormField(defaultSearchQuery);
@@ -18,7 +22,21 @@ const SearchBar = ( {searchActor, resultFromSearch, setResultFromSearch, default
         }
         searchActor(formField.query).then((response) => {
             setResultFromSearch(response);
-            console.log(resultFromSearch)
+        });
+        
+        setFormField(defaultSearchQuery);
+    }
+
+    const onClickSearchMovie = (event) => {
+        event.preventDefault();
+        if (formField.query.length === 0){
+            setFormField(defaultSearchQuery);
+            setResultFromSearch(defaultEmptyActorObject);
+            window.alert('Search may not be blank');
+            return;
+        }
+        searchMovie(formField.query).then((response) => {
+            setResultFromSearch(response);
         });
         
         setFormField(defaultSearchQuery);
@@ -26,14 +44,16 @@ const SearchBar = ( {searchActor, resultFromSearch, setResultFromSearch, default
 
     return (
         <div>
-            <form onSubmit={onFormSubmit}>
+            {/* <form onSubmit={onFormSubmit}> */}
                 <div>Search: </div>
                 <input 
                     id="query"
                     onChange={onQueryChange}
                     value={formField.query}
                 />
-            </form>
+                <button onClick={onClickSearchActor}>Search Actor</button>
+                <button onClick={onClickSearchMovie}>Search Movie</button>
+            {/* </form> */}
             <div>
             <p>
                 {/* {resultFromSearch.name.length > 0 && 
