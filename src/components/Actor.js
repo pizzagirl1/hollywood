@@ -14,6 +14,8 @@ const Actor = ( {id, name, imagePath, onClick, goalActors} ) => {
         const isGoalThisActor = goalIDs.includes(id)
         console.log(isGoalThisActor);
         // const isGoalThisActor = goalActors.some(actor => actor.id === id);
+        // const isNameNotNull = name === ''
+        // const isGoalAndisNotNameless = isGoalThisActor && isNameNotNull
         return isGoalThisActor ? "selection" : null
     }
 
