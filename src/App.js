@@ -154,7 +154,7 @@ function App() {
   const convertMovieDataFromAPI = (movie) => {
     return {
       id: movie.id,
-      title: movie.title,
+      name: movie.title,
       imagePath: movie.poster_path,
       type: 'Movie'
     };

@@ -20,7 +20,7 @@ const Actor = ( {id, name, imagePath, onClick, goalActors} ) => {
     const image = imagePath !== null ? ` https://image.tmdb.org/t/p/w500/${imagePath}` : noPhoto;
 
     const handleClick = () => {
-        onClick( {id, name, imagePath, type:'Actor'});
+        onClick( {id, name, imagePath, type:'Actor'} );
     }
 
     return (

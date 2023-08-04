@@ -13,9 +13,6 @@ const SearchBar = ( {
     const [formField, setFormField] = useState(defaultSearchQuery);
     const [searchData, setSearchData] = useState([])
 
-    const nameOfSearchResult = resultFromSearch.type === 'Movie' ? resultFromSearch.title :
-            resultFromSearch.name;
-
     const onQueryChange = (event) => {
         setFormField({ query: event.target.value });
     }
@@ -70,10 +67,10 @@ const SearchBar = ( {
             </div>
             <div>
             <p>
-                {nameOfSearchResult.length > 0 && 
-                `Your search found ${nameOfSearchResult}`}
+                {resultFromSearch.name.length > 0 && 
+                `Your search found ${resultFromSearch.name}`}
             </p>
-            {nameOfSearchResult !== '' && 
+            {resultFromSearch.name !== '' && 
             (<div>
             <AssetList
                 assets={[resultFromSearch, ...searchData]}

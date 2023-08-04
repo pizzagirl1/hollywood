@@ -24,7 +24,7 @@ const AssetList = ( {assets, onClick, goalActors} ) => {
                     <Movie
                         id={asset.id}
                         key={asset.id}
-                        title= {asset.title}
+                        name= {asset.name}
                         imagePath={asset.imagePath}
                     />
                 )
