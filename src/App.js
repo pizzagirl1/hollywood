@@ -293,20 +293,6 @@ function App() {
           setResultFromSearch={setResultFromSearch}
           defaultEmptyActorObject={defaultEmptyActorObject}
         />
-
-        {resultFromSearch.name !== '' && 
-        (<div>
-          <AssetList 
-          assets={[resultFromSearch]}
-          onClick={onClickDoNothing}
-          />
-          <AssetList
-            // assets={fetchMovieCreditsForActor(resultFromSearch.id)}
-            assets={drewData}
-            onClick={onClickDoNothing}
-          />
-        </div>)}
-
         <div>
         This product uses the TMDB API but is not endorsed or certified by TMDB.
         </div>

@@ -1,13 +1,14 @@
-/* .container {
+.container {
     display: flex;
-    flex-direction: row;
+    /* flex-direction: row;
     flex-wrap: wrap;
-} */
+    justify-content: left; */
+}
 
 .container > ul{
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     /* justify-content: space-evenly; */
-    justify-content: space-around;
+    /* justify-content: space-around; */
 }
