@@ -59,12 +59,8 @@ function App() {
     return axios
     .request(options)
     .then( (response) => {
-      return {
-        id: response.data.results[0].id,
-        name: response.data.results[0].name,
-        imagePath: response.data.results[0].profile_path,
-        type: 'Actor'
-    }})
+      return convertActorDataFromAPI(response.data.results[0])
+    })
     .catch( (error) => {
       if (error.message.includes('undefined')) {
         window.alert('Search not valid. Try again.');
@@ -75,6 +71,37 @@ function App() {
       } else {
       console.log("Error Searching for Actor", query, error.message)}})
   }
+
+  // const searchMovie = (query) => {
+  //   const options = {
+  //     method: 'GET',
+  //     url: `${TMDB_URL}/search/movie`,
+  //     params: {query: query},
+  //     headers: {
+  //       accept: 'application/json',
+  //       Authorization: 'Bearer ' + TMDB_TOKEN
+  //     }
+  //   };
+
+  //   return axios
+  //   .request(options)
+  //   .then( (response) => {
+  //     return {
+  //       id: response.data.results[0].id,
+  //       name: response.data.results[0].name,
+  //       imagePath: response.data.results[0].profile_path,
+  //       type: 'Actor'
+  //   }})
+  //   .catch( (error) => {
+  //     if (error.message.includes('undefined')) {
+  //       window.alert('Search not valid. Try again.');
+  //       return {
+  //         name: '',
+  //         id: 0
+  //       };
+  //     } else {
+  //     console.log("Error Searching for Actor", query, error.message)}})
+  // }
 
   const convertActorDataFromAPI = (person) => {
     return {

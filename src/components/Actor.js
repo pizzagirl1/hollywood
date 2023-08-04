@@ -1,16 +1,19 @@
+import { useEffect } from 'react';
 import React from 'react';
 import './Actor.css'
 // import PropTypes from 'prop-types';
 
 const Actor = ( {id, name, imagePath, onClick, goalActors} ) => {
 
+    // useEffect( () => console.log("goalActors is now ", goalActors), [goalActors])
+
     const borderForGoalActor = () => {
-        console.log("inside border function", goalActors)
-        // const goalIDs = goalActors.map((goal) => goal.id)
-        // const isGoalThisActor = goalIDs.includes(id)
-        const isGoalThisActor = goalActors.some(actor => actor.id === id);
-        console.log(isGoalThisActor);
-        return isGoalThisActor ? "selection" : null
+        // console.log("inside border function", goalActors)
+        // // const goalIDs = goalActors.map((goal) => goal.id)
+        // // const isGoalThisActor = goalIDs.includes(id)
+        // const isGoalThisActor = goalActors.some(actor => actor.id === id);
+        // console.log(isGoalThisActor);
+        // return isGoalThisActor ? "selection" : null
     }
 
     const handleClick = () => {

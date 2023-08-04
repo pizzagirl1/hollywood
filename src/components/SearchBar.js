@@ -16,7 +16,11 @@ const SearchBar = ( {searchActor, resultFromSearch, setResultFromSearch, default
             window.alert('Search may not be blank');
             return;
         }
-        searchActor(formField.query).then((response) => setResultFromSearch(response));
+        searchActor(formField.query).then((response) => {
+            setResultFromSearch(response);
+            console.log(resultFromSearch)
+        });
+        
         setFormField(defaultSearchQuery);
     }
 
@@ -32,8 +36,8 @@ const SearchBar = ( {searchActor, resultFromSearch, setResultFromSearch, default
             </form>
             <div>
             <p>
-                {resultFromSearch.name.length > 0 && 
-                `Your search found ${resultFromSearch.name}`}
+                {/* {resultFromSearch.name.length > 0 && 
+                `Your search found ${resultFromSearch.name}`} */}
             </p>
             </div>
         </div>
