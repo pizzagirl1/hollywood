@@ -273,6 +273,7 @@ function App() {
 
   const startGame = () => {
     setGame(true);
+    setResultFromSearch(defaultEmptyActorObject)
     console.log('Now the fun begins!')
   }
 
@@ -295,7 +296,7 @@ function App() {
         <div>
           {(goalActors[0].name !== '' && goalActors[1].name !== '' )&& 
             (<div>
-            <button onClick={startGame}>Ready?</button> 
+            <button onClick={startGame}>Start Game</button> 
             <button onClick={switchGoalDirection}>Change Direction</button>
             </div>)}
           <h2>CHOOSE TWO ACTORS TO CONNECT:</h2>
@@ -304,13 +305,14 @@ function App() {
           }
         </div>
 
-        {chain.length > 0 && (
+        
         <div> 
           <h2>THE CHAIN</h2>
           <AssetList 
-            assets={chain}
+            assets={[goalActors[0], ...chain, defaultEmptyActorObject, goalActors[1]]}
             onClick={onClickDoNothing}/>
-        </div>)}
+        </div>
+        
 
         <SearchBar 
           searchActor={searchActor}
