@@ -294,9 +294,9 @@ function App() {
     
   }
   
-  const onClickDoNothing = () => {
-    return null
-  }
+  // const onClickDoNothing = () => {
+  //   return null
+  // }
 
   const startGame = () => {
     setGame(true);
