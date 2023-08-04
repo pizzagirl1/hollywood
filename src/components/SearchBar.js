@@ -6,7 +6,8 @@ const SearchBar = ( {
     searchActor, searchMovie, 
     resultFromSearch, setResultFromSearch, 
     defaultEmptyActorObject,
-    fetchMovieCreditsForActor } ) => {
+    fetchMovieCreditsForActor,
+    fetchCastDataForMovie } ) => {
     
     const defaultSearchQuery = { query: '' };
     const [formField, setFormField] = useState(defaultSearchQuery);
@@ -34,7 +35,6 @@ const SearchBar = ( {
         })
         .then( (actorId) => {return fetchMovieCreditsForActor(actorId)})
         .then( (responseData) => setSearchData(responseData))
-        
         setFormField(defaultSearchQuery);
     }
 
@@ -46,10 +46,13 @@ const SearchBar = ( {
             window.alert('Search may not be blank');
             return;
         }
-        searchMovie(formField.query).then((response) => {
+        searchMovie(formField.query)
+        .then((response) => {
             setResultFromSearch(response);
-        });
-        
+            return response.id;
+        })
+        .then( (movieId) => {return fetchCastDataForMovie(movieId)})
+        .then( (responseData) => setSearchData(responseData))
         setFormField(defaultSearchQuery);
     }
 

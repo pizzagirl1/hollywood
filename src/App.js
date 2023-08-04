@@ -184,6 +184,30 @@ function App() {
       .catch((error) => {
         console.log("Error during fetchMovieCreditsForActor", error.message);});
   }
+
+  const fetchCastDataForMovie = (movieId) => {
+
+    const options = {
+      method: 'GET',
+      url: `${TMDB_URL}/movie/${movieId}/credits`,
+      headers: {
+        accept: 'application/json',
+        Authorization: 'Bearer ' + TMDB_TOKEN
+      }
+    };
+    console.log('fetching movie credits for ', movieId);
+    return axios
+      .request(options)
+      .then((response) => {
+        const result = response.data.cast
+        .map(convertActorDataFromAPI)
+        // const result = response.data.results.cast.map(convertMovieDataFromAPI);
+        console.log(result)
+        return result
+      })
+      .catch((error) => {
+        console.log("Error during fetchCastDataForMovie", error.message);});
+  }
   
   const generateSixRandomActors = (people) => {
     const result = new Set();
@@ -293,6 +317,7 @@ function App() {
           setResultFromSearch={setResultFromSearch}
           defaultEmptyActorObject={defaultEmptyActorObject}
           fetchMovieCreditsForActor={fetchMovieCreditsForActor}
+          fetchCastDataForMovie={fetchCastDataForMovie}
         />
         <div>
         This product uses the TMDB API but is not endorsed or certified by TMDB.
