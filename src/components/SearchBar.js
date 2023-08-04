@@ -53,9 +53,10 @@ const SearchBar = ( {
                 onChange={onQueryChange}
                 value={formField.query}
             />
-            <button onClick={onClickSearchActor}>Search Actor</button>
-            <button onClick={onClickSearchMovie}>Search Movie</button>
-            
+            <div>
+                <button onClick={onClickSearchActor}>Search Actor</button>
+                <button onClick={onClickSearchMovie}>Search Movie</button>
+            </div>
             <div>
             <p>
                 {nameOfSearchResult.length > 0 && 
