@@ -9,12 +9,12 @@ const Actor = ( {id, name, imagePath, onClick, goalActors} ) => {
     // useEffect( () => console.log("goalActors is now ", goalActors), [goalActors])
 
     const borderForGoalActor = () => {
-        // console.log("inside border function", goalActors)
-        // // const goalIDs = goalActors.map((goal) => goal.id)
-        // // const isGoalThisActor = goalIDs.includes(id)
+        console.log("inside border function for actor", name, goalActors)
+        const goalIDs = goalActors.map((goal) => goal.id)
+        const isGoalThisActor = goalIDs.includes(id)
+        console.log(isGoalThisActor);
         // const isGoalThisActor = goalActors.some(actor => actor.id === id);
-        // console.log(isGoalThisActor);
-        // return isGoalThisActor ? "selection" : null
+        return isGoalThisActor ? "selection" : null
     }
 
     const image = imagePath !== null ? ` https://image.tmdb.org/t/p/w500/${imagePath}` : noPhoto;

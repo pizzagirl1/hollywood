@@ -331,7 +331,9 @@ function App() {
         <div> 
           <AssetList 
             assets={chainDisplayArray}
-            onClick={onClickSetResultFromSearch}/>
+            onClick={onClickSetResultFromSearch}
+            goalActors={goalActors}
+          />
         </div>
         {/* <AssetList
           assets={goalActorCredits}
