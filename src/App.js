@@ -15,6 +15,7 @@ const TMDB_URL = 'https://api.themoviedb.org/3'
 function App() {
   const defaultEmptyActorObject = { name: '', id: 0, imagePath:'', type: 'Actor'};
   const [resultFromSearch, setResultFromSearch] = useState(defaultEmptyActorObject);
+  const [searchData, setSearchData] = useState([])
 
   const [popularActors, setPopularActors] = useState([])
   const [chain, setChain] = useState([])
@@ -253,7 +254,14 @@ function App() {
   }
 
   const onClickSetResultFromSearch = (data) => {
-    // come back to this
+    setResultFromSearch(data)
+    if (data.type === 'Actor') {
+      fetchMovieCreditsForActor(data.id)
+        .then( (responseData) => setSearchData(responseData))
+    } else if (data.type === 'Movie') {
+      fetchCastDataForMovie(data.id)
+        .then( (responseData) => setSearchData(responseData))
+    }
   }
 
   // change to ActorA or TargetA... goalActor0
@@ -317,7 +325,7 @@ function App() {
         <div> 
           <AssetList 
             assets={chainDisplayArray}
-            onClick={onClickDoNothing}/>
+            onClick={onClickSetResultFromSearch}/>
         </div>
         {/* <AssetList
           assets={goalActorCredits}
@@ -333,6 +341,8 @@ function App() {
           fetchMovieCreditsForActor={fetchMovieCreditsForActor}
           fetchCastDataForMovie={fetchCastDataForMovie}
           onClickAssetList={onClickAppendObjectToChain}
+          searchData={searchData}
+          setSearchData={setSearchData}
         />
         <div>
         This product uses the TMDB API but is not endorsed or certified by TMDB.

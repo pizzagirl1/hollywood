@@ -4,6 +4,7 @@ import AssetList from './AssetList';
 const SearchBar = ( {
     searchActor, searchMovie, 
     resultFromSearch, setResultFromSearch, 
+    searchData, setSearchData,
     defaultEmptyActorObject,
     fetchMovieCreditsForActor,
     fetchCastDataForMovie,
@@ -11,7 +12,7 @@ const SearchBar = ( {
     
     const defaultSearchQuery = { query: '' };
     const [formField, setFormField] = useState(defaultSearchQuery);
-    const [searchData, setSearchData] = useState([])
+    // const [searchData, setSearchData] = useState([])
 
     const onQueryChange = (event) => {
         setFormField({ query: event.target.value });
@@ -20,9 +21,9 @@ const SearchBar = ( {
     const onClickSearchActor = (event) => {
         event.preventDefault();
         if (formField.query.length === 0){
+            window.alert('Search may not be blank');
             setFormField(defaultSearchQuery);
             setResultFromSearch(defaultEmptyActorObject);
-            window.alert('Search may not be blank');
             return;
         }
         searchActor(formField.query)
@@ -38,9 +39,9 @@ const SearchBar = ( {
     const onClickSearchMovie = (event) => {
         event.preventDefault();
         if (formField.query.length === 0){
+            window.alert('Search may not be blank');
             setFormField(defaultSearchQuery);
             setResultFromSearch(defaultEmptyActorObject);
-            window.alert('Search may not be blank');
             return;
         }
         searchMovie(formField.query)

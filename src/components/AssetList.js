@@ -26,6 +26,7 @@ const AssetList = ( {assets, onClick, goalActors} ) => {
                         key={asset.id}
                         name= {asset.name}
                         imagePath={asset.imagePath}
+                        onClick={onClick}
                     />
                 )
             } else { return null };
