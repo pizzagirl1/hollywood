@@ -28,7 +28,7 @@ function App() {
 
   useEffect( () => {
     fetchPopularActors();
-    console.log(drewData)
+    // console.log(drewData)
     // setDrewData(fetchMovieCreditsForActor(69597));
     // eslint-disable-next-line
   }, [])
