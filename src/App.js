@@ -303,10 +303,19 @@ function App() {
   // }
 
   const startGame = () => {
-    setGame(true);
-    setResultFromSearch(defaultEmptyActorObject)
-    console.log('Now the fun begins!')
+    if (game === false && (goalActors[0].name === '' || goalActors[1].name === '')){
+      window.alert("You must choose two starting actors first!")
+      return 
+    } else if (game === false) {
+      setGame(true);
+      setResultFromSearch(defaultEmptyActorObject)
+    } else {
+      setGame(false)
+      rollActors()
+    }
   }
+
+  const gameButtonText = game === true ? "New Game" : "Start Game";
 
   return (
     <div className="App">
@@ -314,7 +323,11 @@ function App() {
         <img src={hollywood} className="App-logo" alt="logo" />
       </header>
       <main>
-        {game !== true && 
+        <div>
+        <button onClick={startGame}>{gameButtonText}</button> 
+        <button onClick={switchGoalDirection}>Change Direction</button>
+        </div>
+        {game === false && 
           <GameSetup
           rollActors={rollActors}
           startingThree={startingThree}
@@ -323,23 +336,18 @@ function App() {
           onClickSetTargetActor={onClickSetTargetActor}
           goalActors={goalActors}
         />}
-
-        <div>
-          {(goalActors[0].name !== '' && goalActors[1].name !== '' )&& 
-            (<div>
-            <button onClick={startGame}>Start Game</button> 
-            <button onClick={switchGoalDirection}>Change Direction</button>
-            </div>)}
-          <h2>CONNECT TWO ACTORS:</h2>
-        </div>
-        
-        <div> 
-          <AssetList 
-            assets={chainDisplayArray}
-            onClick={onClickSetResultFromSearch}
-            goalActors={goalActors}
-          />
-        </div>
+        {game === true && (
+          <div>
+            <h2>CONNECT THESE TWO ACTORS:</h2>
+            <div> 
+              <AssetList 
+                assets={chainDisplayArray}
+                onClick={onClickSetResultFromSearch}
+                goalActors={goalActors}
+                />
+            </div>
+          </div>
+        )}
         {/* <AssetList
           assets={goalActorCredits}
           assets={fetchMovieCreditsForActor(goalActors[0].id)}
