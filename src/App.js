@@ -249,8 +249,10 @@ function App() {
   const onClickAppendObjectToChain = (data) => {
 
     const newObject = data
-    
-    if (verifyObjectBeforeAddingToChain(newObject) === false) {return}
+
+    if (verifyObjectBeforeAddingToChain(newObject) === false) {
+      console.log("Could not verify this addition")
+      return}
     
     const newObjectIsGoalActor = 
         goalActors[1].name === newObject.name && 
@@ -268,6 +270,7 @@ function App() {
 
   const verifyObjectBeforeAddingToChain = (data) => {
     const endOfChain = chainDisplayArray.at(-3)
+    if (endOfChain.type === data.type) {return false}
     console.log("adding", data.name, "to chain after", endOfChain.name)
     if (endOfChain.type === 'Actor') {
       fetchCastDataForMovie(data.id).then((response) => {
@@ -276,8 +279,11 @@ function App() {
       })
       return "actor"
     } else if (endOfChain.type === 'Movie') {
-      // console.log(fetchMovieCreditsForActor(data.id))
-      return "movie"}
+      fetchMovieCreditsForActor(data.id).then((response) => {
+        const namesOfMovies = response.map((movie) => movie.name)
+        return namesOfMovies.includes(endOfChain.name)
+      })
+    }
   }
 
   const onClickSetResultFromSearch = (data) => {
