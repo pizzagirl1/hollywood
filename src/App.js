@@ -181,7 +181,6 @@ function App() {
         Authorization: 'Bearer ' + TMDB_TOKEN
       }
     };
-    console.log('fetching movie credits for ', actorId);
     return axios
       .request(options)
       .then((response) => {
@@ -202,14 +201,11 @@ function App() {
         Authorization: 'Bearer ' + TMDB_TOKEN
       }
     };
-    console.log('fetching movie credits for ', movieId);
     return axios
       .request(options)
       .then((response) => {
         const result = response.data.cast
         .map(convertActorDataFromAPI)
-        // const result = response.data.results.cast.map(convertMovieDataFromAPI);
-        console.log(result)
         return result
       })
       .catch((error) => {
@@ -251,13 +247,8 @@ function App() {
   ]
 
   const onClickAppendObjectToChain = (data) => {
-    // this should check if the object is the same as goalActor1
-    const newObject = {
-      id: data.id,
-      name: data.name,
-      imagePath: data.imagePath,
-      type: data.type
-    }
+
+    const newObject = data
     
     const newObjectIsGoalActor = 
         goalActors[1].name === newObject.name && 
@@ -266,13 +257,10 @@ function App() {
     if (newObjectIsGoalActor) {
       window.alert("You did it!")
       startGame()
-      // setChain([])
-      // resetChainDisplayArray()
       return 
     }
 
     const newChain = [...chain, newObject]
-    console.log("New Chain", newChain)
     setChain(newChain)
   }
 

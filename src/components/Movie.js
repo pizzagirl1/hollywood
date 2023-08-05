@@ -2,12 +2,11 @@ import React from "react";
 import noPhoto from '../images/noPhoto.png'
 import './Actor.css'
 
-const Movie = ({id, name, imagePath, onClick, cast}) => {
+const Movie = ({id, name, imagePath, onClick}) => {
 
     const image = imagePath !== null ? ` https://image.tmdb.org/t/p/w500/${imagePath}` : noPhoto;
 
     const handleClick = () => {
-        console.log("Clicked!")
         onClick( {id:id, name:name, imagePath:imagePath, type:"Movie"} )
     }
 
