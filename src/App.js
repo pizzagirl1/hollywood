@@ -259,6 +259,18 @@ function App() {
       type: data.type
     }
     
+    const newObjectIsGoalActor = 
+        goalActors[1].name === newObject.name && 
+        goalActors[1].id === newObject.id
+
+    if (newObjectIsGoalActor) {
+      window.alert("You did it!")
+      startGame()
+      // setChain([])
+      // resetChainDisplayArray()
+      return 
+    }
+
     const newChain = [...chain, newObject]
     console.log("New Chain", newChain)
     setChain(newChain)
