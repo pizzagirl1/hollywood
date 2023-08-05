@@ -156,15 +156,16 @@ function App() {
     // setPopularActors(buildActorDataList().filter(isMarginalizedGender))
   };
 
-  const fetchThenRoll = () => {
-    fetchPopularActors().then(() => rollActors())
-  }
+  // const fetchThenRoll = () => {
+  //   fetchPopularActors().then(() => rollActors())
+  // }
   
   const convertMovieDataFromAPI = (movie) => {
     return {
       id: movie.id,
       name: movie.title,
       imagePath: movie.poster_path,
+      popularity: movie.popularity,
       type: 'Movie'
     };
   };
@@ -184,11 +185,8 @@ function App() {
     return axios
       .request(options)
       .then((response) => {
-        const result = response.data.cast
-        .map(convertMovieDataFromAPI)
-        // const result = response.data.results.cast.map(convertMovieDataFromAPI);
-        console.log(result)
-        return result
+        const result = response.data.cast.map(convertMovieDataFromAPI)
+        return result.sort( (a,b) => a.popularity < b.popularity)
       })
       .catch((error) => {
         console.log("Error during fetchMovieCreditsForActor", error.message);});
