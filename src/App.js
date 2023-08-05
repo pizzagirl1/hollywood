@@ -249,7 +249,8 @@ function App() {
   const onClickAppendObjectToChain = (data) => {
 
     const newObject = data
-    console.log(verifyObjectBeforeAddingToChain(newObject))
+    
+    if (verifyObjectBeforeAddingToChain(newObject) === false) {return}
     
     const newObjectIsGoalActor = 
         goalActors[1].name === newObject.name && 
@@ -266,10 +267,16 @@ function App() {
   }
 
   const verifyObjectBeforeAddingToChain = (data) => {
-    console.log("adding", data.name, "to chain after", chainDisplayArray.at(-3).name)
-    if (chainDisplayArray.at(-3).type === 'Actor') {
+    const endOfChain = chainDisplayArray.at(-3)
+    console.log("adding", data.name, "to chain after", endOfChain.name)
+    if (endOfChain.type === 'Actor') {
+      fetchCastDataForMovie(data.id).then((response) => {
+        const namesOfActors = response.map((actor) => actor.name)
+        return namesOfActors.includes(endOfChain.name)
+      })
       return "actor"
-    } else if (chainDisplayArray.at(-3).type === 'Movie') {
+    } else if (endOfChain.type === 'Movie') {
+      // console.log(fetchMovieCreditsForActor(data.id))
       return "movie"}
   }
 
