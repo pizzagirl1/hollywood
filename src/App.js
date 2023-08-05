@@ -251,7 +251,7 @@ function App() {
     const newObject = data
 
     if (verifyObjectBeforeAddingToChain(newObject) === false) {
-      console.log("Could not verify this addition")
+      window.alert("That selection does not continue the chain. Try again.")
       return}
     
     const newObjectIsGoalActor = 
@@ -266,18 +266,30 @@ function App() {
 
     const newChain = [...chain, newObject]
     setChain(newChain)
+    setResultFromSearch(newObject)
+    withNewestChainItemSetSearchData(newObject)
+  }
+
+  const withNewestChainItemSetSearchData = (data) => {
+    if (data.type === 'Actor') {
+      fetchMovieCreditsForActor(data.id)
+      .then( (response) => setSearchData(response))
+    } else if (data.type === "Movie") {
+      fetchCastDataForMovie(data.id)
+      .then( (response) => setSearchData(response))
+    }
   }
 
   const verifyObjectBeforeAddingToChain = (data) => {
     const endOfChain = chainDisplayArray.at(-3)
+
     if (endOfChain.type === data.type) {return false}
-    console.log("adding", data.name, "to chain after", endOfChain.name)
+
     if (endOfChain.type === 'Actor') {
       fetchCastDataForMovie(data.id).then((response) => {
         const namesOfActors = response.map((actor) => actor.name)
         return namesOfActors.includes(endOfChain.name)
       })
-      return "actor"
     } else if (endOfChain.type === 'Movie') {
       fetchMovieCreditsForActor(data.id).then((response) => {
         const namesOfMovies = response.map((movie) => movie.name)
