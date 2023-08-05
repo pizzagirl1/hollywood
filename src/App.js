@@ -267,7 +267,10 @@ function App() {
 
   const verifyObjectBeforeAddingToChain = (data) => {
     console.log("adding", data.name, "to chain after", chainDisplayArray.at(-3).name)
-    
+    if (chainDisplayArray.at(-3).type === 'Actor') {
+      return "actor"
+    } else if (chainDisplayArray.at(-3).type === 'Movie') {
+      return "movie"}
   }
 
   const onClickSetResultFromSearch = (data) => {
