@@ -6,7 +6,7 @@ import './GameSetup.css'
 
 
 const GameSetup = ( {
-                    goalActors, rollActors, 
+                    goalActors,
                     startingThree, onClickSetStartingActor,
                     targetThree, onClickSetTargetActor } ) => {
 
@@ -14,8 +14,7 @@ const GameSetup = ( {
     // useEffect(() => rollActors(), [])
 
     return (       
-        <div>
-            <button onClick={rollActors}>Mulligan</button>   
+        <div>   
             <div className="container">
                 <ul>
                     <h3>Start With</h3> 

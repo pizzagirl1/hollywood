@@ -24,7 +24,7 @@ function App() {
   const [targetThree, setTargetThree] = useState([])
   const [goalActors, setGoalActors] = useState([defaultEmptyActorObject, defaultEmptyActorObject])
 
-  const [game, setGame] = useState([false])
+  const [game, setGame] = useState(null)
   // const [drewData, setDrewData] = useState(drew.movies)
 
   useEffect( () => {
@@ -326,19 +326,22 @@ function App() {
         <div>
         <button onClick={startGame}>{gameButtonText}</button> 
         <button onClick={switchGoalDirection}>Change Direction</button>
+        {game === false && <button onClick={rollActors}>Mulligan</button>}
         </div>
-        {game === false && 
-          <GameSetup
-          rollActors={rollActors}
-          startingThree={startingThree}
-          onClickSetStartingActor={onClickSetStartingActor}
-          targetThree={targetThree}
-          onClickSetTargetActor={onClickSetTargetActor}
-          goalActors={goalActors}
-        />}
+        {game === false && (
+          <div>
+            <GameSetup
+              startingThree={startingThree}
+              onClickSetStartingActor={onClickSetStartingActor}
+              targetThree={targetThree}
+              onClickSetTargetActor={onClickSetTargetActor}
+              goalActors={goalActors}
+            />
+          </div>
+        )}
         {game === true && (
           <div>
-            <h2>CONNECT THESE TWO ACTORS:</h2>
+            <h2>CONNECT THESE ACTORS:</h2>
             <div> 
               <AssetList 
                 assets={chainDisplayArray}
