@@ -249,6 +249,7 @@ function App() {
   const onClickAppendObjectToChain = (data) => {
 
     const newObject = data
+    console.log(verifyObjectBeforeAddingToChain(newObject))
     
     const newObjectIsGoalActor = 
         goalActors[1].name === newObject.name && 
@@ -262,6 +263,11 @@ function App() {
 
     const newChain = [...chain, newObject]
     setChain(newChain)
+  }
+
+  const verifyObjectBeforeAddingToChain = (data) => {
+    console.log("adding", data.name, "to chain after", chainDisplayArray.at(-3).name)
+    
   }
 
   const onClickSetResultFromSearch = (data) => {
