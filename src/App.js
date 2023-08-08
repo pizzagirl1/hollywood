@@ -228,11 +228,15 @@ function App() {
   const onClickAppendObjectToChain = (data) => {
 
     const newObject = data
-
-    if (verifyObjectBeforeAddingToChain(newObject) === false) {
+    
+    // const isVerified = verifyObjectBeforeAddingToChain(newObject)
+    verifyObjectBeforeAddingToChain(newObject).then( (isVerified) => {
+    if ( isVerified !== true) {
+      console.log("verification: ", isVerified)
       window.alert("That selection does not continue the chain. Try again.")
       return}
-    
+    })
+
     const newObjectIsGoalActor = 
         goalActors[1].name === newObject.name && 
         goalActors[1].id === newObject.id
@@ -248,24 +252,18 @@ function App() {
     withNewestChainItemSetSearchData(newObject)
   }
 
-  const withNewestChainItemSetSearchData = (data) => {
-    if (data.type === 'Actor') {
-      fetchMovieCreditsForActor(data.id)
-      .then( (response) => setSearchData(response))
-    } else if (data.type === "Movie") {
-      fetchCastDataForMovie(data.id)
-      .then( (response) => setSearchData(response))
-    }
-  }
-
   const verifyObjectBeforeAddingToChain = (data) => {
+    console.log("verifying!")
     const endOfChain = chainDisplayArray.at(-3)
+    // console.log("end of chain", endOfChain)
 
     if (endOfChain.type === data.type) {return false}
 
     if (endOfChain.type === 'Actor') {
       fetchCastDataForMovie(data.id).then((response) => {
         const namesOfActors = response.map((actor) => actor.name)
+        // console.log(namesOfActors)
+        console.log("does include:", namesOfActors.includes(endOfChain.name))
         return namesOfActors.includes(endOfChain.name)
       })
     } else if (endOfChain.type === 'Movie') {
@@ -284,6 +282,16 @@ function App() {
     window.alert(`${message} \n\n${successfulChainArrayText}`)
     startGame()
 
+  }
+
+  const withNewestChainItemSetSearchData = (data) => {
+    if (data.type === 'Actor') {
+      fetchMovieCreditsForActor(data.id)
+      .then( (response) => setSearchData(response))
+    } else if (data.type === "Movie") {
+      fetchCastDataForMovie(data.id)
+      .then( (response) => setSearchData(response))
+    }
   }
 
   const onClickSetResultFromSearch = (data) => {
