@@ -132,7 +132,7 @@ function App() {
 
   const buildActorDataList = () => {
     let actorData = []
-    for (let i = 1; i <= 20; i++) {
+    for (let i = 1; i <= 10; i++) {
       getPopularActors(i)
       .then( (response) => {
         actorData.push(...response); 
