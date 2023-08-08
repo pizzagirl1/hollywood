@@ -271,11 +271,13 @@ function App() {
   }
 
   const endOfGame = () => {
-    const successfulChainArray = chainDisplayArray.splice(-2).map( asset => asset.name)
-    const successfulChainArrayText = successfulChainArray.join(' ->\n')
-    window.alert(`You connected ${goalActors[0].name} to ${goalActors[1].name}! \n
-        ${successfulChainArrayText}`)
+    chainDisplayArray.splice(-2, 1);
+    const successfulChainArray = chainDisplayArray.map(asset => asset.name)
+    const successfulChainArrayText = successfulChainArray.join('\n')
+    const message = `You connected ${goalActors[0].name} to ${goalActors[1].name}!` 
+    window.alert(`${message} \n\n${successfulChainArrayText}`)
     startGame()
+    // setResultFromSearch(defaultEmptyActorObject)
   }
 
   const onClickSetResultFromSearch = (data) => {
@@ -326,6 +328,7 @@ function App() {
     } else {
       setGame(false)
       rollActors()
+      setResultFromSearch(defaultEmptyActorObject)
     }
   }
 
