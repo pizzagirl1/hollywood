@@ -2,8 +2,6 @@ import hollywood from './images/hollywood.jpg'
 import React, { useState, useEffect} from 'react';
 import axios from 'axios';
 import './App.css';
-// import drew from './drew.json'
-// import setTimeout from 'timers/promises'
 
 import SearchBar from './components/SearchBar';
 import AssetList from './components/AssetList';
@@ -25,28 +23,9 @@ function App() {
   const [goalActors, setGoalActors] = useState([defaultEmptyActorObject, defaultEmptyActorObject])
 
   const [game, setGame] = useState(null)
-  // const [drewData, setDrewData] = useState(drew.movies)
 
-  useEffect( () => {
-    // fetchThenRoll()
-    fetchPopularActors()
-    // rollActors()
-    // .then(() => rollActors())
-    // eslint-disable-next-line
-  }, [])
-
-  // useEffect( () => {
-  //   console.log("change in popular actors");
-  //   console.log(popularActors);
-  // }, [popularActors])
-
-  // useEffect( () => loadGame(), [])
-  
-  // const loadGame = async () => {
-  //   fetchPopularActors();
-  //   await setTimeout(5000);
-  //   rollActors();
-  // }
+  // eslint-disable-next-line
+  useEffect( () => {fetchPopularActors()}, [])
 
   const searchActor = (query) => {
     const options = {
@@ -155,10 +134,6 @@ function App() {
     // return null
     // setPopularActors(buildActorDataList().filter(isMarginalizedGender))
   };
-
-  // const fetchThenRoll = () => {
-  //   fetchPopularActors().then(() => rollActors())
-  // }
   
   const convertMovieDataFromAPI = (movie) => {
     return {
@@ -211,8 +186,6 @@ function App() {
       .catch((error) => {
         console.log("Error during fetchCastDataForMovie", error.message);});
   }
-
-  // const goalActorCredits = fetchMovieCreditsForActor(goalActors[0].id)
   
   const generateSixRandomActors = (people) => {
     const result = new Set();
@@ -259,9 +232,8 @@ function App() {
         goalActors[1].id === newObject.id
 
     if (newObjectIsGoalActor) {
-      window.alert("You did it!")
-      startGame()
-      return 
+      endOfGame();
+      return ;
     }
 
     const newChain = [...chain, newObject]
@@ -296,6 +268,14 @@ function App() {
         return namesOfMovies.includes(endOfChain.name)
       })
     }
+  }
+
+  const endOfGame = () => {
+    const successfulChainArray = chainDisplayArray.splice(-2).map( asset => asset.name)
+    const successfulChainArrayText = successfulChainArray.join(' ->\n')
+    window.alert(`You connected ${goalActors[0].name} to ${goalActors[1].name}! \n
+        ${successfulChainArrayText}`)
+    startGame()
   }
 
   const onClickSetResultFromSearch = (data) => {
