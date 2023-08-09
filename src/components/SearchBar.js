@@ -67,10 +67,10 @@ const SearchBar = ( {
             </div>
             <div>
             <p>
-                {resultFromSearch.name.length > 0 && 
+                {resultFromSearch.name !== null && 
                 `Your search found ${resultFromSearch.name}`}
             </p>
-            {resultFromSearch.name !== '' && 
+            {resultFromSearch.name !== null && 
             (<div>
             <AssetList
                 assets={[resultFromSearch, ...searchData]}

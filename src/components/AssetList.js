@@ -1,6 +1,7 @@
 import React from 'react';
 import Actor from './Actor';
 import Movie from './Movie';
+import Asset from './Asset';
 // import noPhoto from '../images/noPhoto.png'
 import './AssetList.css'
 
@@ -9,29 +10,32 @@ const AssetList = ( {assets, onClick, goalActors} ) => {
     const getAssetListJSX = (assets) => {
         // console.log("accessing assets: ", assets)
         return assets.map( (asset) => {
-            if (asset.type === 'Actor'){ 
+            // if (asset.type === 'Actor'){ 
                 return (
-                    <Actor
+                    <Asset
                         id={asset.id}
                         key={asset.id ? asset.id : Math.floor(Math.random() * 10000)}
                         name= {asset.name}
                         imagePath={asset.imagePath}
+                        type={asset.type}
                         onClick={onClick}
                         goalActors={goalActors}
-                    />)
-            } else if (asset.type === 'Movie'){
-                return (
-                    <Movie
-                        id={asset.id}
-                        key={asset.id}
-                        name= {asset.name}
-                        imagePath={asset.imagePath}
-                        onClick={onClick}
                     />
-                )
-            } else { return null };
+                )})
 
-    })
+    //         } else if (asset.type === 'Movie'){
+    //             return (
+    //                 <Movie
+    //                     id={asset.id}
+    //                     key={asset.id}
+    //                     name= {asset.name}
+    //                     imagePath={asset.imagePath}
+    //                     onClick={onClick}
+    //                 />
+    //             )
+    //         } else { return null };
+
+    // })
     }
 
     return (
