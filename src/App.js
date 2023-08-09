@@ -227,7 +227,6 @@ const App = () => {
 
     verifyObjectBeforeAddingToChain(newAsset)
     .then((isVerified)=> {
-      console.log(isVerified)
       if (!isVerified) {
           window.alert("That selection does not continue the chain. Try again.")
           return 
