@@ -210,15 +210,10 @@ function App() {
     setStartingThree(tempActors)
     setGoalActors([goalActors[1], goalActors[0]])
     setChain([])
-    chainDisplayArray = [
-      goalActors[0], 
-      ...chain, 
-      defaultEmptyActorObject, 
-      goalActors[1]
-    ]
+    
   }
 
-  let chainDisplayArray = [
+  const chainDisplayArray = [
     goalActors[0], 
     ...chain, 
     defaultEmptyActorObject, 

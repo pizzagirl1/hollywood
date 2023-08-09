@@ -1,12 +1,13 @@
 import React from 'react';
 import Actor from './Actor';
 import Movie from './Movie';
-import Asset from './Asset';
+// import noPhoto from '../images/noPhoto.png'
 import './AssetList.css'
 
 
 const AssetList = ( {assets, onClick, goalActors} ) => {
     const getAssetListJSX = (assets) => {
+        // console.log("accessing assets: ", assets)
         return assets.map( (asset) => {
             if (asset.type === 'Actor'){ 
                 return (

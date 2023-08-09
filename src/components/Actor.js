@@ -22,7 +22,6 @@ const Actor = ( {id, name, imagePath, onClick, goalActors} ) => {
     const image = imagePath !== null ? ` https://image.tmdb.org/t/p/w500/${imagePath}` : noPhoto;
 
     const handleClick = () => {
-        if (name === '') {return}
         onClick( {id:id, name:name, imagePath:imagePath, type:'Actor'} );
     }
 
