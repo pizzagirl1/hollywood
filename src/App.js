@@ -219,29 +219,27 @@ const App = () => {
     setChain([])
   }
 
-  const onClickAppendObjectToChain = (data) => {
-
-    const newObject = data
+  const onClickAppendAssetToChain = (asset) => {
 
     // const isVerified = 
-    verifyObjectBeforeAddingToChain(newObject)
+    verifyObjectBeforeAddingToChain(asset)
     .then((isVerified)=> {
       console.log(isVerified)
       if (isVerified === false) {
         window.alert("That selection does not continue the chain. Try again.")
         return }
       else if (isVerified === true) {
-        const newObjectIsGoalActor = 
-            goalActors[1].name === newObject.name && 
-            goalActors[1].id === newObject.id;
-          if (newObjectIsGoalActor) {
+        const newAssetIsGoalActor = 
+            goalActors[1].name === asset.name && 
+            goalActors[1].id === asset.id;
+          if (newAssetIsGoalActor) {
               endOfGame();
               return;
             }
-          const newChain = [...chain, newObject];
+          const newChain = [...chain, asset];
           setChain(newChain);
-          setResultFromSearch(newObject);
-          withNewestChainItemSetSearchData(newObject);
+          setResultFromSearch(asset);
+          withNewestChainItemSetSearchData(asset);
       }
     })
     
@@ -403,7 +401,7 @@ const App = () => {
           defaultEmptyActorObject={defaultEmptyActorObject}
           fetchMovieCreditsForActor={fetchMovieCreditsForActor}
           fetchCastDataForMovie={fetchCastDataForMovie}
-          onClickAssetList={onClickAppendObjectToChain}
+          onClickAssetList={onClickAppendAssetToChain}
           searchData={searchData}
           setSearchData={setSearchData}
         />
