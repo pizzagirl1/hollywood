@@ -225,7 +225,7 @@ const App = () => {
         goalActors[1].name === newAsset.name && 
         goalActors[1].id === newAsset.id;
 
-    verifyObjectBeforeAddingToChain(newAsset)
+    verifyAssetBeforeAddingToChain(newAsset)
     .then((isVerified)=> {
       if (!isVerified) {
           window.alert("That selection does not continue the chain. Try again.")
@@ -243,14 +243,13 @@ const App = () => {
     })
   }
 
-  const verifyObjectBeforeAddingToChain = (data) => {
-    const endOfChain = chainDisplayArray.at(-3)
+  const verifyAssetBeforeAddingToChain = (data) => {
+    const endOfChain = chainDisplayArray.at(-1)
 
     if (endOfChain.type === data.type) {return false}
 
     if (endOfChain.type === 'Actor') {
-      return fetchMovieCreditsForActor(endOfChain.id)
-      .then((response) => {
+      return fetchMovieCreditsForActor(endOfChain.id).then((response) => {
         const namesOfMovies = response.map((movie) => movie.name)
         return namesOfMovies.includes(data.name)
       })
