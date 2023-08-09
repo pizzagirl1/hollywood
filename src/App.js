@@ -242,16 +242,6 @@ function App() {
     withNewestChainItemSetSearchData(newObject)
   }
 
-  const withNewestChainItemSetSearchData = (data) => {
-    if (data.type === 'Actor') {
-      fetchMovieCreditsForActor(data.id)
-      .then( (response) => setSearchData(response))
-    } else if (data.type === "Movie") {
-      fetchCastDataForMovie(data.id)
-      .then( (response) => setSearchData(response))
-    }
-  }
-
   const verifyObjectBeforeAddingToChain = (data) => {
     const endOfChain = chainDisplayArray.at(-3)
 
@@ -267,6 +257,16 @@ function App() {
         const namesOfMovies = response.map((movie) => movie.name)
         return namesOfMovies.includes(endOfChain.name)
       })
+    }
+  }
+
+  const withNewestChainItemSetSearchData = (data) => {
+    if (data.type === 'Actor') {
+      fetchMovieCreditsForActor(data.id)
+      .then( (response) => setSearchData(response))
+    } else if (data.type === "Movie") {
+      fetchCastDataForMovie(data.id)
+      .then( (response) => setSearchData(response))
     }
   }
 
