@@ -219,10 +219,10 @@ const App = () => {
     setChain([])
   }
 
-  const onClickAppendAssetToChain = (asset) => {
+  const onClickAppendAssetToChain = (newAsset) => {
 
     // const isVerified = 
-    verifyObjectBeforeAddingToChain(asset)
+    verifyObjectBeforeAddingToChain(newAsset)
     .then((isVerified)=> {
       console.log(isVerified)
       if (isVerified === false) {
@@ -230,16 +230,16 @@ const App = () => {
         return }
       else if (isVerified === true) {
         const newAssetIsGoalActor = 
-            goalActors[1].name === asset.name && 
-            goalActors[1].id === asset.id;
+            goalActors[1].name === newAsset.name && 
+            goalActors[1].id === newAsset.id;
           if (newAssetIsGoalActor) {
               endOfGame();
               return;
             }
-          const newChain = [...chain, asset];
+          const newChain = [...chain, newAsset];
           setChain(newChain);
-          setResultFromSearch(asset);
-          withNewestChainItemSetSearchData(asset);
+          setResultFromSearch(newAsset);
+          withNewestChainItemSetSearchData(newAsset);
       }
     })
     
