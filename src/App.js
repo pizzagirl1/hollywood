@@ -223,30 +223,52 @@ const App = () => {
 
     const newObject = data
 
-    const isVerified = 
+    // const isVerified = 
     verifyObjectBeforeAddingToChain(newObject)
-    .then((isVerified)=> console.log(isVerified))
+    .then((isVerified)=> {
+      console.log(isVerified)
+      if (isVerified === false) {
+        window.alert("That selection does not continue the chain. Try again.")
+        return }
+      else if (isVerified === true) {
+        const newObjectIsGoalActor = 
+            goalActors[1].name === newObject.name && 
+            goalActors[1].id === newObject.id;
+          if (newObjectIsGoalActor) {
+              endOfGame();
+              return;
+            }
+          const newChain = [...chain, newObject];
+          setChain(newChain);
+          setResultFromSearch(newObject);
+          withNewestChainItemSetSearchData(newObject);
+      }
+    })
+    
+    // console.log("before if statement")
 
-    if (isVerified === false) {
-      window.alert("That selection does not continue the chain. Try again.")
-      return}
-    // if (verifyObjectBeforeAddingToChain(newObject) === false) {
+    // if (isVerified === false) {
     //   window.alert("That selection does not continue the chain. Try again.")
     //   return}
+    // // if (verifyObjectBeforeAddingToChain(newObject) === false) {
+    // //   window.alert("That selection does not continue the chain. Try again.")
+    // //   return}
     
-    const newObjectIsGoalActor = 
-        goalActors[1].name === newObject.name && 
-        goalActors[1].id === newObject.id
+    // console.log("after if statement")
 
-    if (newObjectIsGoalActor) {
-      endOfGame();
-      return ;
-    }
+    // const newObjectIsGoalActor = 
+    //     goalActors[1].name === newObject.name && 
+    //     goalActors[1].id === newObject.id
 
-    const newChain = [...chain, newObject]
-    setChain(newChain)
-    setResultFromSearch(newObject)
-    withNewestChainItemSetSearchData(newObject)
+    // if (newObjectIsGoalActor) {
+    //   endOfGame();
+    //   return ;
+    // }
+
+    // const newChain = [...chain, newObject]
+    // setChain(newChain)
+    // setResultFromSearch(newObject)
+    // withNewestChainItemSetSearchData(newObject)
   }
 
   const verifyObjectBeforeAddingToChain = (data) => {
