@@ -229,14 +229,13 @@ function App() {
 
     const newObject = data
     
-    const isVerified = verifyObjectBeforeAddingToChain(newObject)
-    console.log(isVerified)
-    // verifyObjectBeforeAddingToChain(newObject).then( (isVerified) => {
-    // if ( isVerified !== true) {
-    //   console.log("verification: ", isVerified)
-    //   window.alert("That selection does not continue the chain. Try again.")
-    //   return}
-    // })
+    // const isVerified = verifyObjectBeforeAddingToChain(newObject)
+    verifyObjectBeforeAddingToChain(newObject).then( (isVerified) => {
+    if ( isVerified !== true) {
+      console.log("verification: ", isVerified)
+      window.alert("That selection does not continue the chain. Try again.")
+      return}
+    })
 
     const newObjectIsGoalActor = 
         goalActors[1].name === newObject.name && 
