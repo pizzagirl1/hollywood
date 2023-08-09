@@ -289,7 +289,6 @@ const App = () => {
     }
   }
 
-  // change to ActorA or TargetA... goalActor0
   const onClickSetGoalActor0 = (data) => {
     const newObject = {
       id: data.id,
@@ -300,7 +299,6 @@ const App = () => {
     setGoalActors([newObject, goalActors[1]])
   }
 
-  // change to ActorB or TargetB... goalActor1
   const onClickSetGoalActor1 = (data) => {
     const newObject = {
       id: data.id,
@@ -311,10 +309,6 @@ const App = () => {
     setGoalActors([goalActors[0], newObject])
     
   }
-  
-  // const onClickDoNothing = () => {
-  //   return null
-  // }
 
   const startGame = () => {
     if (game === false && (goalActors[0].name === '' || goalActors[1].name === '')){
@@ -366,11 +360,6 @@ const App = () => {
             </div>
           </div>
         )}
-        {/* <AssetList
-          assets={goalActorCredits}
-          assets={fetchMovieCreditsForActor(goalActors[0].id)}
-          onClick={onClickDoNothing}
-        /> */}
         <SearchBar 
           searchActor={searchActor}
           searchMovie={searchMovie}
@@ -387,9 +376,6 @@ const App = () => {
         This product uses the TMDB API but is not endorsed or certified by TMDB.
         </div>
       </main>
-      {/* <footer className="App-footer">
-      This product uses the TMDB API but is not endorsed or certified by TMDB.
-      </footer> */}
     </div>
   );
 }
