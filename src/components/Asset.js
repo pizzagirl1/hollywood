@@ -1,21 +1,12 @@
-// import { useEffect } from 'react';
 import React from 'react';
 import './Actor.css'
 import noPhoto from '../images/noPhoto.png'
-// import PropTypes from 'prop-types';
 
-const Actor = ( {id, name, imagePath, onClick, goalActors} ) => {
-
-    // useEffect( () => console.log("goalActors is now ", goalActors), [goalActors])
+const Asset = ( {id, name, imagePath, type, onClick, goalActors} ) => {
 
     const borderForGoalActor = () => {
-        // console.log("inside border function for actor", name, goalActors)
         const goalIDs = goalActors.map((goal) => goal.id)
         const isGoalThisActor = goalIDs.includes(id)
-        // console.log(isGoalThisActor);
-        // const isGoalThisActor = goalActors.some(actor => actor.id === id);
-        // const isNameNotNull = name === ''
-        // const isGoalAndisNotNameless = isGoalThisActor && isNameNotNull
         return isGoalThisActor ? "selection" : null
     }
 
@@ -23,7 +14,7 @@ const Actor = ( {id, name, imagePath, onClick, goalActors} ) => {
 
     const handleClick = () => {
         if (name === '') {return}
-        onClick( {id:id, name:name, imagePath:imagePath, type:'Actor'} );
+        onClick( {id:id, name:name, imagePath:imagePath, type:type} );
     }
 
     return (
@@ -36,4 +27,4 @@ const Actor = ( {id, name, imagePath, onClick, goalActors} ) => {
     )
 }
 
-export default Actor
+export default Asset
