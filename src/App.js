@@ -223,9 +223,16 @@ const App = () => {
 
     const newObject = data
 
-    if (verifyObjectBeforeAddingToChain(newObject) === false) {
+    const isVerified = 
+    verifyObjectBeforeAddingToChain(newObject)
+    .then((isVerified)=> console.log(isVerified))
+
+    if (isVerified === false) {
       window.alert("That selection does not continue the chain. Try again.")
       return}
+    // if (verifyObjectBeforeAddingToChain(newObject) === false) {
+    //   window.alert("That selection does not continue the chain. Try again.")
+    //   return}
     
     const newObjectIsGoalActor = 
         goalActors[1].name === newObject.name && 
@@ -248,12 +255,12 @@ const App = () => {
     if (endOfChain.type === data.type) {return false}
 
     if (endOfChain.type === 'Actor') {
-      fetchCastDataForMovie(data.id).then((response) => {
+      return fetchCastDataForMovie(data.id).then((response) => {
         const namesOfActors = response.map((actor) => actor.name)
         return namesOfActors.includes(endOfChain.name)
       })
     } else if (endOfChain.type === 'Movie') {
-      fetchMovieCreditsForActor(data.id).then((response) => {
+      return fetchMovieCreditsForActor(data.id).then((response) => {
         const namesOfMovies = response.map((movie) => movie.name)
         return namesOfMovies.includes(endOfChain.name)
       })
