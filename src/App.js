@@ -134,11 +134,7 @@ const App = () => {
   }
 
   const fetchPopularActors = () => {
-
     setPopularActors(buildActorDataList())
-    // .then(rollActors())
-    // return null
-    // setPopularActors(buildActorDataList().filter(isMarginalizedGender))
   };
   
   const convertMovieDataFromAPI = (movie) => {
@@ -151,7 +147,6 @@ const App = () => {
     };
   };
   
-  // adding git branch to test around
   const fetchMovieCreditsForActor = (actorId) => {
     if (actorId === 0) {return []}
 
@@ -186,10 +181,7 @@ const App = () => {
     return axios
       .request(options)
       .then((response) => {
-        const result = response.data.cast
-        .map(convertActorDataFromAPI)
-        return result
-      })
+        return response.data.cast.map(convertActorDataFromAPI)})
       .catch((error) => {
         console.log("Error during fetchCastDataForMovie", error.message);});
   }
