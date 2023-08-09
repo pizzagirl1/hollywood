@@ -315,7 +315,7 @@ const App = () => {
     chainDisplayArray.splice(-2, 1);
     const successfulChainArray = chainDisplayArray.map(asset => asset.name)
     const successfulChainArrayText = successfulChainArray.join('\n')
-    const message = `You connected ${goalActors[0].name} to ${goalActors[1].name}!` 
+    const message = `You connected ${goalActors[0].name} to ${goalActors[1].name} in ${chainDisplayArray.length} steps!` 
     window.alert(`${message} \n\n${successfulChainArrayText}`)
     startGame()
   }
