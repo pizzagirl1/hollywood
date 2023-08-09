@@ -210,7 +210,6 @@ function App() {
     setStartingThree(tempActors)
     setGoalActors([goalActors[1], goalActors[0]])
     setChain([])
-    
   }
 
   const chainDisplayArray = [
@@ -277,7 +276,7 @@ function App() {
     const message = `You connected ${goalActors[0].name} to ${goalActors[1].name}!` 
     window.alert(`${message} \n\n${successfulChainArrayText}`)
     startGame()
-
+    // setResultFromSearch(defaultEmptyActorObject)
   }
 
   const withNewestChainItemSetSearchData = (data) => {
