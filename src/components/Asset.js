@@ -1,5 +1,5 @@
 import React from 'react';
-import './Actor.css'
+import './Asset.css'
 import noPhoto from '../images/noPhoto.png'
 // import PropTypes from 'prop-types';
 
