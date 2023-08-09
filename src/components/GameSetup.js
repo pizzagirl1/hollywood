@@ -7,8 +7,8 @@ import './GameSetup.css'
 
 const GameSetup = ( {
                     goalActors,
-                    startingThree, onClickSetStartingActor,
-                    targetThree, onClickSetTargetActor } ) => {
+                    startingThree, onClickSetGoalActor0,
+                    targetThree, onClickSetGoalActor1 } ) => {
 
     // eslint-disable-next-line
     // useEffect(() => rollActors(), [])
@@ -19,17 +19,17 @@ const GameSetup = ( {
                 <ul>
                     <h3>Start With</h3> 
                     <AssetList 
-                    assets={startingThree}
-                    onClick={onClickSetStartingActor}
-                    goalActors={goalActors}
+                        assets={startingThree}
+                        onClick={onClickSetGoalActor0}
+                        goalActors={goalActors}
                     />
                 </ul>
                 <ul>
                     <h3>End With</h3> 
                     <AssetList 
-                    assets={targetThree}
-                    onClick={onClickSetTargetActor}
-                    goalActors={goalActors}
+                        assets={targetThree}
+                        onClick={onClickSetGoalActor1}
+                        goalActors={goalActors}
                     />
                 </ul>
             </div>

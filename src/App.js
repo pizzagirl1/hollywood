@@ -290,7 +290,7 @@ const App = () => {
   }
 
   // change to ActorA or TargetA... goalActor0
-  const onClickSetStartingActor = (data) => {
+  const onClickSetGoalActor0 = (data) => {
     const newObject = {
       id: data.id,
       name: data.name,
@@ -301,7 +301,7 @@ const App = () => {
   }
 
   // change to ActorB or TargetB... goalActor1
-  const onClickSetTargetActor = (data) => {
+  const onClickSetGoalActor1 = (data) => {
     const newObject = {
       id: data.id,
       name: data.name,
@@ -347,9 +347,9 @@ const App = () => {
           <div>
             <GameSetup
               startingThree={startingThree}
-              onClickSetStartingActor={onClickSetStartingActor}
+              onClickSetGoalActor0={onClickSetGoalActor0}
               targetThree={targetThree}
-              onClickSetTargetActor={onClickSetTargetActor}
+              onClickSetGoalActor1={onClickSetGoalActor1}
               goalActors={goalActors}
             />
           </div>
