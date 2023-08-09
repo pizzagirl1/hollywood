@@ -242,31 +242,6 @@ const App = () => {
           withNewestChainItemSetSearchData(newAsset);
       }
     })
-    
-    // console.log("before if statement")
-
-    // if (isVerified === false) {
-    //   window.alert("That selection does not continue the chain. Try again.")
-    //   return}
-    // // if (verifyObjectBeforeAddingToChain(newObject) === false) {
-    // //   window.alert("That selection does not continue the chain. Try again.")
-    // //   return}
-    
-    // console.log("after if statement")
-
-    // const newObjectIsGoalActor = 
-    //     goalActors[1].name === newObject.name && 
-    //     goalActors[1].id === newObject.id
-
-    // if (newObjectIsGoalActor) {
-    //   endOfGame();
-    //   return ;
-    // }
-
-    // const newChain = [...chain, newObject]
-    // setChain(newChain)
-    // setResultFromSearch(newObject)
-    // withNewestChainItemSetSearchData(newObject)
   }
 
   const verifyObjectBeforeAddingToChain = (data) => {
