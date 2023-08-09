@@ -49,6 +49,92 @@ const App = () => {
 
   const gameButtonText = game === true ? "New Game" : "Start Game";
 
+  const getPopularActors = (page) => {
+    const options = {
+      method: 'GET',
+      url: `${TMDB_URL}/person/popular`,
+      params: {page: page},
+      headers: {
+        accept: 'application/json',
+        Authorization: 'Bearer ' + TMDB_TOKEN
+      }
+    };
+    return axios
+      .request(options)
+      .then((response) => {
+        return response.data.results.map(convertActorDataFromAPI);})
+      .catch((error) => {
+        console.log("Error during getPopularActors", error.message);});
+  }
+
+  const buildActorDataList = () => {
+    let actorData = []
+    for (let i = 1; i <= 10; i++) {
+      getPopularActors(i)
+      .then( (response) => {
+        actorData.push(...response); 
+      })
+    }
+    // const isMarginalizedGender = (actor) => {
+    //   return actor.gender;
+    // }
+    // const bechdelData = actorData.filter(isMarginalizedGender);
+    // console.log(bechdelData);
+    // return bechdelData;
+    // console.log(actorData);
+    return actorData;
+  }
+
+  const fetchPopularActors = () => {
+    setPopularActors(buildActorDataList())
+  };
+
+  const generateSixRandomActors = (people) => {
+    const result = new Set();
+    while (result.size < 6) {
+      let randomIndex = Math.floor(Math.random() * people.length);
+      result.add(people[randomIndex]);
+    }
+    return Array.from(result);
+  }
+
+  const rollActors = () => {
+    setGoalActors([defaultEmptyActorObject, defaultEmptyActorObject])
+    setChain([])
+    const sixRandomActors = generateSixRandomActors(popularActors);
+    setStartingThree(sixRandomActors.slice(0, 3));
+    setTargetThree(sixRandomActors.slice(3, 6));
+  }
+
+  const onClickSetGoalActor0 = (data) => {
+    const newObject = {
+      id: data.id,
+      name: data.name,
+      imagePath: data.imagePath,
+      type: data.type
+    }
+    setGoalActors([newObject, goalActors[1]])
+  }
+
+  const onClickSetGoalActor1 = (data) => {
+    const newObject = {
+      id: data.id,
+      name: data.name,
+      imagePath: data.imagePath,
+      type: data.type
+    }
+    setGoalActors([goalActors[0], newObject])
+    
+  }
+
+  const switchGoalDirection = () => {
+    const tempActors = targetThree;
+    setTargetThree(startingThree);
+    setStartingThree(tempActors)
+    setGoalActors([goalActors[1], goalActors[0]])
+    setChain([])
+  }
+
   const searchActor = (query) => {
     const options = {
       method: 'GET',
@@ -103,6 +189,17 @@ const App = () => {
       console.log("Error Searching for Actor", query, error.message)}})
   }
 
+  const onClickSetResultFromSearch = (data) => {
+    setResultFromSearch(data)
+    if (data.type === 'Actor') {
+      fetchMovieCreditsForActor(data.id)
+        .then( (responseData) => setSearchData(responseData))
+    } else if (data.type === 'Movie') {
+      fetchCastDataForMovie(data.id)
+        .then( (responseData) => setSearchData(responseData))
+    }
+  }
+
   const convertActorDataFromAPI = (person) => {
     return {
       id: person.id,
@@ -111,46 +208,6 @@ const App = () => {
       imagePath: person.profile_path,
       type: 'Actor'
     };
-  };
-
-  const getPopularActors = (page) => {
-    const options = {
-      method: 'GET',
-      url: `${TMDB_URL}/person/popular`,
-      params: {page: page},
-      headers: {
-        accept: 'application/json',
-        Authorization: 'Bearer ' + TMDB_TOKEN
-      }
-    };
-    return axios
-      .request(options)
-      .then((response) => {
-        return response.data.results.map(convertActorDataFromAPI);})
-      .catch((error) => {
-        console.log("Error during getPopularActors", error.message);});
-  }
-
-  const buildActorDataList = () => {
-    let actorData = []
-    for (let i = 1; i <= 10; i++) {
-      getPopularActors(i)
-      .then( (response) => {
-        actorData.push(...response); 
-      })
-    }
-    // const isMarginalizedGender = (actor) => {
-    //   return actor.gender;
-    // }
-    // const bechdelData = actorData.filter(isMarginalizedGender);
-    // console.log(bechdelData);
-    // return bechdelData;
-    // console.log(actorData);
-    return actorData;
-  }
-
-  const fetchPopularActors = () => {
-    setPopularActors(buildActorDataList())
   };
   
   const convertMovieDataFromAPI = (movie) => {
@@ -200,31 +257,6 @@ const App = () => {
         return response.data.cast.map(convertActorDataFromAPI)})
       .catch((error) => {
         console.log("Error during fetchCastDataForMovie", error.message);});
-  }
-  
-  const generateSixRandomActors = (people) => {
-    const result = new Set();
-    while (result.size < 6) {
-      let randomIndex = Math.floor(Math.random() * people.length);
-      result.add(people[randomIndex]);
-    }
-    return Array.from(result);
-  }
-
-  const rollActors = () => {
-    setGoalActors([defaultEmptyActorObject, defaultEmptyActorObject])
-    setChain([])
-    const sixRandomActors = generateSixRandomActors(popularActors);
-    setStartingThree(sixRandomActors.slice(0, 3));
-    setTargetThree(sixRandomActors.slice(3, 6));
-  }
-
-  const switchGoalDirection = () => {
-    const tempActors = targetThree;
-    setTargetThree(startingThree);
-    setStartingThree(tempActors)
-    setGoalActors([goalActors[1], goalActors[0]])
-    setChain([])
   }
 
   const onClickAppendAssetToChain = (newAsset) => {
@@ -286,38 +318,6 @@ const App = () => {
     const message = `You connected ${goalActors[0].name} to ${goalActors[1].name}!` 
     window.alert(`${message} \n\n${successfulChainArrayText}`)
     startGame()
-  }
-
-  const onClickSetResultFromSearch = (data) => {
-    setResultFromSearch(data)
-    if (data.type === 'Actor') {
-      fetchMovieCreditsForActor(data.id)
-        .then( (responseData) => setSearchData(responseData))
-    } else if (data.type === 'Movie') {
-      fetchCastDataForMovie(data.id)
-        .then( (responseData) => setSearchData(responseData))
-    }
-  }
-
-  const onClickSetGoalActor0 = (data) => {
-    const newObject = {
-      id: data.id,
-      name: data.name,
-      imagePath: data.imagePath,
-      type: data.type
-    }
-    setGoalActors([newObject, goalActors[1]])
-  }
-
-  const onClickSetGoalActor1 = (data) => {
-    const newObject = {
-      id: data.id,
-      name: data.name,
-      imagePath: data.imagePath,
-      type: data.type
-    }
-    setGoalActors([goalActors[0], newObject])
-    
   }
 
   return (
