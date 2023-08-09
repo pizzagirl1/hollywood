@@ -15,6 +15,8 @@ const App = () => {
   const [resultFromSearch, setResultFromSearch] = useState(defaultEmptyActorObject);
   const [searchData, setSearchData] = useState([])
   
+  // eslint-disable-next-line
+  useEffect( () => {fetchPopularActors()}, [])
   const [popularActors, setPopularActors] = useState([])
   const [startingThree, setStartingThree] = useState([])
   const [targetThree, setTargetThree] = useState([])
@@ -30,8 +32,22 @@ const App = () => {
 
   const [game, setGame] = useState(null)
 
-  // eslint-disable-next-line
-  useEffect( () => {fetchPopularActors()}, [])
+
+  const startGame = () => {
+    if (game === false && (goalActors[0].name === '' || goalActors[1].name === '')){
+      window.alert("You must choose two starting actors first!")
+      return 
+    } else if (game === false) {
+      setGame(true);
+      setResultFromSearch(defaultEmptyActorObject)
+    } else {
+      setGame(false)
+      rollActors()
+      setResultFromSearch(defaultEmptyActorObject)
+    }
+  }
+
+  const gameButtonText = game === true ? "New Game" : "Start Game";
 
   const searchActor = (query) => {
     const options = {
@@ -236,7 +252,7 @@ const App = () => {
   }
 
   const verifyAssetBeforeAddingToChain = (data) => {
-    const endOfChain = chainDisplayArray.at(-1)
+    const endOfChain = chainDisplayArray.at(-3)
 
     if (endOfChain.type === data.type) {return false}
 
@@ -303,22 +319,6 @@ const App = () => {
     setGoalActors([goalActors[0], newObject])
     
   }
-
-  const startGame = () => {
-    if (game === false && (goalActors[0].name === '' || goalActors[1].name === '')){
-      window.alert("You must choose two starting actors first!")
-      return 
-    } else if (game === false) {
-      setGame(true);
-      setResultFromSearch(defaultEmptyActorObject)
-    } else {
-      setGame(false)
-      rollActors()
-      setResultFromSearch(defaultEmptyActorObject)
-    }
-  }
-
-  const gameButtonText = game === true ? "New Game" : "Start Game";
 
   return (
     <div className="App">
