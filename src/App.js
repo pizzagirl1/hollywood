@@ -249,19 +249,15 @@ const App = () => {
     if (endOfChain.type === data.type) {return false}
 
     if (endOfChain.type === 'Actor') {
-      // fetchMovieCreditsForActor(endOfChain.id)
-      // .then((response) => {
-      //   const namesOfMovies = response.map((movie) => movie.name)
-      //   return namesOfMovies.includes(data.name)
-      // })
-      return fetchCastDataForMovie(data.id).then((response) => {
-        const namesOfActors = response.map((actor) => actor.name)
-        return namesOfActors.includes(endOfChain.name)
+      return fetchMovieCreditsForActor(endOfChain.id)
+      .then((response) => {
+        const namesOfMovies = response.map((movie) => movie.name)
+        return namesOfMovies.includes(data.name)
       })
     } else if (endOfChain.type === 'Movie') {
-      return fetchMovieCreditsForActor(data.id).then((response) => {
-        const namesOfMovies = response.map((movie) => movie.name)
-        return namesOfMovies.includes(endOfChain.name)
+      return fetchCastDataForMovie(endOfChain.id).then((response) => {
+        const namesOfActors = response.map((actor) => actor.name)
+        return namesOfActors.includes(data.name)
       })
     }
   }
