@@ -14,13 +14,19 @@ function App() {
   const defaultEmptyActorObject = { name: '', id: 0, imagePath: null, type: 'Actor'};
   const [resultFromSearch, setResultFromSearch] = useState(defaultEmptyActorObject);
   const [searchData, setSearchData] = useState([])
-
+  
   const [popularActors, setPopularActors] = useState([])
-  const [chain, setChain] = useState([])
-
   const [startingThree, setStartingThree] = useState([])
   const [targetThree, setTargetThree] = useState([])
   const [goalActors, setGoalActors] = useState([defaultEmptyActorObject, defaultEmptyActorObject])
+
+  const [chain, setChain] = useState([])
+  const chainDisplayArray = [
+    goalActors[0], 
+    ...chain, 
+    defaultEmptyActorObject, 
+    goalActors[1]
+  ]
 
   const [game, setGame] = useState(null)
 
@@ -211,13 +217,6 @@ function App() {
     setGoalActors([goalActors[1], goalActors[0]])
     setChain([])
   }
-
-  const chainDisplayArray = [
-    goalActors[0], 
-    ...chain, 
-    defaultEmptyActorObject, 
-    goalActors[1]
-  ]
 
   const onClickAppendObjectToChain = (data) => {
 
