@@ -76,19 +76,17 @@ const App = () => {
 
     return axios
     .request(options)
-    .then((response) => {
-      console.log((response.data[1]))
-      return(response.data)})
+    .then((response) => {return(response.data)})
+    .catch((error) => console.log("Error while getting Actors from db: ", error.message))
   }
 
   const buildActorDataList = () => {
     let actorData = []
     getActorsFromDatabase().then((response) => {
-      // let result = response.map(convertActorDataFromAPI)
-      // console.log(result)
-      // for (let actor of response) {
-      //   console.log(actor)
-      // }
+      for (let actor in response) {
+        actorData.push(response[actor])
+      }
+      // console.log(response)
     })
     // for (let i = 1; i <= 10; i++) {
     //   getPopularActors(i)
