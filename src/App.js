@@ -112,7 +112,10 @@ const App = () => {
     const result = new Set();
     while (result.size < 6) {
       let randomIndex = Math.floor(Math.random() * people.length);
-      result.add(people[randomIndex]);
+      //this is where the Bechdel happens!
+      // if (people[randomIndex].gender) {
+        result.add(people[randomIndex]);
+      // }
     }
     return Array.from(result);
   }
