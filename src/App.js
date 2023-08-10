@@ -105,10 +105,11 @@ const App = () => {
   const rollActors = () => {
     setGoalActors([defaultEmptyActorObject, defaultEmptyActorObject])
     setChain([])
+
     const randomActors = generateRandomActors(6, popularActors);
     const lengthOfArray = randomActors.length
     const midpointOfArray = Math.floor(lengthOfArray / 2)
-    console.log(lengthOfArray, midpointOfArray)
+  
     setStartingThree(randomActors.slice(0, midpointOfArray));
     setTargetThree(randomActors.slice(midpointOfArray, lengthOfArray));
   }
