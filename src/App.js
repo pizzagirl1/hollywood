@@ -34,7 +34,7 @@ const App = () => {
 
 
   const startGame = () => {
-    if (game === false && (goalActors[0].name === '' || goalActors[1].name === '')){
+    if (game === false && (goalActors[0].name === null || goalActors[1].name === null)){
       window.alert("You must choose two starting actors first!")
       return 
     } else if (game === false) {
