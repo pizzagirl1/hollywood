@@ -268,7 +268,12 @@ const App = () => {
   }
 
   const onClickAppendAssetToChain = (newAsset) => {
+    const endOfChain = chainDisplayArray.at(-3)
 
+    if (endOfChain.type === newAsset.type) {
+      onClickSetResultFromSearch(newAsset)
+      return;
+    }
     const newAssetIsGoalActor = 
         goalActors[1].name === newAsset.name && 
         goalActors[1].id === newAsset.id;
@@ -276,16 +281,24 @@ const App = () => {
     verifyAssetBeforeAddingToChain(newAsset)
     .then((isVerified)=> {
       if (!isVerified) {
-          window.alert("That selection does not continue the chain. Try again.")
+          onClickSetResultFromSearch(newAsset)
+          // window.alert("That selection does not continue the chain. Try again.")
           return;
       } else if (isVerified && newAssetIsGoalActor) {
+          // window.scrollTo({ top: 0, left: 0, behavior: 'smooth' })
           endOfGame();
           return;
-      } else if (isVerified) {
-          const newChain = [...chain, newAsset];
-          setChain(newChain);
-          setResultFromSearch(newAsset);
-          withNewestChainItemSetSearchData(newAsset);
+        } else if (isVerified) {
+          // window.scrollTo({ top: 0, left: 0, behavior: 'smooth' })
+          const addNewAsset = window.confirm(`Add ${newAsset.name}?`)
+          if (addNewAsset) {
+            const newChain = [...chain, newAsset];
+            setChain(newChain);
+            setResultFromSearch(newAsset);
+            withNewestChainItemSetSearchData(newAsset);
+          } else {
+            onClickSetResultFromSearch(newAsset)
+          }
           return;
       }
     })
