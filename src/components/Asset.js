@@ -18,8 +18,12 @@ const Asset = ( {id, name, imagePath, type, onClick, goalActors} ) => {
         onClick( {id:id, name:name, imagePath:imagePath, type:type} );
     }
 
+    const handleHover = () => {
+        // console.log("hovering!")
+    }
+
     return (
-        <div onClick={handleClick} className='asset'>
+        <div onClick={handleClick} onMouseEnter={handleHover} className='asset'>
             <img className={`image ${borderForGoalActor()}`} src={image} alt={name}/>
             <div>
                 {name}
