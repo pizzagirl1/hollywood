@@ -40,7 +40,7 @@ const App = () => {
       return 
     } else if (game === false) {
       setGame(true);
-      setResultFromSearch(defaultEmptyActorObject)
+      setResultFromSearch(goalActors[0])
     } else {
       setGame(false)
       rollActors()
@@ -277,7 +277,7 @@ const App = () => {
     .then((isVerified)=> {
       if (!isVerified) {
           window.alert("That selection does not continue the chain. Try again.")
-          return 
+          return;
       } else if (isVerified && newAssetIsGoalActor) {
           endOfGame();
           return;
