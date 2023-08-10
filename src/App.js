@@ -9,6 +9,7 @@ import GameSetup from './components/GameSetup';
 
 const TMDB_TOKEN = `${process.env.REACT_APP_TMDB_API_KEY}`
 const TMDB_URL = 'https://api.themoviedb.org/3'
+const FIREBASE_DB_URL = 'https://hollywood-360-data-default-rtdb.firebaseio.com/actors.json'
 
 const App = () => {
   const defaultEmptyActorObject = { name: null, id: null, imagePath: null, type: 'Actor'};
@@ -67,14 +68,34 @@ const App = () => {
         console.log("Error during getPopularActors", error.message);});
   }
 
+  const getActorsFromDatabase = () => {
+    const options = {
+      method: 'GET',
+      url: FIREBASE_DB_URL,
+    }
+
+    return axios
+    .request(options)
+    .then((response) => {
+      console.log((response.data[1]))
+      return(response.data)})
+  }
+
   const buildActorDataList = () => {
     let actorData = []
-    for (let i = 1; i <= 10; i++) {
-      getPopularActors(i)
-      .then( (response) => {
-        actorData.push(...response); 
-      })
-    }
+    getActorsFromDatabase().then((response) => {
+      // let result = response.map(convertActorDataFromAPI)
+      // console.log(result)
+      // for (let actor of response) {
+      //   console.log(actor)
+      // }
+    })
+    // for (let i = 1; i <= 10; i++) {
+    //   getPopularActors(i)
+    //   .then( (response) => {
+    //     actorData.push(...response); 
+    //   })
+    // }
     // const isMarginalizedGender = (actor) => {
     //   return actor.gender;
     // }
