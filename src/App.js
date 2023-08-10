@@ -50,24 +50,6 @@ const App = () => {
 
   const gameButtonText = game === true ? "New Game" : "Start Game";
 
-  const getPopularActors = (page) => {
-    const options = {
-      method: 'GET',
-      url: `${TMDB_URL}/person/popular`,
-      params: {page: page},
-      headers: {
-        accept: 'application/json',
-        Authorization: 'Bearer ' + TMDB_TOKEN
-      }
-    };
-    return axios
-      .request(options)
-      .then((response) => {
-        return response.data.results.map(convertActorDataFromAPI);})
-      .catch((error) => {
-        console.log("Error during getPopularActors", error.message);});
-  }
-
   const getActorsFromDatabase = () => {
     const options = {
       method: 'GET',
@@ -108,9 +90,9 @@ const App = () => {
     setPopularActors(buildActorDataList())
   };
 
-  const generateSixRandomActors = (people) => {
+  const generateRandomActors = (number, people) => {
     const result = new Set();
-    while (result.size < 6) {
+    while (result.size < number) {
       let randomIndex = Math.floor(Math.random() * people.length);
       //this is where the Bechdel happens!
       // if (people[randomIndex].gender) {
@@ -123,9 +105,12 @@ const App = () => {
   const rollActors = () => {
     setGoalActors([defaultEmptyActorObject, defaultEmptyActorObject])
     setChain([])
-    const sixRandomActors = generateSixRandomActors(popularActors);
-    setStartingThree(sixRandomActors.slice(0, 3));
-    setTargetThree(sixRandomActors.slice(3, 6));
+    const randomActors = generateRandomActors(6, popularActors);
+    const lengthOfArray = randomActors.length
+    const midpointOfArray = Math.floor(lengthOfArray / 2)
+    console.log(lengthOfArray, midpointOfArray)
+    setStartingThree(randomActors.slice(0, midpointOfArray));
+    setTargetThree(randomActors.slice(midpointOfArray, lengthOfArray));
   }
 
   const onClickSetGoalActor0 = (data) => {
