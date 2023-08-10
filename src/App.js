@@ -40,7 +40,7 @@ const App = () => {
       return 
     } else if (game === false) {
       setGame(true);
-      setResultFromSearch(goalActors[0])
+      onClickSetResultFromSearch(goalActors[0])
     } else {
       setGame(false)
       rollActors()
