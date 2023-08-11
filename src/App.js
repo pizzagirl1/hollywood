@@ -7,34 +7,33 @@ import SearchBar from './components/SearchBar';
 import AssetList from './components/AssetList';
 import GameSetup from './components/GameSetup';
 
-const TMDB_TOKEN = `${process.env.REACT_APP_TMDB_API_KEY}`
-const TMDB_URL = 'https://api.themoviedb.org/3'
-const FIREBASE_DB_URL = 'https://hollywood-360-data-default-rtdb.firebaseio.com/actors.json'
+const TMDB_TOKEN = `${process.env.REACT_APP_TMDB_API_KEY}`;
+const TMDB_URL = 'https://api.themoviedb.org/3';
+const FIREBASE_DB_URL = 'https://hollywood-360-data-default-rtdb.firebaseio.com/actors.json';
 
 const App = () => {
   const defaultEmptyActorObject = { name: null, id: null, imagePath: null, type: 'Actor'};
   const [resultFromSearch, setResultFromSearch] = useState(defaultEmptyActorObject);
-  const [searchData, setSearchData] = useState([])
+  const [searchData, setSearchData] = useState([]);
   
   // eslint-disable-next-line
-  useEffect( () => {fetchPopularActors()}, [])
-  const [popularActors, setPopularActors] = useState([])
+  useEffect( () => {fetchPopularActors()}, []);
+  const [popularActors, setPopularActors] = useState([]);
 
-  const NUMBER_OF_OPTIONS = 10
-  const [optionsGoalActor0, setOptionsGoalActor0] = useState([])
-  const [optionsGoalActor1, setOptionsGoalActor1] = useState([])
-  const [goalActors, setGoalActors] = useState([defaultEmptyActorObject, defaultEmptyActorObject])
+  const NUMBER_OF_OPTIONS = 6;
+  const [optionsGoalActor0, setOptionsGoalActor0] = useState([]);
+  const [optionsGoalActor1, setOptionsGoalActor1] = useState([]);
+  const [goalActors, setGoalActors] = useState([defaultEmptyActorObject, defaultEmptyActorObject]);
 
-  const [chain, setChain] = useState([])
+  const [chain, setChain] = useState([]);
   const chainDisplayArray = [
     goalActors[0], 
     ...chain, 
     defaultEmptyActorObject, 
     goalActors[1]
-  ]
+  ];
 
-  const [game, setGame] = useState(null)
-
+  const [game, setGame] = useState(null);
 
   const startGame = () => {
     if (game === false && (goalActors[0].name === null || goalActors[1].name === null)){
@@ -48,7 +47,7 @@ const App = () => {
       rollActors()
       setResultFromSearch(defaultEmptyActorObject)
     }
-  }
+  };
 
   const gameButtonText = game === true ? "New Game" : "Start Game";
 
@@ -62,7 +61,7 @@ const App = () => {
     .request(options)
     .then((response) => {return(response.data)})
     .catch((error) => console.log("Error while getting Actors from db: ", error.message))
-  }
+  };
 
   const buildActorDataList = () => {
     let actorData = []
@@ -86,7 +85,7 @@ const App = () => {
     // return bechdelData;
     // console.log(actorData);
     return actorData;
-  }
+  };
 
   const fetchPopularActors = () => {
     setPopularActors(buildActorDataList())
@@ -102,7 +101,7 @@ const App = () => {
       // }
     }
     return Array.from(result);
-  }
+  };
 
   const rollActors = () => {
     setGoalActors([defaultEmptyActorObject, defaultEmptyActorObject])
@@ -114,7 +113,7 @@ const App = () => {
   
     setOptionsGoalActor0(randomActors.slice(0, midpointOfArray));
     setOptionsGoalActor1(randomActors.slice(midpointOfArray, lengthOfArray));
-  }
+  };
 
   const onClickSetGoalActor0 = (data) => {
     const newObject = {
@@ -127,7 +126,7 @@ const App = () => {
     setResultFromSearch(newObject);
     fetchMovieCreditsForActor(newObject.id)
     .then( (response) => setSearchData(response));
-  }
+  };
 
   const onClickSetGoalActor1 = (data) => {
     const newObject = {
@@ -141,7 +140,7 @@ const App = () => {
     fetchMovieCreditsForActor(newObject.id)
     .then( (response) => setSearchData(response));
     
-  }
+  };
 
   const switchGoalDirection = () => {
     const tempActors = optionsGoalActor1;
@@ -149,7 +148,7 @@ const App = () => {
     setOptionsGoalActor0(tempActors)
     setGoalActors([goalActors[1], goalActors[0]])
     setChain([])
-  }
+  };
 
   const searchActor = (query) => {
     const options = {
@@ -176,7 +175,7 @@ const App = () => {
         };
       } else {
       console.log("Error Searching for Actor", query, error.message)}})
-  }
+  };
 
   const searchMovie = (query) => {
     const options = {
@@ -203,7 +202,7 @@ const App = () => {
         };
       } else {
       console.log("Error Searching for Actor", query, error.message)}})
-  }
+  };
 
   const onClickSetResultFromSearch = (data) => {
     setResultFromSearch(data)
@@ -214,7 +213,7 @@ const App = () => {
       fetchCastDataForMovie(data.id)
         .then( (responseData) => setSearchData(responseData))
     }
-  }
+  };
 
   const convertActorDataFromAPI = (person) => {
     return {
@@ -255,7 +254,7 @@ const App = () => {
       })
       .catch((error) => {
         console.log("Error during fetchMovieCreditsForActor", error.message);});
-  }
+  };
 
   const fetchCastDataForMovie = (movieId) => {
     if (movieId === 0 || movieId === null) {return []}
@@ -273,7 +272,7 @@ const App = () => {
         return response.data.cast.map(convertActorDataFromAPI)})
       .catch((error) => {
         console.log("Error during fetchCastDataForMovie", error.message);});
-  }
+  };
 
   const onClickAppendAssetToChain = (newAsset) => {
     const endOfChain = chainDisplayArray.at(-3)
@@ -305,7 +304,7 @@ const App = () => {
       }
       return;
     })
-  }
+  };
 
   const verifyAssetBeforeAddingToChain = (data) => {
     const endOfChain = chainDisplayArray.at(-3)
@@ -324,7 +323,7 @@ const App = () => {
         return namesOfActors.includes(data.name)
       })
     }
-  }
+  };
 
   const withNewestChainItemSetSearchData = (data) => {
     if (data.type === 'Actor') {
@@ -334,7 +333,7 @@ const App = () => {
       fetchCastDataForMovie(data.id)
       .then( (response) => setSearchData(response))
     }
-  }
+  };
 
   const endOfGame = () => {
     chainDisplayArray.splice(-2, 1);
@@ -343,7 +342,7 @@ const App = () => {
     const message = `You connected ${goalActors[0].name} to ${goalActors[1].name} in ${chainDisplayArray.length} steps!` 
     window.alert(`${message} \n\n${successfulChainArrayText}`)
     startGame()
-  }
+  };
 
   return (
     <div className="App">
