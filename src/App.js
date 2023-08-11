@@ -284,26 +284,25 @@ const App = () => {
     const newAssetIsGoalActor = 
         goalActors[1].name === newAsset.name && 
         goalActors[1].id === newAsset.id;
-
-    verifyAssetBeforeAddingToChain(newAsset)
-    .then( (isVerified) => {
-      if (!isVerified) {
-          onClickSetResultFromSearch(newAsset)
-          // window.alert("That selection does not continue the chain. Try again.")
-      } else if (newAssetIsGoalActor) {
-          // window.scrollTo({ top: 0, left: 0, behavior: 'smooth' })
-          endOfGame();
-      } else if (window.confirm(`Add ${newAsset.name}?`)) {
-          // window.scrollTo({ top: 0, left: 0, behavior: 'smooth' })
-          const newChain = [...chain, newAsset];
-          setChain(newChain);
-          setResultFromSearch(newAsset);
-          withNewestChainItemSetSearchData(newAsset);
-      } else {
-          onClickSetResultFromSearch(newAsset)
-      }
-      return;
-    })
+    try { verifyAssetBeforeAddingToChain(newAsset)
+      .then( (isVerified) => {
+        if (!isVerified) {
+            onClickSetResultFromSearch(newAsset)
+        } else if (newAssetIsGoalActor) {
+            // window.scrollTo({ top: 0, left: 0, behavior: 'smooth' })
+            endOfGame();
+        } else if (window.confirm(`Add ${newAsset.name}?`)) {
+            // window.scrollTo({ top: 0, left: 0, behavior: 'smooth' })
+            const newChain = [...chain, newAsset];
+            setChain(newChain);
+            setResultFromSearch(newAsset);
+            withNewestChainItemSetSearchData(newAsset);
+        } else {
+            onClickSetResultFromSearch(newAsset)
+        }
+        return;
+      })
+    } catch(e) {onClickSetResultFromSearch(newAsset)}
   };
 
   const verifyAssetBeforeAddingToChain = (data) => {
@@ -311,6 +310,7 @@ const App = () => {
 
     if (endOfChain.type === data.type) {return false}
     if (endOfChain.name === null) {return false}
+    if (game === false) {return false}
 
     if (endOfChain.type === 'Actor') {
       return fetchMovieCreditsForActor(endOfChain.id).then((response) => {
