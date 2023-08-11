@@ -123,7 +123,10 @@ const App = () => {
       imagePath: data.imagePath,
       type: data.type
     }
-    setGoalActors([newObject, goalActors[1]])
+    setGoalActors([newObject, goalActors[1]]);
+    setResultFromSearch(newObject);
+    fetchMovieCreditsForActor(newObject.id)
+    .then( (response) => setSearchData(response));
   }
 
   const onClickSetGoalActor1 = (data) => {
@@ -133,7 +136,10 @@ const App = () => {
       imagePath: data.imagePath,
       type: data.type
     }
-    setGoalActors([goalActors[0], newObject])
+    setGoalActors([goalActors[0], newObject]);
+    setResultFromSearch(newObject);
+    fetchMovieCreditsForActor(newObject.id)
+    .then( (response) => setSearchData(response));
     
   }
 
@@ -231,7 +237,7 @@ const App = () => {
   };
   
   const fetchMovieCreditsForActor = (actorId) => {
-    if (actorId === 0) {return []}
+    if (actorId === null) {return []}
 
     const options = {
       method: 'GET',
@@ -252,7 +258,7 @@ const App = () => {
   }
 
   const fetchCastDataForMovie = (movieId) => {
-    if (movieId === 0) {return []}
+    if (movieId === 0 || movieId === null) {return []}
     const options = {
       method: 'GET',
       url: `${TMDB_URL}/movie/${movieId}/credits`,
