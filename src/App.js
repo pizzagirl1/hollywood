@@ -20,7 +20,7 @@ const App = () => {
   useEffect( () => {fetchPopularActors()}, [])
   const [popularActors, setPopularActors] = useState([])
 
-  const NUMBER_OF_OPTIONS = 6
+  const NUMBER_OF_OPTIONS = 10
   const [optionsGoalActor0, setOptionsGoalActor0] = useState([])
   const [optionsGoalActor1, setOptionsGoalActor1] = useState([])
   const [goalActors, setGoalActors] = useState([defaultEmptyActorObject, defaultEmptyActorObject])
@@ -316,6 +316,7 @@ const App = () => {
     const endOfChain = chainDisplayArray.at(-3)
 
     if (endOfChain.type === data.type) {return false}
+    if (endOfChain.name === null) {return false}
 
     if (endOfChain.type === 'Actor') {
       return fetchMovieCreditsForActor(endOfChain.id).then((response) => {
