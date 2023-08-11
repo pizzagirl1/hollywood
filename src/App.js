@@ -19,6 +19,8 @@ const App = () => {
   // eslint-disable-next-line
   useEffect( () => {fetchPopularActors()}, [])
   const [popularActors, setPopularActors] = useState([])
+
+  const NUMBER_OF_OPTIONS = 6
   const [optionsGoalActor0, setOptionsGoalActor0] = useState([])
   const [optionsGoalActor1, setOptionsGoalActor1] = useState([])
   const [goalActors, setGoalActors] = useState([defaultEmptyActorObject, defaultEmptyActorObject])
@@ -106,7 +108,7 @@ const App = () => {
     setGoalActors([defaultEmptyActorObject, defaultEmptyActorObject])
     setChain([])
 
-    const randomActors = generateRandomActors(6, popularActors);
+    const randomActors = generateRandomActors(NUMBER_OF_OPTIONS, popularActors);
     const lengthOfArray = randomActors.length
     const midpointOfArray = Math.floor(lengthOfArray / 2)
   
