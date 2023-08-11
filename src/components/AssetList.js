@@ -6,7 +6,8 @@ import './AssetList.css'
 const AssetList = ( {assets, onClick, goalActors} ) => {
     const getAssetListJSX = (assets) => {
         return assets.map( (asset) => {
-            const keyRandomizer = Math.floor(Math.random() * 10000)
+            const keyRandomizer = Math.floor(Math.random() * 100000)
+            const randomKey = String("ID: " + asset.id + "-" + keyRandomizer)
                 return (
                     <Asset
                         id={asset.id}
@@ -15,7 +16,7 @@ const AssetList = ( {assets, onClick, goalActors} ) => {
                         type={asset.type}
                         onClick={onClick}
                         goalActors={goalActors}
-                        key={asset.id ? asset.id + keyRandomizer: keyRandomizer}
+                        key={randomKey}
                     />
                 )
             }
