@@ -163,7 +163,7 @@ const App = () => {
       if (error.message.includes('undefined')) {
         window.alert('Search not valid. Try again.');
         return {
-          name: '',
+          name: null,
           id: 0
         };
       } else {
@@ -190,7 +190,7 @@ const App = () => {
       if (error.message.includes('undefined')) {
         window.alert('Search not valid. Try again.');
         return {
-          name: '',
+          name: null,
           id: 0
         };
       } else {
