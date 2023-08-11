@@ -287,28 +287,23 @@ const App = () => {
         goalActors[1].id === newAsset.id;
 
     verifyAssetBeforeAddingToChain(newAsset)
-    .then((isVerified)=> {
+    .then( (isVerified) => {
       if (!isVerified) {
           onClickSetResultFromSearch(newAsset)
           // window.alert("That selection does not continue the chain. Try again.")
-          return;
-      } else if (isVerified && newAssetIsGoalActor) {
+      } else if (newAssetIsGoalActor) {
           // window.scrollTo({ top: 0, left: 0, behavior: 'smooth' })
           endOfGame();
-          return;
-        } else if (isVerified) {
+      } else if (window.confirm(`Add ${newAsset.name}?`)) {
           // window.scrollTo({ top: 0, left: 0, behavior: 'smooth' })
-          const addNewAsset = window.confirm(`Add ${newAsset.name}?`)
-          if (addNewAsset) {
-            const newChain = [...chain, newAsset];
-            setChain(newChain);
-            setResultFromSearch(newAsset);
-            withNewestChainItemSetSearchData(newAsset);
-          } else {
-            onClickSetResultFromSearch(newAsset)
-          }
-          return;
+          const newChain = [...chain, newAsset];
+          setChain(newChain);
+          setResultFromSearch(newAsset);
+          withNewestChainItemSetSearchData(newAsset);
+      } else {
+          onClickSetResultFromSearch(newAsset)
       }
+      return;
     })
   }
 
