@@ -19,8 +19,8 @@ const App = () => {
   // eslint-disable-next-line
   useEffect( () => {fetchPopularActors()}, [])
   const [popularActors, setPopularActors] = useState([])
-  const [startingThree, setStartingThree] = useState([])
-  const [targetThree, setTargetThree] = useState([])
+  const [optionsGoalActor0, setOptionsGoalActor0] = useState([])
+  const [optionsGoalActor1, setOptionsGoalActor1] = useState([])
   const [goalActors, setGoalActors] = useState([defaultEmptyActorObject, defaultEmptyActorObject])
 
   const [chain, setChain] = useState([])
@@ -110,8 +110,8 @@ const App = () => {
     const lengthOfArray = randomActors.length
     const midpointOfArray = Math.floor(lengthOfArray / 2)
   
-    setStartingThree(randomActors.slice(0, midpointOfArray));
-    setTargetThree(randomActors.slice(midpointOfArray, lengthOfArray));
+    setOptionsGoalActor0(randomActors.slice(0, midpointOfArray));
+    setOptionsGoalActor1(randomActors.slice(midpointOfArray, lengthOfArray));
   }
 
   const onClickSetGoalActor0 = (data) => {
@@ -136,9 +136,9 @@ const App = () => {
   }
 
   const switchGoalDirection = () => {
-    const tempActors = targetThree;
-    setTargetThree(startingThree);
-    setStartingThree(tempActors)
+    const tempActors = optionsGoalActor1;
+    setOptionsGoalActor1(optionsGoalActor0);
+    setOptionsGoalActor0(tempActors)
     setGoalActors([goalActors[1], goalActors[0]])
     setChain([])
   }
@@ -355,9 +355,9 @@ const App = () => {
         {game === false && (
           <div>
             <GameSetup
-              startingThree={startingThree}
+              optionsGoalActor0={optionsGoalActor0}
               onClickSetGoalActor0={onClickSetGoalActor0}
-              targetThree={targetThree}
+              optionsGoalActor1={optionsGoalActor1}
               onClickSetGoalActor1={onClickSetGoalActor1}
               goalActors={goalActors}
             />

@@ -1,14 +1,13 @@
 import React from "react";
 import AssetList from "./AssetList";
-// import { useEffect } from "react";
 
 import './GameSetup.css'
 
 
 const GameSetup = ( {
                     goalActors,
-                    startingThree, onClickSetGoalActor0,
-                    targetThree, onClickSetGoalActor1 } ) => {
+                    optionsGoalActor0, onClickSetGoalActor0,
+                    optionsGoalActor1, onClickSetGoalActor1 } ) => {
 
     return (       
         <div>   
@@ -16,7 +15,7 @@ const GameSetup = ( {
                 <ul>
                     <h3>Start With</h3> 
                     <AssetList 
-                        assets={startingThree}
+                        assets={optionsGoalActor0}
                         onClick={onClickSetGoalActor0}
                         goalActors={goalActors}
                     />
@@ -24,7 +23,7 @@ const GameSetup = ( {
                 <ul>
                     <h3>End With</h3> 
                     <AssetList 
-                        assets={targetThree}
+                        assets={optionsGoalActor1}
                         onClick={onClickSetGoalActor1}
                         goalActors={goalActors}
                     />
