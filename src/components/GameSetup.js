@@ -1,5 +1,6 @@
 import React from "react";
 import AssetList from "./AssetList";
+import PropTypes from "prop-types"
 
 import './GameSetup.css'
 
@@ -31,6 +32,35 @@ const GameSetup = ( {
             </div>
         </div>
     )
+}
+
+GameSetup.propTypes = {
+    goalActors: PropTypes.arrayOf(
+        PropTypes.shape({
+            id: PropTypes.number,
+            name: PropTypes.string,
+            imagePath: PropTypes.string,
+            type: PropTypes.string, 
+        })
+    ),
+    optionsGoalActor0: PropTypes.arrayOf(
+        PropTypes.shape({
+            id: PropTypes.number,
+            name: PropTypes.string,
+            imagePath: PropTypes.string,
+            type: PropTypes.string, 
+        })
+    ), 
+    onClickSetGoalActor0: PropTypes.func.isRequired,
+    optionsGoalActor1: PropTypes.arrayOf(
+        PropTypes.shape({
+            id: PropTypes.number,
+            name: PropTypes.string,
+            imagePath: PropTypes.string,
+            type: PropTypes.string, 
+        })
+    ),
+    onClickSetGoalActor1: PropTypes.func.isRequired
 }
 
 export default GameSetup;

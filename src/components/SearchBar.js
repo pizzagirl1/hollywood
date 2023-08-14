@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import AssetList from './AssetList';
+import PropTypes from "prop-types"
 
 const SearchBar = ( {
     searchActor, searchMovie, 
@@ -82,6 +83,36 @@ const SearchBar = ( {
         </div>
     );
 };
+
+SearchBar.propTypes = {
+    searchActor: PropTypes.func.isRequired, 
+    searchMovie: PropTypes.func.isRequired, 
+    resultFromSearch: PropTypes.shape({
+        id: PropTypes.number,
+        name: PropTypes.string,
+        imagePath: PropTypes.string,
+        type: PropTypes.string, 
+    }), 
+    setResultFromSearch: PropTypes.func.isRequired, 
+    searchData: PropTypes.arrayOf(
+        PropTypes.shape({
+            id: PropTypes.number,
+            name: PropTypes.string,
+            imagePath: PropTypes.string,
+            type: PropTypes.string, 
+        })
+    ),
+    setSearchData: PropTypes.func.isRequired,
+    defaultEmptyActorObject: PropTypes.shape({
+        id: PropTypes.number,
+        name: PropTypes.string,
+        imagePath: PropTypes.string,
+        type: PropTypes.string, 
+    }),
+    fetchMovieCreditsForActor: PropTypes.func.isRequired,
+    fetchCastDataForMovie: PropTypes.func.isRequired,
+    onClickAssetList: PropTypes.func.isRequired
+}
 
 
 export default SearchBar;
