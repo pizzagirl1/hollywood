@@ -1,7 +1,7 @@
 import React from 'react';
 import './Asset.css'
 import noPhoto from '../images/noPhoto.png'
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 
 const Asset = ( {id, name, imagePath, type, onClick, goalActors} ) => {
 
@@ -29,6 +29,22 @@ const Asset = ( {id, name, imagePath, type, onClick, goalActors} ) => {
                 {name}
             </div>
         </div>
+    )
+}
+
+Asset.propTypes = {
+    id: PropTypes.number,
+    name: PropTypes.string,
+    imagePath: PropTypes.string,
+    type: PropTypes.string.isRequired,
+    onClick: PropTypes.func.isRequired,
+    goalActors: PropTypes.arrayOf(
+        PropTypes.shape({
+            id: PropTypes.number,
+            name: PropTypes.string,
+            imagePath: PropTypes.string,
+            type: PropTypes.string, 
+        })
     )
 }
 

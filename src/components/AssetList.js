@@ -1,6 +1,7 @@
 import React from 'react';
 import Asset from './Asset';
 import './AssetList.css'
+import PropTypes from 'prop-types';
 
 
 const AssetList = ( {assets, onClick, goalActors} ) => {
@@ -28,6 +29,26 @@ const AssetList = ( {assets, onClick, goalActors} ) => {
             <ul>{getAssetListJSX(assets)}</ul>
         </div>
     )
+}
+
+AssetList.propTypes = {
+    assets: PropTypes.arrayOf(
+        PropTypes.shape({
+            id: PropTypes.number,
+            name: PropTypes.string,
+            imagePath: PropTypes.string,
+            type: PropTypes.string, 
+        })
+    ),
+    onClick: PropTypes.func.isRequired,
+    goalActors: PropTypes.arrayOf(
+        PropTypes.shape({
+            id: PropTypes.number,
+            name: PropTypes.string,
+            imagePath: PropTypes.string,
+            type: PropTypes.string, 
+        })
+    ),
 }
 
 export default AssetList;
