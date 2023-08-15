@@ -8,7 +8,7 @@ const Asset = ( {id, name, imagePath, type, onClick, goalActors} ) => {
     const borderForGoalActor = () => {
         const goalIDs = goalActors.map((goal) => goal.id)
         const isGoalThisActor = goalIDs.includes(id)
-        return isGoalThisActor ? "selection" : null
+        return isGoalThisActor ? " selection" : ''
     }
 
     const image = imagePath !== null ? ` https://image.tmdb.org/t/p/w500/${imagePath}` : noPhoto;
@@ -24,7 +24,7 @@ const Asset = ( {id, name, imagePath, type, onClick, goalActors} ) => {
 
     return (
         <div onClick={handleClick} onMouseEnter={handleHover} className='asset'>
-            <img className={`image ${borderForGoalActor()}`} src={image} alt={name}/>
+            <img className={`image${borderForGoalActor()}`} src={image} alt={name}/>
             <div>
                 {name}
             </div>
