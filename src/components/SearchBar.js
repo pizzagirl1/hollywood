@@ -63,8 +63,8 @@ const SearchBar = ( {
                 value={formField.query}
             />
             <div>
-                <button className="btn" onClick={onClickSearchActor}>Search Actor</button>
-                <button className="btn" onClick={onClickSearchMovie}>Search Movie</button>
+                <button className="btn btn-info" onClick={onClickSearchActor}>Search Actor</button>
+                <button className="btn btn-info" onClick={onClickSearchMovie}>Search Movie</button>
             </div>
             <div>
             <p>

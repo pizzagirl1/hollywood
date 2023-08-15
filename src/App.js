@@ -379,9 +379,9 @@ const App = () => {
         <div>
         <button className={`btn ${gameButtonColor()}`} onClick={startGame}>{gameButtonText}</button> 
         {game !== null &&
-        <button className="btn" onClick={switchGoalDirection}>Change Direction</button>}
+        <button className="btn btn-primary" onClick={switchGoalDirection}>Change Direction</button>}
         {game === false && 
-        <button className="btn" onClick={rollActors}>Mulligan</button>}
+        <button className="btn btn-primary" onClick={rollActors}>Mulligan</button>}
         </div>
         {game === false && (
           <div>

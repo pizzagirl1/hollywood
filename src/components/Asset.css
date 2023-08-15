@@ -12,8 +12,8 @@
 .image:hover {
     /* width: 25vw; */
     border: 5px solid;
-    margin: -5px;
     border-color: gray;
+    margin: -5px;
 }
 
 .image.selection {
