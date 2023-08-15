@@ -51,6 +51,13 @@ const App = () => {
 
   const gameButtonText = game === true ? "New Game" : "Start Game";
 
+  const gameButtonColor = () => {
+    if (game === null){return "btn-primary"}
+    else if (goalActors[0].name === null || goalActors[1].name === null){return "btn-danger"}
+    else if (game === false){return "btn-success"}
+    else if (game === true){return "btn-warning"}
+  }
+
   const getActorsFromDatabase = () => {
     const options = {
       method: 'GET',
@@ -370,9 +377,10 @@ const App = () => {
           <p>Thanks for playing!</p>
         </div>
         <div>
-        <button onClick={startGame}>{gameButtonText}</button> 
-        <button onClick={switchGoalDirection}>Change Direction</button>
-        {game === false && <button onClick={rollActors}>Mulligan</button>}
+        <button className={`btn ${gameButtonColor()}`} onClick={startGame}>{gameButtonText}</button> 
+        <button className="btn" onClick={switchGoalDirection}>Change Direction</button>
+        {game === false && 
+        <button className="btn" onClick={rollActors}>Mulligan</button>}
         </div>
         {game === false && (
           <div>
