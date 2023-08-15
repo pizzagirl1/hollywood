@@ -2,7 +2,7 @@ import hollywood from './images/hollywood.jpg'
 import React, { useState, useEffect} from 'react';
 import axios from 'axios';
 import './App.css';
-// import instructions from './instructions.json';
+import instructions from './instructions.json';
 
 import SearchBar from './components/SearchBar';
 import AssetList from './components/AssetList';
@@ -358,24 +358,15 @@ const App = () => {
         <img src={hollywood} className="App-logo" alt="logo" />
       </header>
       <main>
-      <div class="alert alert-warning alert-dismissible show" role="alert">
-        <strong>Holy guacamole!</strong> You should check in on some of those fields below.
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
         <div className="container">
           <div class="alert alert-success alert-dismissible text-left" role="alert">
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
-            <p>
-            <strong>Hollywood 360 </strong>
-               {/* {instructions.text_1} */}
-               </p>
-            {/* <p>{instructions.text_2}</p>
+            <p><strong>Hollywood 360 </strong>{instructions.text_1}</p>
+            <p>{instructions.text_2}</p>
             <p>{instructions.text_3}</p>
-            <p>{instructions.text_4}</p> */}
+            <p>{instructions.text_4}</p>
           </div>
         </div>
         <div>
