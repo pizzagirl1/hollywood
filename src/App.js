@@ -2,6 +2,7 @@ import hollywood from './images/hollywood.jpg'
 import React, { useState, useEffect} from 'react';
 import axios from 'axios';
 import './App.css';
+import message from './instructions.json';
 
 import SearchBar from './components/SearchBar';
 import AssetList from './components/AssetList';
@@ -358,9 +359,20 @@ const App = () => {
       </header>
       <main>
         <div className="container">
-          <div className="alert alert-success" role="alert">
-            Alert
-            <button className="btn-close" aria-label='close' data-bs-dismiss="alert"></button>
+          <div className="alert alert-warning alert-dismissible fade show" role="alert">
+            <strong>Holy guacamole!</strong> You should check in on some of those fields below.
+            <button type="button" className="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div className="alert alert-warning alert-dismissible fade" role="alert">
+            <p>{message.text_1}</p>
+            <p>{message.text_2}</p>
+            <p>{message.text_3}</p>
+            <p>{message.text_4}</p>
+            <button type="button" className="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
           </div>
           {/* <button className="btn btn-success" data-bs-toggle="modal" data-bs-target="#modal">How To Play</button>
           <div className="modal" id="modal">
