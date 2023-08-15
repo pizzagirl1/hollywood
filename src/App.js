@@ -357,24 +357,29 @@ const App = () => {
         <img src={hollywood} className="App-logo" alt="logo" />
       </header>
       <main>
-        <div>
-          <p>
-            Hollywood 360 is a game about making connections. The objective of the game is connect stars from Hollywood to each other by chaining 
-            together different movies and actors. Each link in the chain will alternate between actor and movie, and each successive link must 
-            include the last element.
-          </p>
-          <p>
-            For example, starting with Lucy Liu, you could add Charlie’s Angels which also stars Drew Barrymore (among many others). If your goal 
-            is to connect Lucy Liu to Adam Sandler, you could go from Drew Barrymore to 50 First Dates, which also stars Adam Sandler. Then you 
-            would have connected Lucy Liu to Adam Sandler in 5 steps!
-          </p>
-          <p>
-            To begin, you’ll be dealt two groups of three stars. Pick a star from the first group to be your starting point, and a star from the 
-            second group to be your end point. If you aren’t familiar with some of the stars you’ve been dealt, you can click “Mulligan” to get 
-            new options before starting the game. Once you are ready, click “Start Game!” At any point, you can switch the start and end points 
-            by clicking “Change Direction,” but you will lose any progress you have made. 
-          </p>
-          <p>Thanks for playing!</p>
+        <div className="container">
+          <div className="alert alert-success" role="alert">
+            Alert
+            <button className="btn-close" aria-label='close' data-bs-dismiss="alert"></button>
+          </div>
+          {/* <button className="btn btn-success" data-bs-toggle="modal" data-bs-target="#modal">How To Play</button>
+          <div className="modal" id="modal">
+            <div className="modal-dialog">
+              <div className="modal-content">
+                <p>Hollywood 360 is a game about making connections. The objective of the game is connect stars from Hollywood to each other by chaining 
+                  together different movies and actors. Each link in the chain will alternate between actor and movie, and each successive link must 
+                  include the last element.</p>
+                <p>For example, starting with Lucy Liu, you could add Charlie’s Angels which also stars Drew Barrymore (among many others). If your goal 
+                  is to connect Lucy Liu to Adam Sandler, you could go from Drew Barrymore to 50 First Dates, which also stars Adam Sandler. Then you 
+                  would have connected Lucy Liu to Adam Sandler in 5 steps!</p>
+                <p>To begin, you’ll be dealt two groups of three stars. Pick a star from the first group to be your starting point, and a star from the 
+                  second group to be your end point. If you aren’t familiar with some of the stars you’ve been dealt, you can click “Mulligan” to get 
+                  new options before starting the game. Once you are ready, click “Start Game!” At any point, you can switch the start and end points 
+                  by clicking “Change Direction,” but you will lose any progress you have made.</p>
+                <p>Thanks for playing!</p>
+              </div>
+            </div>
+          </div> */}
         </div>
         <div>
         <button className={`btn ${gameButtonColor()}`} onClick={startGame}>{gameButtonText}</button> 
